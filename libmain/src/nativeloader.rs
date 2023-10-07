@@ -43,14 +43,14 @@ fn load_bootstrap(env: &JNIEnv) {
 
     (on_load)(env.get_java_vm().expect("msg").get_java_vm_pointer(), std::ptr::null_mut());
 
-    let initialize: utils::libs::NativeMethod<fn()> = bootstrap_lib
-        .sym("Java_com_melonloader_Bootstrap_Initialize")
-        .unwrap_or_else(|e| {
-            info!("Failed to find Initialize: {}", e.to_string());
-            panic!();
-        });
+    //let initialize: utils::libs::NativeMethod<fn()> = bootstrap_lib
+    //    .sym("Java_com_melonloader_Bootstrap_Initialize")
+    //    .unwrap_or_else(|e| {
+    //        info!("Failed to find Initialize: {}", e.to_string());
+    //        panic!();
+    //    });
         
-    (initialize)();
+    //(initialize)();
 }
 
 fn load_lib_unity(env: &JNIEnv) {
