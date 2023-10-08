@@ -17,7 +17,7 @@
 pub mod console;
 pub mod constants;
 pub mod errors;
-//pub mod hooks;
+pub mod hooks;
 //pub mod icalls;
 pub mod logging;
 pub mod melonenv;

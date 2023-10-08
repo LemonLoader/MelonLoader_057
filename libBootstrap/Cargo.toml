@@ -18,6 +18,11 @@ clap = { git = "https://github.com/RinLovesYou/clap", features = ["derive"] }
 chrono = "0.4.23"
 libc-stdhandle = "0.1.0"
 exe = "0.5.6"
+parking_lot = "0.12.1"
+#dobby-rs = { git = "https://github.com/RinLovesYou/dobby-rs" }
+#dobby-rs = { path = "../../dobby-rs" }
+#unity-rs = { git = "https://github.com/RinLovesYou/Ferrex/" }
+unity-rs = { path = "../../Ferrex/unity" }
 
 [target.'cfg(not(target_os = "android"))'.dependencies]
 msgbox = "0.7.0"

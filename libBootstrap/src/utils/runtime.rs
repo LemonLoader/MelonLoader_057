@@ -1,12 +1,12 @@
 use std::{error::Error, collections::HashMap, io, path::Path};
 
 use exe::{ImageDirectoryEntry, ResourceDirectory, VecPE, PE, ImportDirectory, ImportData, CCharString, ImageDataDirectory, ImageResourceDirectory};
-//use unity_rs::runtime::FerrexRuntime;
+use unity_rs::runtime::FerrexRuntime;
 
 use crate::{errors::DynErr, log, melonenv::paths};
 
-//#[allow(dead_code)]
-//pub static mut RUNTIME: Option<FerrexRuntime> = None;
+#[allow(dead_code)]
+pub static mut RUNTIME: Option<FerrexRuntime> = None;
 
 #[macro_export]
 macro_rules! runtime {
@@ -15,7 +15,7 @@ macro_rules! runtime {
     };
 }
 
-/*pub fn get_runtime() -> Result<&'static FerrexRuntime, DynErr> {
+pub fn get_runtime() -> Result<&'static FerrexRuntime, DynErr> {
     unsafe {
         if RUNTIME.is_none() {
             RUNTIME = Some(unity_rs::runtime::get_runtime()?)
@@ -23,7 +23,7 @@ macro_rules! runtime {
 
         Ok(RUNTIME.as_ref().ok_or("Failed to get runtime")?)
     }
-}*/
+}
 
 #[derive(Debug)]
 pub enum NetstandardVersion {
