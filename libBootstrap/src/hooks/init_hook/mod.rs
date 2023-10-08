@@ -9,7 +9,7 @@ use crate::{
 use std::ffi::c_void;
 use unity_rs::runtime::RuntimeType;
 
-use super::{NativeHook};
+use super::NativeHook;
 
 pub fn hook() -> Result<(), DynErr> {
     let runtime = runtime!()?;
