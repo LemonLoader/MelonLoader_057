@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"rust-analyzer.check.targets": "aarch64-linux-android",
+		"rust-analyzer.linkedProjects": [
+			".\\Cargo.toml",
+		],
+		"rust-analyzer.showUnlinkedFileNotification": false,
+		"rust-analyzer.check.allTargets": false,
+		"rust-analyzer.cargo.target": "aarch64-linux-android"
+	}
+	
+}

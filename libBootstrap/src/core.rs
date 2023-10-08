@@ -1,14 +1,26 @@
 use ctor::ctor;
 
+use crate::{errors::DynErr, internal_failure};
+
 #[ctor]
 fn startup() {
-    #[cfg(target_os = "android")]
-    android_log::init("MelonLoader").unwrap();
+    init().unwrap_or_else(|e| {
+        internal_failure!("Failed to initialize MelonLoader: {}", e.to_string());
+    });
+}
 
-    info!("Initializing bootstrap...");
+fn init() -> Result<(), DynErr> {
+    //console::init()?;
+    #[cfg(not(target_os = "android"))]
+    logger::init()?;
+
+    //hooks::init_hook::hook()?;
+
+    //console::null_handles()?;
+
+    Ok(())
 }
 
 pub fn shutdown() {
-    info!("Shutting down...");
     std::process::exit(0);
 }
