@@ -18,7 +18,6 @@ clap = { git = "https://github.com/RinLovesYou/clap", features = ["derive"] }
 chrono = "0.4.23"
 libc-stdhandle = "0.1.0"
 exe = "0.5.6"
-parking_lot = "0.12.1"
 dobby-rs = { git = "https://github.com/RinLovesYou/dobby-rs" }
 unity-rs = { git = "https://github.com/TrevTV/Ferrex" }
 
