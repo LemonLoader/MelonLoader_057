@@ -1,15 +1,15 @@
-//use dobby_rs::DobbyHookError;
+use dobby_rs::DobbyHookError;
 use thiserror::Error;
-//use unity_rs::runtime::RuntimeError;
+use unity_rs::runtime::RuntimeError;
 
 use super::logerr::LogError;
 
 #[derive(Debug, Error)]
 pub enum HookError {
-    //#[error(transparent)]
-    //Dobby(#[from] DobbyHookError),
-    //#[error(transparent)]
-    //Runtime(#[from] RuntimeError),
+    #[error(transparent)]
+    Dobby(#[from] DobbyHookError),
+    #[error(transparent)]
+    Runtime(#[from] RuntimeError),
     #[error(transparent)]
     Log(#[from] LogError),
 

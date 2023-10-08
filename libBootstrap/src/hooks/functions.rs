@@ -10,7 +10,7 @@ pub fn hook(target: usize, detour: usize) -> Result<usize, HookError> {
     }
 
     unsafe {
-        /* let trampoline = dobby_rs::hook(target as dobby_rs::Address, detour as dobby_rs::Address)
+        let trampoline = dobby_rs::hook(target as dobby_rs::Address, detour as dobby_rs::Address)
             .map_err(|e| HookError::Failed(e.to_string()));
 
         let trampoline = match trampoline {
@@ -23,8 +23,7 @@ pub fn hook(target: usize, detour: usize) -> Result<usize, HookError> {
         }
 
         //return Ok with type annotations
-        Ok(trampoline as usize) */
-        Ok(target)
+        Ok(trampoline as usize)
     }
 }
 
@@ -34,7 +33,7 @@ pub fn unhook(target: usize) -> Result<(), DynErr> {
     }
 
     unsafe {
-        //dobby_rs::unhook(target as dobby_rs::Address)?;
+        dobby_rs::unhook(target as dobby_rs::Address)?;
     }
 
     Ok(())

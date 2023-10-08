@@ -1,10 +1,10 @@
 use std::path::{Path, PathBuf};
 
 use lazy_static::lazy_static;
-//use unity_rs::runtime::RuntimeType;
+use unity_rs::runtime::RuntimeType;
 
 use crate::{
-    constants::W, /* runtime, utils::runtime::{self, NetstandardVersion} */
+    constants::W, runtime, utils::runtime::{self, NetstandardVersion},
     errors::DynErr, internal_failure,
 };
 
@@ -51,7 +51,7 @@ lazy_static! {
 
 static mut DATA_DIR: Option<String> = None;
 
-/* pub fn runtime_dir() -> Result<PathBuf, DynErr> {
+pub fn runtime_dir() -> Result<PathBuf, DynErr> {
     let runtime = runtime!()?;
 
     let mut path = MELONLOADER_FOLDER.clone();
@@ -64,7 +64,7 @@ static mut DATA_DIR: Option<String> = None;
     }
 
     Ok(path.to_path_buf())
-} */
+}
 
 pub fn get_managed_dir() -> Result<PathBuf, DynErr> {
     let file_path = std::env::current_exe()?;

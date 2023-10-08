@@ -11,6 +11,7 @@ dependencies = [
  "clap",
  "colored",
  "ctor",
+ "dobby-rs",
  "exe",
  "jni",
  "lazy_static",
@@ -350,6 +351,20 @@ checksum = "d3dd60d1080a57a05ab032377049e0591415d2b31afd7028356dbf3cc6dcb066"
 dependencies = [
  "generic-array",
 ]
+
+[[package]]
+name = "dobby-rs"
+version = "0.1.0"
+source = "git+https://github.com/RinLovesYou/dobby-rs#5af4e2c666aed8e4636b8df7467425a202589e54"
+dependencies = [
+ "dobby-sys",
+ "thiserror",
+]
+
+[[package]]
+name = "dobby-sys"
+version = "0.1.0"
+source = "git+https://github.com/TrevTV/dobby-sys.git#e429725c6c34ad4a8d9d79aebe3ff26d4d09a35f"
 
 [[package]]
 name = "equivalent"
@@ -1367,6 +1382,7 @@ checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
 [[package]]
 name = "unity-rs"
 version = "0.1.0"
+source = "git+https://github.com/TrevTV/Ferrex#58aec0b5099d81a9ab81407988c6427b10f616f8"
 dependencies = [
  "libc",
  "libloading",
