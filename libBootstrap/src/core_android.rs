@@ -3,7 +3,7 @@ use jni::{
     JNIEnv, JavaVM,
 };
 use std::{ os::raw::c_void, panic::catch_unwind };
-use crate::{log, melonenv::paths, internal_failure};
+use crate::{log, melonenv::paths};
 
 const INVALID_JNI_VERSION: jint = 0;
 

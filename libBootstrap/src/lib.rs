@@ -13,10 +13,15 @@
 // #![allow(clippy::inherent_to_string, clippy::type_complexity, improper_ctypes)]
 // #![cfg_attr(docsrs, feature(doc_cfg))]
 
-pub mod errors;
-pub mod logging;
+//pub mod base_assembly;
+pub mod console;
 pub mod constants;
+pub mod errors;
+//pub mod hooks;
+//pub mod icalls;
+pub mod logging;
 pub mod melonenv;
+pub mod utils;
 
 pub mod core;
 #[cfg(target_os = "android")]

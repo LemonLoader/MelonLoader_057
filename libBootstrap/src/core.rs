@@ -1,6 +1,6 @@
 use ctor::ctor;
 
-use crate::{errors::DynErr, internal_failure};
+use crate::{errors::DynErr, internal_failure, logging::logger, console};
 
 #[ctor]
 fn startup() {
@@ -10,13 +10,14 @@ fn startup() {
 }
 
 fn init() -> Result<(), DynErr> {
-    //console::init()?;
+    console::init()?;
+
     #[cfg(not(target_os = "android"))]
     logger::init()?;
 
     //hooks::init_hook::hook()?;
 
-    //console::null_handles()?;
+    console::null_handles()?;
 
     Ok(())
 }
