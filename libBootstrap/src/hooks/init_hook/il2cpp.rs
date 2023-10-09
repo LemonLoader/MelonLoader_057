@@ -4,7 +4,7 @@ use lazy_static::lazy_static;
 use unity_rs::il2cpp::types::Il2CppDomain;
 
 use crate::{
-    /*base_assembly,*/ console, constants::InitFnIl2Cpp, debug, errors::DynErr, hooks::{NativeHook, invoke_hook},
+    base_assembly, console, constants::InitFnIl2Cpp, debug, errors::DynErr, hooks::{NativeHook, invoke_hook},
     internal_failure, runtime,
 };
 
@@ -28,7 +28,7 @@ fn detour_inner(name: *const c_char) -> Result<*mut Il2CppDomain, DynErr> {
     debug!("Detaching hook from il2cpp_init")?;
     trampoline.unhook()?;
 
-    //base_assembly::init(runtime!()?)?;
+    base_assembly::init(runtime!()?)?;
     invoke_hook::hook()?;
 
     Ok(domain)

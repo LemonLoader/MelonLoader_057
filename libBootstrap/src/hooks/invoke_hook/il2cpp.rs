@@ -3,7 +3,7 @@ use std::{ffi::c_void, sync::RwLock, ptr::null_mut};
 use lazy_static::lazy_static;
 use unity_rs::{il2cpp::types::{Il2CppMethod, Il2CppObject}, common::method::UnityMethod};
 
-use crate::{constants::InvokeFnIl2Cpp, errors::DynErr, hooks::NativeHook, internal_failure, runtime, debug, /* base_assembly */};
+use crate::{constants::InvokeFnIl2Cpp, errors::DynErr, hooks::NativeHook, internal_failure, runtime, debug, base_assembly};
 
 lazy_static! {
     pub static ref INVOKE_HOOK: RwLock<NativeHook<InvokeFnIl2Cpp>> =
@@ -39,8 +39,8 @@ fn detour_inner(
         debug!("Detaching hook from il2cpp_runtime_invoke")?;
         trampoline.unhook()?;
 
-        //base_assembly::pre_start()?;
-        //base_assembly::start()?;
+        base_assembly::pre_start()?;
+        base_assembly::start()?;
     }
 
     Ok(result)

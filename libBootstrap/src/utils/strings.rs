@@ -1,6 +1,6 @@
 use std::{path::Path, str::FromStr};
 
-//use netcorehost::pdcstring::PdCString;
+use netcorehost::pdcstring::PdCString;
 
 use crate::errors::DynErr;
 
@@ -18,13 +18,13 @@ macro_rules! rust_str {
     };
 }
 
-/*pub fn pdcstr<P: AsRef<Path>>(path: P) -> Result<PdCString, DynErr> {
+pub fn pdcstr<P: AsRef<Path>>(path: P) -> Result<PdCString, DynErr> {
     Ok(PdCString::from_str(
         path.as_ref()
             .to_str()
             .ok_or("Failed to convert path to string!")?,
     )?)
-}*/
+}
 
 pub fn wide_str<P: AsRef<Path>>(path: P) -> Result<Vec<u16>, DynErr> {
     let s = path

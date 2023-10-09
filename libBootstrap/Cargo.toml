@@ -18,11 +18,15 @@ clap = { git = "https://github.com/RinLovesYou/clap", features = ["derive"] }
 chrono = "0.4.23"
 libc-stdhandle = "0.1.0"
 exe = "0.5.6"
+netcorehost = "0.15.1"
 dobby-rs = { git = "https://github.com/RinLovesYou/dobby-rs" }
 unity-rs = { git = "https://github.com/TrevTV/Ferrex" }
 
-[patch.'https://github.com/RinLovesYou/dobby-sys.git']
-dobby-sys = { git = 'https://github.com/TrevTV/dobby-sys.git' }
+[patch."https://github.com/RinLovesYou/dobby-sys.git"]
+dobby-sys = { git = "https://github.com/TrevTV/dobby-sys.git" }
+
+[patch.crates-io]
+nethost-sys = { git = "https://github.com/TrevTV/nethost-sys" }
 
 [target.'cfg(not(target_os = "android"))'.dependencies]
 msgbox = "0.7.0"

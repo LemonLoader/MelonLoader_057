@@ -8,7 +8,7 @@ use unity_rs::{
     },
 };
 
-use crate::{/*base_assembly,*/ errors::DynErr, internal_failure, runtime};
+use crate::{base_assembly, errors::DynErr, internal_failure, runtime};
 
 pub fn install_hooks() {
     install_hooks_inner().unwrap_or_else(|e| {
@@ -33,10 +33,7 @@ fn assembly_resolve(
 ) -> Result<*mut MonoAssembly, DynErr> {
     let runtime = runtime!()?;
 
-    // TODO: fix this
-    //let resolve_method = base_assembly::mono::ASSEMBLYMANAGER_RESOLVE.try_read()?;
-    let resolve_method2: Option<std::sync::RwLockReadGuard<'_, unity_rs::common::method::UnityMethod>> = None;
-    let resolve_method = resolve_method2.unwrap();
+    let resolve_method = base_assembly::mono::ASSEMBLYMANAGER_RESOLVE.try_read()?;
 
     if resolve_method.inner.is_null() {
         return Err("AssemblyManager.Resolve is null".into());
@@ -93,10 +90,7 @@ fn load_hook_inner(assembly: *mut MonoAssembly) -> Result<(), DynErr> {
         return Ok(());
     }
 
-    // TODO: fix this
-    //let load_method = base_assembly::mono::ASSEMBLYMANAGER_LOADINFO.try_read()?;
-    let load_method2: Option<std::sync::RwLockReadGuard<'_, unity_rs::common::method::UnityMethod>> = None;
-    let load_method = load_method2.unwrap();
+    let load_method = base_assembly::mono::ASSEMBLYMANAGER_LOADINFO.try_read()?;
 
     if load_method.inner.is_null() {
         return Ok(());

@@ -13,7 +13,7 @@
 // #![allow(clippy::inherent_to_string, clippy::type_complexity, improper_ctypes)]
 // #![cfg_attr(docsrs, feature(doc_cfg))]
 
-//pub mod base_assembly;
+pub mod base_assembly;
 pub mod console;
 pub mod constants;
 pub mod errors;

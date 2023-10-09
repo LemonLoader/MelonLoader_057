@@ -4,12 +4,12 @@ use lazy_static::{lazy_static};
 use unity_rs::{common::domain::UnityDomain, mono::types::MonoDomain, runtime::RuntimeType};
 
 use crate::{
-    /* base_assembly, */ console,
+    base_assembly, console,
     constants::InitFnMono,
     debug, debug_enabled,
     errors::DynErr,
     hooks::{invoke_hook, NativeHook},
-    /* icalls, */ internal_failure, melonenv, runtime, rust_str,
+    icalls, internal_failure, melonenv, runtime, rust_str,
 };
 
 lazy_static! {
@@ -59,8 +59,8 @@ fn detour_inner(name: *const c_char, version: *const c_char) -> Result<*mut Mono
         }
     }
 
-    //icalls::init(runtime)?;
-    //base_assembly::init(runtime)?;
+    icalls::init(runtime)?;
+    base_assembly::init(runtime)?;
 
     invoke_hook::hook()?;
 

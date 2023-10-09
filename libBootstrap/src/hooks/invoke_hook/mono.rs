@@ -8,7 +8,7 @@ use unity_rs::{
 };
 
 use crate::{
-    /*base_assembly,*/ constants::InvokeFnMono, debug, errors::DynErr, hooks::NativeHook,
+    base_assembly, constants::InvokeFnMono, debug, errors::DynErr, hooks::NativeHook,
     internal_failure, runtime,
 };
 
@@ -54,8 +54,8 @@ fn detour_inner(
         debug!("Detaching hook from mono_runtime_invoke")?;
         trampoline.unhook()?;
 
-        //base_assembly::pre_start()?;
-        //base_assembly::start()?;
+        base_assembly::pre_start()?;
+        base_assembly::start()?;
     }
 
     Ok(result)
