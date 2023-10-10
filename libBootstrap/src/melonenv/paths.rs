@@ -60,7 +60,7 @@ pub fn runtime_dir() -> Result<PathBuf, DynErr> {
 
     match runtime.get_type() {
         RuntimeType::Mono(_) => path.push("net35"),
-        RuntimeType::Il2Cpp(_) => path.push("net6"),
+        RuntimeType::Il2Cpp(_) => path.push("net7"),
     }
 
     Ok(path.to_path_buf())

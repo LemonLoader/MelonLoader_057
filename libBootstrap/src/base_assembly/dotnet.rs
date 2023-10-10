@@ -58,7 +58,14 @@ pub fn init() -> Result<(), DynErr> {
         return Err(DotnetErr::RuntimeConfig.into());
     }
 
-    let context = hostfxr.initialize_for_runtime_config(utils::strings::pdcstr(config_path)?)?;
+    // TODO: don't hardcode this
+    //let mut dotnet_path = melonenv::paths::MELONLOADER_FOLDER.clone();
+    //dotnet_path.push("dotnet");
+    let mut dotnet_path = PathBuf::from("/data/data/com.SirCoolness.UnityTestModdingTarget/dotnet/");
+
+    let context = hostfxr.initialize_for_runtime_config_with_dotnet_root(
+        utils::strings::pdcstr(config_path)?,
+        utils::strings::pdcstr(dotnet_path.to_path_buf())?)?;
 
     let loader = context.get_delegate_loader_for_assembly(utils::strings::pdcstr(
         runtime_dir.join("MelonLoader.NativeHost.dll"),
@@ -75,6 +82,8 @@ pub fn init() -> Result<(), DynErr> {
         pre_start: || {},
         start: || {},
     };
+
+    crate::log!("8sup, we good?");
 
     let mut exports = HostExports {
         hook_attach: icalls::bootstrap_interop::attach,

@@ -19,5 +19,9 @@ pub extern "system" fn JNI_OnLoad(vm: JavaVM, _: *mut c_void) -> jint {
 
     log!("JNI initialized!");
 
+    // todo: remove this class, cleanup
+    // it's currently just some chatgpt code quickly written to test loading the dotnet native libs
+    crate::utils::native_lib_loader::main();
+    
     catch_unwind(|| JNI_VERSION_1_6).unwrap_or(INVALID_JNI_VERSION)
 }
