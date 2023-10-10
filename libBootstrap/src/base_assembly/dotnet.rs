@@ -47,7 +47,7 @@ lazy_static! {
 
 pub fn init() -> Result<(), DynErr> {
     let runtime_dir = melonenv::paths::runtime_dir()?;
-    
+
     #[cfg(target_os = "android")] 
     let hostfxr = Hostfxr::load_from_path("libhostfxr.so").map_err(|_| DotnetErr::FailedHostFXRLoad)?;
     #[cfg(not(target_os = "android"))]
@@ -82,9 +82,7 @@ pub fn init() -> Result<(), DynErr> {
         pre_start: || {},
         start: || {},
     };
-
-    crate::log!("8sup, we good?");
-
+    
     let mut exports = HostExports {
         hook_attach: icalls::bootstrap_interop::attach,
         hook_detach: icalls::bootstrap_interop::detach,
