@@ -5,6 +5,9 @@ use jni::{
 use std::{ os::raw::c_void, panic::catch_unwind };
 use crate::{log, melonenv::paths};
 
+use std::ffi::CString;
+use std::os::raw::c_char;
+
 const INVALID_JNI_VERSION: jint = 0;
 
 #[allow(non_snake_case)]
@@ -17,11 +20,17 @@ pub extern "system" fn JNI_OnLoad(vm: JavaVM, _: *mut c_void) -> jint {
     paths::cache_data_dir(&mut env);
     crate::logging::logger::init().expect("Failed to initialize logger!");
 
-    log!("JNI initialized!");
+    // this code is kind of a mess but i don't feel like rewriting it
+    crate::utils::apk_asset_copier::copy_melon(&mut env);
 
-    // todo: remove this class, cleanup
-    // it's currently just some chatgpt code quickly written to test loading the dotnet native libs
-    crate::utils::native_lib_loader::main();
+    log!("JNI initialized!");
     
     catch_unwind(|| JNI_VERSION_1_6).unwrap_or(INVALID_JNI_VERSION)
+}
+
+#[no_mangle]
+pub extern "C" fn print_string(input: *const c_char) {
+    unsafe {
+        android_liblog_sys::__android_log_write(4, CString::new("MelonLoader").expect("CString conversion failed").as_ptr(), input);
+    }
 }

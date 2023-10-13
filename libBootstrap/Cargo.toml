@@ -41,6 +41,7 @@ windows = { version = "0.51.0", features = [
 [target.'cfg(target_os = "android")'.dependencies]
 jni = "0.21.1"
 ndk = { version = "0.7", features = ["api-level-23"] }
+ndk-sys = "0.4.1+23.1.7779620"
 android_liblog-sys = "0.1"
 
 [package.metadata.docs.rs]

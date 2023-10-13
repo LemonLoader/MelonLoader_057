@@ -19,6 +19,7 @@ dependencies = [
  "libc-stdhandle",
  "msgbox",
  "ndk",
+ "ndk-sys",
  "netcorehost",
  "thiserror",
  "unity-rs",
