@@ -13,13 +13,13 @@ const COPY_DATA_STR: &str = "copyToData";
 pub fn copy_melon(env: &mut JNIEnv) -> bool {
     let base = format!("{}/", paths::BASE_DIR.clone().display());
 
-    crate::log!("{}", base);
-
-    // The + "/" is required for this to function. It breaks everything otherwise. Do not ask why, I do not know.
     unsafe {
         copy_file_or_dir("MelonLoader", &base, "", env);
+
+        // TODO: implement these copy functions
         //copy_file_or_dir(COPY_DATA_STR, &base, "", env);
         //copy_file_or_dir("bin/Data/Managed/etc", &(base + "il2cpp/"), "etc", env);
+        
         copy_file_or_dir("dotnet", format!("/data/data/{}", "com.SirCoolness.UnityTestModdingTarget").as_str(), "", env);
     }
     true
