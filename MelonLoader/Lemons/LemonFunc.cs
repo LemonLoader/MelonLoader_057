@@ -1,4 +1,4 @@
-﻿namespace MelonLoader
+﻿namespace MonkiiLoader
 {
     public delegate RT LemonFunc<RT>();
     public delegate RT LemonFunc<in T1, RT>(T1 arg1);

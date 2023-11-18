@@ -1,9 +1,9 @@
-﻿using MelonLoader;
+﻿using MonkiiLoader;
 using System;
 using System.Runtime.InteropServices;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal static class UnityDebug
     {
@@ -16,7 +16,7 @@ namespace MelonUnityEngine
             if (ptr != IntPtr.Zero)
                 get_isDebugBuild_Ptr = (get_isDebugBuild_Delegate)Marshal.GetDelegateForFunctionPointer(ptr, typeof(get_isDebugBuild_Delegate));
             else
-                MelonLogger.Error("Failed to resolve icall UnityEngine.Debug::get_isDebugBuild");
+                MonkiiLogger.Error("Failed to resolve icall UnityEngine.Debug::get_isDebugBuild");
         }
 
         internal static bool isDebugBuild { get => get_isDebugBuild_Ptr(); }

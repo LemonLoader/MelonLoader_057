@@ -1,7 +1,7 @@
 ﻿using System;
-using MelonUnityEngine;
+using MonkiiUnityEngine;
 
-namespace MelonLoader.MelonStartScreen.UI.Objects
+namespace MonkiiLoader.MonkiiStartScreen.UI.Objects
 {
     internal class UI_ProgressBar : UI_Object
     {

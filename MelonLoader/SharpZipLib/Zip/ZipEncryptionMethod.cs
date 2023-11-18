@@ -1,4 +1,4 @@
-﻿namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+﻿namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// The method of encrypting entries when creating zip archives.

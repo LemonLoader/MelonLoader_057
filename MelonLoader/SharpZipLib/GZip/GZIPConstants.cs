@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.GZip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.GZip
 {
 	/// <summary>
 	/// This class contains constants used for gzip.

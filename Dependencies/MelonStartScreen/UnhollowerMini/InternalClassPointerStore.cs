@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+﻿using MonkiiLoader;
 using System;
 using System.Runtime.CompilerServices;
 #pragma warning disable 0649
@@ -18,9 +18,9 @@ namespace UnhollowerMini
 
             if (targetType.IsPrimitive || targetType == typeof(string))
             {
-                MelonDebug.Msg("Running class constructor on Il2Cpp" + targetType.FullName);
+                MonkiiDebug.Msg("Running class constructor on Il2Cpp" + targetType.FullName);
                 RuntimeHelpers.RunClassConstructor(typeof(InternalClassPointerStore<>).Assembly.GetType("Il2Cpp" + targetType.FullName).TypeHandle);
-                MelonDebug.Msg("Done running class constructor");
+                MonkiiDebug.Msg("Done running class constructor");
             }
         }
     }

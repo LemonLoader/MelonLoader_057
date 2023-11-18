@@ -124,8 +124,8 @@
   <data name="Loading_Lemon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Loading_Lemon.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Loading_Melon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Loading_Melon.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Loading_Monkii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Loading_Monkii.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Logo_Halloween" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo_Halloween.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -133,7 +133,7 @@
   <data name="Logo_Lemon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo_Lemon.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Logo_Melon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo_Melon.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Logo_Monkii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo_Monkii.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

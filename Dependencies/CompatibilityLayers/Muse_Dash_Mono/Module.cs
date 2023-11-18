@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MelonLoader.Modules;
-using MelonLoader.MonoInternals;
+using MonkiiLoader.Modules;
+using MonkiiLoader.MonoInternals;
 using ModHelper;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
-    internal class Muse_Dash_Mono_Module : MelonModule
+    internal class Muse_Dash_Mono_Module : MonkiiModule
     {
         public override void OnInitialize()
         {
@@ -26,10 +26,10 @@ namespace MelonLoader.CompatibilityLayers
             foreach (string assemblyName in assembly_list)
                 MonoResolveManager.GetAssemblyResolveInfo(assemblyName).Override = base_assembly;
 
-            MelonAssembly.CustomMelonResolvers += Resolve;
+            MonkiiAssembly.CustomMonkiiResolvers += Resolve;
         }
 
-        private ResolvedMelons Resolve(Assembly asm)
+        private ResolvedMonkiis Resolve(Assembly asm)
         {
             IEnumerable<Type> modTypes = asm.GetValidTypes(x =>
             {
@@ -37,30 +37,30 @@ namespace MelonLoader.CompatibilityLayers
                 return (interfaces != null) && interfaces.Any() && interfaces.Contains(typeof(IMod));  // To-Do: Change to Type Reflection based on Setup
             });
             if ((modTypes == null) || !modTypes.Any())
-                return new ResolvedMelons(null, null);
+                return new ResolvedMonkiis(null, null);
 
-            var melons = new List<MelonBase>();
-            var rotten = new List<RottenMelon>();
+            var Monkiis = new List<MonkiiBase>();
+            var rotten = new List<RottenMonkii>();
             foreach (var t in modTypes)
             {
-                var mel = LoadMod(asm, t, out RottenMelon rm);
+                var mel = LoadMod(asm, t, out RottenMonkii rm);
                 if (mel != null)
-                    melons.Add(mel);
+                    Monkiis.Add(mel);
                 else
                     rotten.Add(rm);
             }
-            return new ResolvedMelons(melons.ToArray(), rotten.ToArray());
+            return new ResolvedMonkiis(Monkiis.ToArray(), rotten.ToArray());
         }
 
-        private MelonBase LoadMod(Assembly asm, Type modType, out RottenMelon rottenMelon)
+        private MonkiiBase LoadMod(Assembly asm, Type modType, out RottenMonkii rottenMonkii)
         {
-            rottenMelon = null;
+            rottenMonkii = null;
 
             IMod modInstance;
             try { modInstance = Activator.CreateInstance(modType) as IMod; }
             catch (Exception ex)
             {
-                rottenMelon = new RottenMelon(modType, "Failed to create an instance of the MMDL Mod.", ex);
+                rottenMonkii = new RottenMonkii(modType, "Failed to create an instance of the MMDL Mod.", ex);
                 return null;
             }
 
@@ -73,11 +73,11 @@ namespace MelonLoader.CompatibilityLayers
             if (string.IsNullOrEmpty(modVersion) || modVersion.Equals("0.0.0.0"))
                 modVersion = "1.0.0.0";
 
-            var melon = MelonBase.CreateWrapper<MuseDashModWrapper>(modName, null, modVersion);
-            melon.modInstance = modInstance;
+            var Monkii = MonkiiBase.CreateWrapper<MuseDashModWrapper>(modName, null, modVersion);
+            Monkii.modInstance = modInstance;
             ModLoader.ModLoader.mods.Add(modInstance);
             ModLoader.ModLoader.LoadDependency(asm);
-            return melon;
+            return Monkii;
         }
     }
 }

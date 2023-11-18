@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Checksum
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Checksum
 {
 	internal static class CrcUtilities
 	{

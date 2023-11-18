@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     public class NativeLibrary
     {

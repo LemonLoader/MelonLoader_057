@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// The TarBuffer class implements the tar archive concept

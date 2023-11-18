@@ -1,9 +1,9 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Encryption;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Encryption;
 using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
 	/// <summary>
 	/// A special stream deflating or compressing the bytes that are

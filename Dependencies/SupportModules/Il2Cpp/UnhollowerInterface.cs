@@ -5,7 +5,7 @@ using UnhollowerBaseLib.Attributes;
 using UnhollowerBaseLib.Runtime;
 using UnhollowerRuntimeLib;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal class UnhollowerInterface : UnhollowerSupport.Interface
     {

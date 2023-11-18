@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using MelonLoader.Support.Preferences;
+using MonkiiLoader.Support.Preferences;
 using UnhollowerBaseLib;
 using UnhollowerBaseLib.Runtime;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal static class Main
     {
@@ -22,12 +22,12 @@ namespace MelonLoader.Support
             UnityMappers.RegisterMappers();
 
             LogSupport.RemoveAllHandlers();
-            if (MelonDebug.IsEnabled())
-                LogSupport.InfoHandler += MelonLogger.Msg;
-            LogSupport.WarningHandler += MelonLogger.Warning;
-            LogSupport.ErrorHandler += MelonLogger.Error;
-            if (MelonDebug.IsEnabled())
-                LogSupport.TraceHandler += MelonLogger.Msg;
+            if (MonkiiDebug.IsEnabled())
+                LogSupport.InfoHandler += MonkiiLogger.Msg;
+            LogSupport.WarningHandler += MonkiiLogger.Warning;
+            LogSupport.ErrorHandler += MonkiiLogger.Error;
+            if (MonkiiDebug.IsEnabled())
+                LogSupport.TraceHandler += MonkiiLogger.Msg;
 
             ClassInjector.Detour = new UnhollowerDetour();
             UnityVersionHandler.Initialize(
@@ -35,7 +35,7 @@ namespace MelonLoader.Support
                 InternalUtils.UnityInformationHandler.EngineVersion.Minor,
                 InternalUtils.UnityInformationHandler.EngineVersion.Build);
 
-            if (MelonLaunchOptions.Console.CleanUnityLogs)
+            if (MonkiiLaunchOptions.Console.CleanUnityLogs)
                 ConsoleCleaner();
 
             SceneHandler.Init();
@@ -105,7 +105,7 @@ namespace MelonLoader.Support
 
                 setOutMethod.Invoke(null, new[] { nullStreamWriter });
             }
-            catch (Exception ex) { MelonLogger.Warning($"Console Cleaner Failed: {ex}"); }
+            catch (Exception ex) { MonkiiLogger.Warning($"Console Cleaner Failed: {ex}"); }
         }
     }
 
@@ -117,7 +117,7 @@ namespace MelonLoader.Support
         {
             IntPtr* targetVarPointer = &from;
             PinnedDelegates.Add(to);
-            MelonUtils.NativeHookAttach((IntPtr)targetVarPointer, to.GetFunctionPointer());
+            MonkiiUtils.NativeHookAttach((IntPtr)targetVarPointer, to.GetFunctionPointer());
             return from.GetDelegate<T>();
         }
     }

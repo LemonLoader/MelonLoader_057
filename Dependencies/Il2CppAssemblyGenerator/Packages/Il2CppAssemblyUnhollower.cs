@@ -12,14 +12,14 @@ using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 #endif
 
-namespace MelonLoader.Il2CppAssemblyGenerator.Packages
+namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages
 {
     internal class Il2CppAssemblyUnhollower : Models.ExecutablePackage
     {
 #if !__ANDROID__
         internal Il2CppAssemblyUnhollower()
         {
-            Version = MelonLaunchOptions.Il2CppAssemblyGenerator.ForceVersion_Il2CppAssemblyUnhollower;
+            Version = MonkiiLaunchOptions.Il2CppAssemblyGenerator.ForceVersion_Il2CppAssemblyUnhollower;
 #if !DEBUG
             if (string.IsNullOrEmpty(Version) || Version.Equals("0.0.0.0"))
                 Version = RemoteAPI.Info.ForceUnhollowerVersion;
@@ -70,7 +70,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
 
         internal override bool Execute()
         {
-            MelonLogger.Msg("Executing Il2CppAssemblyUnhollower...");
+            MonkiiLogger.Msg("Executing Il2CppAssemblyUnhollower...");
 
             InstallLogger();
 
@@ -198,27 +198,27 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
 
         private void InstallLogger()
         {
-            LogSupport.InfoHandler += (msg) => { MelonLogger.Msg(ConsoleColor.Magenta, $"[{nameof(AssemblyUnhollower)}] {msg}"); };
-            LogSupport.WarningHandler += (msg) => { MelonLogger.Warning($"[{nameof(AssemblyUnhollower)}] {msg}"); };
-            LogSupport.ErrorHandler += (msg) => { MelonLogger.Error($"[{nameof(AssemblyUnhollower)}] {msg}"); };
+            LogSupport.InfoHandler += (msg) => { MonkiiLogger.Msg(ConsoleColor.Magenta, $"[{nameof(AssemblyUnhollower)}] {msg}"); };
+            LogSupport.WarningHandler += (msg) => { MonkiiLogger.Warning($"[{nameof(AssemblyUnhollower)}] {msg}"); };
+            LogSupport.ErrorHandler += (msg) => { MonkiiLogger.Error($"[{nameof(AssemblyUnhollower)}] {msg}"); };
 
-            //if (MelonDebug.IsEnabled())
-            //UnhollowerBaseLib.LogSupport.TraceHandler += (msg) => { MelonLogger.Error($"[{nameof(AssemblyUnhollower)}] {msg}"); };
+            //if (MonkiiDebug.IsEnabled())
+            //UnhollowerBaseLib.LogSupport.TraceHandler += (msg) => { MonkiiLogger.Error($"[{nameof(AssemblyUnhollower)}] {msg}"); };
         }
 
         private UnhollowerOptions GenerateOptions()
         {
-            MelonDebug.Msg("Cpp2IL Output: " + new Cpp2IL().OutputFolder);
-            MelonDebug.Msg("Il2CppAssemblyUnhollower Output: " + OutputFolder);
+            MonkiiDebug.Msg("Cpp2IL Output: " + new Cpp2IL().OutputFolder);
+            MonkiiDebug.Msg("Il2CppAssemblyUnhollower Output: " + OutputFolder);
             var options = new UnhollowerOptions
             {
                 Verbose = true,
                 SourceDir = new Cpp2IL().OutputFolder,
                 OutputDir = OutputFolder,
-                MscorlibPath = Path.Combine(string.Copy(MelonUtils.GetManagedDirectory()), "mscorlib.dll"),
+                MscorlibPath = Path.Combine(string.Copy(MonkiiUtils.GetManagedDirectory()), "mscorlib.dll"),
                 UnityBaseLibsDir = Path.Combine(Core.BasePath, "unity"),
                 GameAssemblyPath = Core.GameAssemblyPath,
-                SystemLibrariesPath = MelonUtils.GetManagedDirectory()
+                SystemLibrariesPath = MonkiiUtils.GetManagedDirectory()
             };
 
             options.AdditionalAssembliesBlacklist.AddRange(new List<string> { "Mono.Security", "Newtonsoft.Json", "Valve.Newtonsoft.Json" });

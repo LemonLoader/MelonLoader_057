@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Lzw
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Lzw
 {
 	/// <summary>
 	/// This filter stream is used to decompress a LZW format stream.
@@ -22,8 +22,8 @@ namespace MelonLoader.ICSharpCode.SharpZipLib.Lzw
 	/// using System;
 	/// using System.IO;
 	///
-	/// using MelonLoader.ICSharpCode.SharpZipLib.Core;
-	/// using MelonLoader.ICSharpCode.SharpZipLib.LZW;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.LZW;
 	///
 	/// class MainClass
 	/// {

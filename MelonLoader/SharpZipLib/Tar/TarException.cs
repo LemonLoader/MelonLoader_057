@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// TarException represents exceptions specific to Tar classes and code.

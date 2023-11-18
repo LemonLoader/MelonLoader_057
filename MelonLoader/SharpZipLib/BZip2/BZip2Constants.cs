@@ -1,4 +1,4 @@
-namespace MelonLoader.ICSharpCode.SharpZipLib.BZip2
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
 	/// Defines internal values for both compression and decompression

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     public interface ISupportModule_To
     {

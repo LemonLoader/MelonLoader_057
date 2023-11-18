@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     public class LemonEnumerator<T> : IEnumerator<T>, IEnumerable<T>
     {

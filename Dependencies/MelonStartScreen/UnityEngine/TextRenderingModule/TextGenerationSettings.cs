@@ -1,7 +1,7 @@
 ﻿using System;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal class TextGenerationSettings : InternalObjectBase
     {

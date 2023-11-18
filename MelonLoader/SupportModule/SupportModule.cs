@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     internal static class SupportModule
     {
@@ -12,20 +12,20 @@ namespace MelonLoader
         private static string BaseDirectory = null;
         private static List<ModuleListing> Modules = new List<ModuleListing>()
         {
-            new ModuleListing("Il2Cpp.dll", MelonUtils.IsGameIl2Cpp),
-            new ModuleListing("Mono.dll", () => !MelonUtils.IsGameIl2Cpp())
+            new ModuleListing("Il2Cpp.dll", MonkiiUtils.IsGameIl2Cpp),
+            new ModuleListing("Mono.dll", () => !MonkiiUtils.IsGameIl2Cpp())
         };
 
         internal static bool Setup()
         {
 #if __ANDROID__
-            BaseDirectory = Path.Combine(Path.Combine(Path.Combine(MelonUtils.GameDirectory, "melonloader"), "etc"), "support");
+            BaseDirectory = Path.Combine(Path.Combine(Path.Combine(MonkiiUtils.GameDirectory, "Monkiiloader"), "etc"), "support");
 #else
-            BaseDirectory = Path.Combine(Path.Combine(Path.Combine(MelonUtils.GameDirectory, "MelonLoader"), "Dependencies"), "SupportModules");
+            BaseDirectory = Path.Combine(Path.Combine(Path.Combine(MonkiiUtils.GameDirectory, "MonkiiLoader"), "Dependencies"), "SupportModules");
 #endif
             if (!Directory.Exists(BaseDirectory))
             {
-                MelonLogger.Error("Failed to Find SupportModules Directory!");
+                MonkiiLogger.Error("Failed to Find SupportModules Directory!");
                 return false;
             }
 
@@ -55,14 +55,14 @@ namespace MelonLoader
                 }
                 catch (Exception ex)
                 {
-                    MelonDebug.Error($"Support Module [{enumerator.Current.FileName}] threw an Exception: {ex}");
+                    MonkiiDebug.Error($"Support Module [{enumerator.Current.FileName}] threw an Exception: {ex}");
                     continue;
                 }
             }
 
             if (Interface == null)
             {
-                MelonLogger.Error("No Support Module Loaded!");
+                MonkiiLogger.Error("No Support Module Loaded!");
                 return false;
             }
             return true;
@@ -74,28 +74,28 @@ namespace MelonLoader
             if (assembly == null)
                 return false;
 
-            Type type = assembly.GetType("MelonLoader.Support.Main");
+            Type type = assembly.GetType("MonkiiLoader.Support.Main");
             if (type == null)
             {
-                MelonLogger.Error("Failed to Get Type MelonLoader.Support.Main!");
+                MonkiiLogger.Error("Failed to Get Type MonkiiLoader.Support.Main!");
                 return false;
             }
 
             MethodInfo method = type.GetMethod("Initialize", BindingFlags.NonPublic | BindingFlags.Static);
             if (method == null)
             {
-                MelonLogger.Error("Failed to Get Method Initialize!");
+                MonkiiLogger.Error("Failed to Get Method Initialize!");
                 return false;
             }
 
             Interface = (ISupportModule_To)method.Invoke(null, new object[] { new SupportModule_From() });
             if (Interface == null)
             {
-                MelonLogger.Error("Failed to Initialize Interface!");
+                MonkiiLogger.Error("Failed to Initialize Interface!");
                 return false;
             }
 
-            MelonLogger.Msg($"Support Module Loaded: {ModulePath}");
+            MonkiiLogger.Msg($"Support Module Loaded: {ModulePath}");
 
             return true;
         }

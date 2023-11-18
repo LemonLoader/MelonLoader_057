@@ -1,9 +1,9 @@
-﻿using MelonLoader;
-using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader;
+using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 using System;
 using System.Runtime.InteropServices;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     [StructLayout(LayoutKind.Sequential)]
     internal struct UIVertex_2020
@@ -53,17 +53,17 @@ namespace MelonUnityEngine
 
         unsafe static UIVertexWrapper()
         {
-            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2020.2.0", "2021.1.0" }))
+            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2020.2.0", "2021.1.0" }))
             {
                 mode = 2;
                 sizeOfElement = sizeof(UIVertex_2020);
             }
-            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
+            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
             {
                 mode = 1;
                 sizeOfElement = sizeof(UIVertex_2018);
             }
-            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.2.0" }))
+            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.2.0" }))
             {
                 mode = 0;
                 sizeOfElement = sizeof(UIVertex_2017);

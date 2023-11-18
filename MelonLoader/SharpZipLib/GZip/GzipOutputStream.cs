@@ -1,11 +1,11 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 using System.IO;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.GZip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.GZip
 {
 	/// <summary>
 	/// This filter stream is used to compress a stream into a "GZIP" stream.
@@ -18,8 +18,8 @@ namespace MelonLoader.ICSharpCode.SharpZipLib.GZip
 	/// using System;
 	/// using System.IO;
 	///
-	/// using MelonLoader.ICSharpCode.SharpZipLib.GZip;
-	/// using MelonLoader.ICSharpCode.SharpZipLib.Core;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.GZip;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 	///
 	/// class MainClass
 	/// {

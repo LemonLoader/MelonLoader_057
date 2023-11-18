@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// The TarOutputStream writes a UNIX tar archive as an OutputStream.

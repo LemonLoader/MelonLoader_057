@@ -1,8 +1,8 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
 using System;
 using System.Security.Cryptography;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Encryption
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Encryption
 {
 	/// <summary>
 	/// PkzipClassic embodies the classic or original encryption facilities used in Pkzip archives.

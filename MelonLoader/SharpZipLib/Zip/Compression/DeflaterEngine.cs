@@ -1,7 +1,7 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	/// <summary>
 	/// Strategies for deflater

@@ -1,14 +1,14 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
-using MelonLoader.ICSharpCode.SharpZipLib.Encryption;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Encryption;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// This is a DeflaterOutputStream that writes the files into a zip
@@ -26,8 +26,8 @@ namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
 	/// using System;
 	/// using System.IO;
 	///
-	/// using MelonLoader.ICSharpCode.SharpZipLib.Core;
-	/// using MelonLoader.ICSharpCode.SharpZipLib.Zip;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.Zip;
 	///
 	/// class MainClass
 	/// {

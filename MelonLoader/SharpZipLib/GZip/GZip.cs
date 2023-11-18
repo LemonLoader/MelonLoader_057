@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.GZip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.GZip
 {
 	using static Zip.Compression.Deflater;
 

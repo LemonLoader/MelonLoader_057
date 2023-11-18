@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
-using MelonUnityEngine;
-using MelonLoader;
+using MonkiiUnityEngine;
+using MonkiiLoader;
 
 namespace mgGif
 {

@@ -1,4 +1,4 @@
-﻿namespace MelonLoader.MelonStartScreen.NativeUtils
+﻿namespace MonkiiLoader.MonkiiStartScreen.NativeUtils
 {
     internal enum NativeSignatureFlags
     {

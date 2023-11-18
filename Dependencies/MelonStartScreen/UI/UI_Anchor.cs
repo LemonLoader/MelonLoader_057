@@ -1,4 +1,4 @@
-﻿namespace MelonLoader.MelonStartScreen.UI
+﻿namespace MonkiiLoader.MonkiiStartScreen.UI
 {
     internal enum UI_Anchor
     {

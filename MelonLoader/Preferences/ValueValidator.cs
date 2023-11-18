@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader.Preferences
+namespace MonkiiLoader.Preferences
 {
     public abstract class ValueValidator
     {

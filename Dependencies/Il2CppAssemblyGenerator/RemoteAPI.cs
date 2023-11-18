@@ -5,7 +5,7 @@ using Semver;
 
 #pragma warning disable 0649
 
-namespace MelonLoader.Il2CppAssemblyGenerator
+namespace MonkiiLoader.Il2CppAssemblyGenerator
 {
     internal static class RemoteAPI
     {
@@ -36,10 +36,10 @@ namespace MelonLoader.Il2CppAssemblyGenerator
             string gamename = Regex.Replace(InternalUtils.UnityInformationHandler.GameName, "[^a-zA-Z0-9_.]+", "-", RegexOptions.Compiled).ToLowerInvariant();
 
             HostList = new List<HostInfo> {
-                new HostInfo($"{DefaultHostInfo.Melon.API_URL}{gamename}", DefaultHostInfo.Melon.Contact),
-                new HostInfo($"{DefaultHostInfo.Melon.API_URL_1}{gamename}", DefaultHostInfo.Melon.Contact),
-                new HostInfo($"{DefaultHostInfo.Melon.API_URL_2}{gamename}", DefaultHostInfo.Melon.Contact),
-                new HostInfo($"{DefaultHostInfo.Melon.API_URL_SAMBOY}{gamename}", DefaultHostInfo.Melon.Contact),
+                new HostInfo($"{DefaultHostInfo.Monkii.API_URL}{gamename}", DefaultHostInfo.Monkii.Contact),
+                new HostInfo($"{DefaultHostInfo.Monkii.API_URL_1}{gamename}", DefaultHostInfo.Monkii.Contact),
+                new HostInfo($"{DefaultHostInfo.Monkii.API_URL_2}{gamename}", DefaultHostInfo.Monkii.Contact),
+                new HostInfo($"{DefaultHostInfo.Monkii.API_URL_SAMBOY}{gamename}", DefaultHostInfo.Monkii.Contact),
                 new HostInfo($"{DefaultHostInfo.Ruby.API_URL}{gamename}.json", DefaultHostInfo.Ruby.Contact),
             };
         }
@@ -66,7 +66,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator
                 if (string.IsNullOrEmpty(info.URL) || (info.Func == null))
                     continue;
 
-                MelonDebug.Msg($"ContactURL = {info.URL}");
+                MonkiiDebug.Msg($"ContactURL = {info.URL}");
 
                 string Response = null;
                 try { Response = Core.webClient.DownloadString(info.URL); }
@@ -91,7 +91,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator
                 }
 
                 bool is_response_null = string.IsNullOrEmpty(Response);
-                MelonDebug.Msg($"Response = {(is_response_null ? "null" : Response) }");
+                MonkiiDebug.Msg($"Response = {(is_response_null ? "null" : Response) }");
                 if (is_response_null)
                     break;
 
@@ -109,17 +109,17 @@ namespace MelonLoader.Il2CppAssemblyGenerator
 
         private class DefaultHostInfo
         {
-            internal static class Melon
+            internal static class Monkii
             {
                 internal static string API_VERSION = "v1";
-                internal static string API_URL = $"https://api.melonloader.com/api/{API_VERSION}/game/";
-                internal static string API_URL_1 = $"https://api-1.melonloader.com/api/{API_VERSION}/game/";
-                internal static string API_URL_2 = $"https://api-2.melonloader.com/api/{API_VERSION}/game/";
-                internal static string API_URL_SAMBOY = $"https://melon.samboy.dev/api/{API_VERSION}/game/";
+                internal static string API_URL = $"https://api.Monkiiloader.com/api/{API_VERSION}/game/";
+                internal static string API_URL_1 = $"https://api-1.Monkiiloader.com/api/{API_VERSION}/game/";
+                internal static string API_URL_2 = $"https://api-2.Monkiiloader.com/api/{API_VERSION}/game/";
+                internal static string API_URL_SAMBOY = $"https://Monkii.samboy.dev/api/{API_VERSION}/game/";
 
                 internal static InfoStruct Contact(string response_str)
                 {
-                    ResponseStruct responseobj = MelonUtils.ParseJSONStringtoStruct<ResponseStruct>(response_str);
+                    ResponseStruct responseobj = MonkiiUtils.ParseJSONStringtoStruct<ResponseStruct>(response_str);
                     if (responseobj == null)
                         return null;
 
@@ -150,7 +150,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator
 
                 internal static InfoStruct Contact(string response_str)
                 {
-                    ResponseStruct responseobj = MelonUtils.ParseJSONStringtoStruct<ResponseStruct>(response_str);
+                    ResponseStruct responseobj = MonkiiUtils.ParseJSONStringtoStruct<ResponseStruct>(response_str);
                     if (responseobj == null)
                         return null;
 

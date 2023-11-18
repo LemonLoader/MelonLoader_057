@@ -3,7 +3,7 @@ using System.Reflection;
 using HarmonyLib;
 using MonoMod.RuntimeDetour;
 
-namespace MelonLoader.Fixes
+namespace MonkiiLoader.Fixes
 {
     internal static class InstancePatchFix
     {
@@ -17,7 +17,7 @@ namespace MelonLoader.Fixes
 				Core.HarmonyInstance.Patch(AccessTools.Method("HarmonyLib.PatchFunctions:ReversePatch"), patchMethod);
 				Core.HarmonyInstance.Patch(AccessTools.Method("HarmonyLib.HarmonyMethod:ImportMethod"), patchMethod);
 			}
-			catch (Exception ex) { MelonLogger.Warning($"InstancePatchFix Exception: {ex}"); }
+			catch (Exception ex) { MonkiiLogger.Warning($"InstancePatchFix Exception: {ex}"); }
 
 			Hook.OnDetour += (detour, originalMethod, patchMethod, delegateTarget) => PatchMethod(patchMethod);
 			Detour.OnDetour += (detour, originalMethod, patchMethod) => PatchMethod(patchMethod);

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using MelonUnityEngine;
+using MonkiiUnityEngine;
 
-namespace MelonLoader.MelonStartScreen.UI.Objects
+namespace MonkiiLoader.MonkiiStartScreen.UI.Objects
 {
     internal class UI_AnimatedImage : UI_Image
     {

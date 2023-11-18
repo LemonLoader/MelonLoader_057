@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// This static class contains functions for encoding and decoding zip file strings

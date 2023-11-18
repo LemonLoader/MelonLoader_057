@@ -1,6 +1,6 @@
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	#region Enumerations
 

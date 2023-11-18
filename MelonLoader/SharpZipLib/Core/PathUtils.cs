@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	/// <summary>
 	/// PathUtils provides simple utilities for handling paths.

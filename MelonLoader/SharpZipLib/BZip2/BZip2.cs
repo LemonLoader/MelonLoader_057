@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.BZip2
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
 	/// An example class to demonstrate compression and decompression of BZip2 streams.

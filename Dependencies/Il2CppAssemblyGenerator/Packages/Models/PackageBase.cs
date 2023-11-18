@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.Il2CppAssemblyGenerator.Packages.Models
+namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages.Models
 {
     internal class PackageBase
     {
@@ -25,7 +25,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages.Models
 
             Core.AssemblyGenerationNeeded = true;
 
-            if (!MelonLaunchOptions.Il2CppAssemblyGenerator.OfflineMode
+            if (!MonkiiLaunchOptions.Il2CppAssemblyGenerator.OfflineMode
                 && ((this is DeobfuscationMap) || !File.Exists(FilePath)))
             {
                 Core.Logger.Msg($"Downloading {Name}...");

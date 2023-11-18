@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace MelonLoader.MonoInternals.ResolveInternals
+namespace MonkiiLoader.MonoInternals.ResolveInternals
 {
     internal static class SearchDirectoryManager
     {

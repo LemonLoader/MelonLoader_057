@@ -1,6 +1,6 @@
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
 	/// <summary>
 	/// This class allows us to retrieve a specified number of bits from

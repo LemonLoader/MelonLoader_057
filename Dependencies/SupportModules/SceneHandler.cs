@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 #endif
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal static class SceneHandler
     {
@@ -32,7 +32,7 @@ namespace MelonLoader.Support
                 SceneManager.sceneLoaded += OnSceneLoad;
 #endif
             }
-            catch (Exception ex) { MelonLogger.Error($"SceneManager.sceneLoaded override failed: {ex}"); }
+            catch (Exception ex) { MonkiiLogger.Error($"SceneManager.sceneLoaded override failed: {ex}"); }
 
             try
             {
@@ -46,7 +46,7 @@ namespace MelonLoader.Support
                 SceneManager.sceneUnloaded += OnSceneUnload;
 #endif
             }
-            catch (Exception ex) { MelonLogger.Error($"SceneManager.sceneUnloaded override failed: {ex}"); }
+            catch (Exception ex) { MonkiiLogger.Error($"SceneManager.sceneUnloaded override failed: {ex}"); }
         }
 
         private static void OnSceneLoad(Scene scene, LoadSceneMode mode)

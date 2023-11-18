@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using MelonLoader.MonoInternals.ResolveInternals;
+using MonkiiLoader.MonoInternals.ResolveInternals;
 
-namespace MelonLoader.MonoInternals
+namespace MonkiiLoader.MonoInternals
 {
     public static class MonoResolveManager
     {
@@ -15,12 +15,12 @@ namespace MelonLoader.MonoInternals
             // Setup Search Directories
             string[] searchdirlist =
             {
-                MelonUtils.MelonLoaderDirectory,
-                MelonUtils.UserLibsDirectory,
-                MelonHandler.PluginsDirectory,
-                MelonHandler.ModsDirectory,
-                MelonUtils.BaseDirectory,
-                MelonUtils.GameDirectory
+                MonkiiUtils.MonkiiLoaderDirectory,
+                MonkiiUtils.UserLibsDirectory,
+                MonkiiHandler.PluginsDirectory,
+                MonkiiHandler.ModsDirectory,
+                MonkiiUtils.BaseDirectory,
+                MonkiiUtils.GameDirectory
             };
             foreach (string path in searchdirlist)
                 AddSearchDirectory(path);
@@ -28,14 +28,14 @@ namespace MelonLoader.MonoInternals
             // Setup Redirections
             string[] assembly_list =
             {
-                "MelonLoader",
-                "MelonLoader.ModHandler",
+                "MonkiiLoader",
+                "MonkiiLoader.ModHandler",
             };
             Assembly base_assembly = typeof(MonoResolveManager).Assembly;
             foreach (string assemblyName in assembly_list)
                 GetAssemblyResolveInfo(assemblyName).Override = base_assembly;
 
-            MelonDebug.Msg("[MonoResolveManager] Setup Successful!");
+            MonkiiDebug.Msg("[MonoResolveManager] Setup Successful!");
 
             return true;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.MonoInternals.ResolveInternals
+namespace MonkiiLoader.MonoInternals.ResolveInternals
 {
     internal static class AssemblyManager
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal sealed class GL
     {

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal static class Preload
     {

@@ -1,11 +1,11 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression;
 using System;
 using System.IO;
-using static MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Deflater;
-using static MelonLoader.ICSharpCode.SharpZipLib.Zip.ZipEntryFactory;
+using static MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Deflater;
+using static MonkiiLoader.ICSharpCode.SharpZipLib.Zip.ZipEntryFactory;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// FastZipEvents supports all events applicable to <see cref="FastZip">FastZip</see> operations.

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace MelonLoader.TinyJSON
+namespace MonkiiLoader.TinyJSON
 {
 	public sealed class ProxyObject : Variant, IEnumerable<KeyValuePair<string, Variant>>
 	{

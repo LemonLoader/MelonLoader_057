@@ -1,4 +1,4 @@
-﻿namespace MelonUnityEngine
+﻿namespace MonkiiUnityEngine
 {
 	internal enum FontStyle
 	{

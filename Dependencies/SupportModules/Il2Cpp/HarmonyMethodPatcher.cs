@@ -10,9 +10,9 @@ using Mono.Cecil;
 using MonoMod.Utils;
 using MonoMod.Cil;
 using UnhollowerBaseLib;
-using MelonLoader.InternalUtils;
+using MonkiiLoader.InternalUtils;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal class HarmonyMethodPatcher : MethodPatcher
     {
@@ -63,8 +63,8 @@ namespace MelonLoader.Support
             IntPtr il2CppShimDelegatePtr = il2CppShimDelegate.GetFunctionPointer();
 
             if (methodDetourPointer != IntPtr.Zero)
-                MelonUtils.NativeHookDetach(copiedMethodInfoPointer, methodDetourPointer);
-            MelonUtils.NativeHookAttach(copiedMethodInfoPointer, il2CppShimDelegatePtr);
+                MonkiiUtils.NativeHookDetach(copiedMethodInfoPointer, methodDetourPointer);
+            MonkiiUtils.NativeHookAttach(copiedMethodInfoPointer, il2CppShimDelegatePtr);
             methodDetourPointer = il2CppShimDelegatePtr;
 
             PatchTools_RememberObject(Original, new LemonTuple<MethodInfo, MethodInfo, Delegate> { Item1 = newreplacement, Item2 = il2CppShim, Item3 = il2CppShimDelegate });
@@ -94,7 +94,7 @@ namespace MelonLoader.Support
                 ilcursor.Remove();
             else
             {
-                MelonLogger.Error("Harmony Patcher could not rewrite Il2Cpp Unhollowed Method. Expect a stack overflow.");
+                MonkiiLogger.Error("Harmony Patcher could not rewrite Il2Cpp Unhollowed Method. Expect a stack overflow.");
                 return method;
             }
             ilcursor.Emit(Mono.Cecil.Cil.OpCodes.Ldc_I8, copiedMethodInfoPointer.ToInt64());
@@ -148,13 +148,13 @@ namespace MelonLoader.Support
             // Catch any exceptions that may have been thrown
             il.BeginCatchBlock(exceptionType);
 
-            // MelonLogger.LogError("Exception in ...\n" + exception.ToString());
+            // MonkiiLogger.LogError("Exception in ...\n" + exception.ToString());
             il.Emit(OpCodes.Stloc, exceptionLocal);
             il.Emit(OpCodes.Ldstr, $"Exception in Harmony patch of method {Original.FullDescription()}:\n");
             il.Emit(OpCodes.Ldloc, exceptionLocal);
             il.Emit(OpCodes.Call, AccessTools.DeclaredMethod(typeof(Exception), "ToString", new Type[0]));
             il.Emit(OpCodes.Call, AccessTools.DeclaredMethod(typeof(string), "Concat", new Type[] { typeof(string), typeof(string) }));
-            il.Emit(OpCodes.Call, AccessTools.DeclaredMethod(typeof(MelonLogger), "Error", new Type[] { typeof(string) }));
+            il.Emit(OpCodes.Call, AccessTools.DeclaredMethod(typeof(MonkiiLogger), "Error", new Type[] { typeof(string) }));
 
             // Close the exception block
             il.EndExceptionBlock();
@@ -296,7 +296,7 @@ namespace MelonLoader.Support
 
         private void DebugCheck()
         {
-            if (!MelonDebug.IsEnabled() || hasWarned)
+            if (!MonkiiDebug.IsEnabled() || hasWarned)
                 return;
             hasWarned = true;
 
@@ -307,20 +307,20 @@ namespace MelonLoader.Support
                 : patchInfo.transpilers.Count() > 0 ? patchInfo.transpilers.First()
                 : patchInfo.finalizers.Count() > 0 ? patchInfo.finalizers.First() : null;
 
-            MelonLogger.Instance loggerInstance = FindMelon(melon => basePatch != null && melon.HarmonyInstance.Id.Equals(basePatch.owner));
+            MonkiiLogger.Instance loggerInstance = FindMonkii(Monkii => basePatch != null && Monkii.HarmonyInstance.Id.Equals(basePatch.owner));
             if (loggerInstance == null && basePatch != null)
             {
-                // Patching using a custom Harmony instance; try to infer the melon assembly from the container type, prefix, postfix, or transpiler.
-                Assembly melonAssembly = basePatch.PatchMethod.DeclaringType?.Assembly;
-                if (melonAssembly != null)
-                    loggerInstance = FindMelon(melon => melon.MelonAssembly.Assembly == melonAssembly);
+                // Patching using a custom Harmony instance; try to infer the Monkii assembly from the container type, prefix, postfix, or transpiler.
+                Assembly MonkiiAssembly = basePatch.PatchMethod.DeclaringType?.Assembly;
+                if (MonkiiAssembly != null)
+                    loggerInstance = FindMonkii(Monkii => Monkii.MonkiiAssembly.Assembly == MonkiiAssembly);
             }
 
             WarnIfHasTranspiler(patchInfo, loggerInstance);
             WarnIfOriginalMethodIsInlined(loggerInstance);
         }
 
-        private void WarnIfOriginalMethodIsInlined(MelonLogger.Instance loggerInstance)
+        private void WarnIfOriginalMethodIsInlined(MonkiiLogger.Instance loggerInstance)
         {
             int callerCount = Main.unhollower.GetIl2CppMethodCallerCount(Original) ?? -1;
             if (callerCount > 0
@@ -331,10 +331,10 @@ namespace MelonLoader.Support
             if (loggerInstance != null)
                 loggerInstance.Warning(txt);
             else
-                MelonLogger.Warning(txt);
+                MonkiiLogger.Warning(txt);
         }
 
-        private void WarnIfHasTranspiler(PatchInfo patchInfo, MelonLogger.Instance loggerInstance)
+        private void WarnIfHasTranspiler(PatchInfo patchInfo, MonkiiLogger.Instance loggerInstance)
         {
             if (patchInfo.transpilers.Length <= 0)
                 return;
@@ -343,14 +343,14 @@ namespace MelonLoader.Support
             if (loggerInstance != null)
                 loggerInstance.Warning(txt);
             else
-                MelonLogger.Warning(txt);
+                MonkiiLogger.Warning(txt);
         }
 
-        private static MelonLogger.Instance FindMelon(Predicate<MelonBase> criterion)
+        private static MonkiiLogger.Instance FindMonkii(Predicate<MonkiiBase> criterion)
         {
-            MelonLogger.Instance loggerInstance = null;
+            MonkiiLogger.Instance loggerInstance = null;
 
-            LemonEnumerator<MelonPlugin> PluginEnumerator = new(MelonPlugin.RegisteredMelons);
+            LemonEnumerator<MonkiiPlugin> PluginEnumerator = new(MonkiiPlugin.RegisteredMonkiis);
             while (PluginEnumerator.MoveNext())
                 if (criterion(PluginEnumerator.Current))
                 {
@@ -360,7 +360,7 @@ namespace MelonLoader.Support
 
             if (loggerInstance == null)
             {
-                LemonEnumerator<MelonMod> ModEnumerator = new(MelonMod.RegisteredMelons);
+                LemonEnumerator<MonkiiMod> ModEnumerator = new(MonkiiMod.RegisteredMonkiis);
                 while (ModEnumerator.MoveNext())
                     if (criterion(ModEnumerator.Current))
                     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Lzw
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Lzw
 {
 	/// <summary>
 	/// LzwException represents exceptions specific to LZW classes and code.

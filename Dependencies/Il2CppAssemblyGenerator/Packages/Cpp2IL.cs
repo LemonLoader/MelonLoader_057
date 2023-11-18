@@ -9,14 +9,14 @@ using LibCpp2IL;
 using LibCpp2IL.Wasm;
 #endif
 
-namespace MelonLoader.Il2CppAssemblyGenerator.Packages
+namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages
 {
     internal class Cpp2IL : Models.ExecutablePackage
     {
 #if !__ANDROID__
         internal Cpp2IL()
         {
-            Version = MelonLaunchOptions.Il2CppAssemblyGenerator.ForceVersion_Dumper;
+            Version = MonkiiLaunchOptions.Il2CppAssemblyGenerator.ForceVersion_Dumper;
 #if !DEBUG
             if (string.IsNullOrEmpty(Version) || Version.Equals("0.0.0.0"))
                 Version = RemoteAPI.Info.ForceDumperVersion;
@@ -51,7 +51,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
         private bool ExecuteNew()
         {
             if (Execute(new string[] {
-                MelonDebug.IsEnabled() ? "--verbose" : string.Empty,
+                MonkiiDebug.IsEnabled() ? "--verbose" : string.Empty,
                 "--game-path",
                 "\"" + Path.GetDirectoryName(Core.GameAssemblyPath) + "\"",
                 "--exe-name",
@@ -73,7 +73,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
         private bool ExecuteOld()
         {
             if (Execute(new string[] {
-                MelonDebug.IsEnabled() ? "--verbose" : string.Empty,
+                MonkiiDebug.IsEnabled() ? "--verbose" : string.Empty,
                 "--game-path",
                 "\"" + Path.GetDirectoryName(Core.GameAssemblyPath) + "\"",
                 "--exe-name",
@@ -100,17 +100,17 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
 
         internal override bool Execute()
         {
-            MelonLogger.Msg("Executing Cpp2IL...");
-            string metadata_path = Path.Combine(Path.Combine(Path.Combine(string.Copy(MelonUtils.GetGameDataDirectory()), "il2cpp"), "Metadata"), "global-metadata.dat");
-            return Main(string.Copy(MelonUtils.GetMainAssemblyLoc()), metadata_path, OutputFolder);
+            MonkiiLogger.Msg("Executing Cpp2IL...");
+            string metadata_path = Path.Combine(Path.Combine(Path.Combine(string.Copy(MonkiiUtils.GetGameDataDirectory()), "il2cpp"), "Metadata"), "global-metadata.dat");
+            return Main(string.Copy(MonkiiUtils.GetMainAssemblyLoc()), metadata_path, OutputFolder);
         }
 
         private bool Main(string gameAssembly, string metadata, string output)
         {
-            Logger.InfoLog += (msg, source) => { MelonLogger.Msg($"[Cpp2IL] [{source}] {msg}"); };
-            Logger.WarningLog += (msg, source) => { MelonLogger.Warning($"[Cpp2IL] [{source}] {msg}"); };
-            Logger.ErrorLog += (msg, source) => { MelonLogger.Error($"[Cpp2IL] [{source}] {msg}"); };
-            Logger.VerboseLog += (msg, source) => { MelonLogger.Msg(System.ConsoleColor.Magenta, $"[Cpp2IL] [{source}] {msg}"); };
+            Logger.InfoLog += (msg, source) => { MonkiiLogger.Msg($"[Cpp2IL] [{source}] {msg}"); };
+            Logger.WarningLog += (msg, source) => { MonkiiLogger.Warning($"[Cpp2IL] [{source}] {msg}"); };
+            Logger.ErrorLog += (msg, source) => { MonkiiLogger.Error($"[Cpp2IL] [{source}] {msg}"); };
+            Logger.VerboseLog += (msg, source) => { MonkiiLogger.Msg(System.ConsoleColor.Magenta, $"[Cpp2IL] [{source}] {msg}"); };
 
             string restore = Directory.GetCurrentDirectory();
             if (!Directory.Exists(output))

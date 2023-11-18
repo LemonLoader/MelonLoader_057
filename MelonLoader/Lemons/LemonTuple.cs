@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
 	[Serializable]
 	public class LemonTuple<T1>

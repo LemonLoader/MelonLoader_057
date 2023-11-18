@@ -1,4 +1,4 @@
-namespace MelonLoader.ICSharpCode.SharpZipLib.Lzw
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Lzw
 {
 	/// <summary>
 	/// This class contains constants used for LZW

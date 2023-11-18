@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     [AttributeUsage(AttributeTargets.Assembly)]
     public class HarmonyDontPatchAllAttribute : Attribute { public HarmonyDontPatchAllAttribute() { } }

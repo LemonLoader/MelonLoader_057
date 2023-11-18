@@ -1,9 +1,9 @@
-﻿using MelonLoader;
-using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader;
+using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 using System;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal class Texture : UnityObject
     {
@@ -19,12 +19,12 @@ namespace MelonUnityEngine
         {
             InternalClassPointerStore<Texture>.NativeClassPtr = UnityInternals.GetClass("UnityEngine.CoreModule.dll", "UnityEngine", "Texture");
 
-            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
+            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
             {
                 getDataWidth = UnityInternals.ResolveICall<GetDataWidthDelegate>("UnityEngine.Texture::GetDataWidth");
                 getDataHeight = UnityInternals.ResolveICall<GetDataHeightDelegate>("UnityEngine.Texture::GetDataHeight");
             }
-            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.1.0" }))
+            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.1.0" }))
             {
                 getDataWidth = UnityInternals.ResolveICall<GetDataWidthDelegate>("UnityEngine.Texture::Internal_GetWidth");
                 getDataHeight = UnityInternals.ResolveICall<GetDataHeightDelegate>("UnityEngine.Texture::Internal_GetHeight");

@@ -1,4 +1,4 @@
-﻿namespace MelonLoader
+﻿namespace MonkiiLoader
 {
     public interface ISupportModule_From
     {

@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using MelonLoader.Preferences;
+using MonkiiLoader.Preferences;
 
-namespace MelonLoader.Il2CppAssemblyGenerator
+namespace MonkiiLoader.Il2CppAssemblyGenerator
 {
     internal class Config
     {
         private static string FilePath;
-        private static MelonPreferences_ReflectiveCategory Category;
+        private static MonkiiPreferences_ReflectiveCategory Category;
         internal static AssemblyGeneratorConfiguration Values;
 
         internal static void Initialize()
         {
             FilePath = Path.Combine(Core.BasePath, "Config.cfg");
 
-            Category = MelonPreferences.CreateCategory<AssemblyGeneratorConfiguration>("Il2CppAssemblyGenerator");
+            Category = MonkiiPreferences.CreateCategory<AssemblyGeneratorConfiguration>("Il2CppAssemblyGenerator");
             Category.SetFilePath(FilePath, printmsg: false);
             Category.DestroyFileWatcher();
 

@@ -11,7 +11,7 @@ using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 using UnityVersion = AssetRipper.VersionUtilities.UnityVersion;
 
-namespace MelonLoader.InternalUtils
+namespace MonkiiLoader.InternalUtils
 {
     public static class UnityInformationHandler
     {
@@ -24,15 +24,15 @@ namespace MelonLoader.InternalUtils
 
         internal static void Setup()
         {
-            string gameDataPath = MelonUtils.GetGameDataDirectory();
+            string gameDataPath = MonkiiUtils.GetGameDataDirectory();
 
-            if (!string.IsNullOrEmpty(MelonLaunchOptions.Core.UnityVersion))
+            if (!string.IsNullOrEmpty(MonkiiLaunchOptions.Core.UnityVersion))
             {
-                try { EngineVersion = UnityVersion.Parse(MelonLaunchOptions.Core.UnityVersion); }
+                try { EngineVersion = UnityVersion.Parse(MonkiiLaunchOptions.Core.UnityVersion); }
                 catch (Exception ex)
                 {
-                    if (MelonDebug.IsEnabled())
-                        MelonLogger.Error(ex);
+                    if (MonkiiDebug.IsEnabled())
+                        MonkiiLogger.Error(ex);
                 }
             }
 
@@ -41,10 +41,10 @@ namespace MelonLoader.InternalUtils
             ReadGameInfo(assetsManager, gameDataPath);
             assetsManager.UnloadAll();
 #else
-            GameName = MelonUtils.GameName;
-            GameDeveloper = MelonUtils.GameDeveloper;
-            EngineVersion = UnityVersion.Parse(MelonUtils.UnityVersion);
-            GameVersion = MelonUtils.GameVersion;
+            GameName = MonkiiUtils.GameName;
+            GameDeveloper = MonkiiUtils.GameDeveloper;
+            EngineVersion = UnityVersion.Parse(MonkiiUtils.UnityVersion);
+            GameVersion = MonkiiUtils.GameVersion;
 #endif
 
             if (string.IsNullOrEmpty(GameDeveloper)
@@ -56,8 +56,8 @@ namespace MelonLoader.InternalUtils
                 try { EngineVersion = ReadVersionFallback(gameDataPath); }
                 catch (Exception ex)
                 {
-                    if (MelonDebug.IsEnabled())
-                        MelonLogger.Error(ex);
+                    if (MonkiiDebug.IsEnabled())
+                        MonkiiLogger.Error(ex);
                 }
             }
 
@@ -72,13 +72,13 @@ namespace MelonLoader.InternalUtils
             if (string.IsNullOrEmpty(GameVersion))
                 GameVersion = DefaultInfo;
 
-            MelonLogger.WriteLine(ConsoleColor.Magenta);
-            MelonLogger.Msg($"Game Name: {GameName}");
-            MelonLogger.Msg($"Game Developer: {GameDeveloper}");
-            MelonLogger.Msg($"Unity Version: {EngineVersion}");
-            MelonLogger.Msg($"Game Version: {GameVersion}");
-            MelonLogger.WriteLine(ConsoleColor.Magenta);
-            MelonLogger.WriteSpacer();
+            MonkiiLogger.WriteLine(ConsoleColor.Magenta);
+            MonkiiLogger.Msg($"Game Name: {GameName}");
+            MonkiiLogger.Msg($"Game Developer: {GameDeveloper}");
+            MonkiiLogger.Msg($"Unity Version: {EngineVersion}");
+            MonkiiLogger.Msg($"Game Version: {GameVersion}");
+            MonkiiLogger.WriteLine(ConsoleColor.Magenta);
+            MonkiiLogger.WriteSpacer();
         }
 
         private static void ReadGameInfo(AssetsManager assetsManager, string gameDataPath)
@@ -135,9 +135,9 @@ namespace MelonLoader.InternalUtils
             }
             catch(Exception ex)
             {
-                if (MelonDebug.IsEnabled())
-                    MelonLogger.Error(ex);
-                //MelonLogger.Error("Failed to Initialize Assets Manager!");
+                if (MonkiiDebug.IsEnabled())
+                    MonkiiLogger.Error(ex);
+                //MonkiiLogger.Error("Failed to Initialize Assets Manager!");
             }
             if (instance != null)
                 instance.file.Close();
@@ -147,7 +147,7 @@ namespace MelonLoader.InternalUtils
         {
             try
             {
-                string appInfoFilePath = Path.Combine(MelonUtils.GetGameDataDirectory(), "app.info");
+                string appInfoFilePath = Path.Combine(MonkiiUtils.GetGameDataDirectory(), "app.info");
                 if (!File.Exists(appInfoFilePath))
                     return;
 
@@ -164,16 +164,16 @@ namespace MelonLoader.InternalUtils
             }
             catch (Exception ex)
             {
-                if (MelonDebug.IsEnabled())
-                    MelonLogger.Error(ex);
+                if (MonkiiDebug.IsEnabled())
+                    MonkiiLogger.Error(ex);
             }
         }
 
         private static UnityVersion ReadVersionFallback(string gameDataPath)
         {
-            string unityPlayerPath = Path.Combine(MelonUtils.GameDirectory, "UnityPlayer.dll");
+            string unityPlayerPath = Path.Combine(MonkiiUtils.GameDirectory, "UnityPlayer.dll");
             if (!File.Exists(unityPlayerPath))
-                unityPlayerPath = MelonUtils.GetApplicationPath();
+                unityPlayerPath = MonkiiUtils.GetApplicationPath();
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
@@ -189,8 +189,8 @@ namespace MelonLoader.InternalUtils
             }
             catch (Exception ex)
             {
-                if (MelonDebug.IsEnabled())
-                    MelonLogger.Error(ex);
+                if (MonkiiDebug.IsEnabled())
+                    MonkiiLogger.Error(ex);
             }
 
             try
@@ -201,8 +201,8 @@ namespace MelonLoader.InternalUtils
             }
             catch (Exception ex)
             {
-                if (MelonDebug.IsEnabled())
-                    MelonLogger.Error(ex);
+                if (MonkiiDebug.IsEnabled())
+                    MonkiiLogger.Error(ex);
             }
 
             return default;

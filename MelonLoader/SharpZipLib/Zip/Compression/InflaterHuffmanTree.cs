@@ -1,8 +1,8 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 using System.Collections.Generic;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	/// <summary>
 	/// Huffman tree used for inflation

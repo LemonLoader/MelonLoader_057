@@ -1,6 +1,6 @@
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	/// <summary>
 	/// This is the Deflater class.  The deflater class compresses input

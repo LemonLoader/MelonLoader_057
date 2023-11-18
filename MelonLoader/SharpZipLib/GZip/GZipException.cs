@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.GZip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.GZip
 {
 	/// <summary>
 	/// GZipException represents exceptions specific to GZip classes and code.

@@ -1,30 +1,30 @@
-﻿using MelonLoader.Modules;
+﻿using MonkiiLoader.Modules;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.InternalUtils
+namespace MonkiiLoader.InternalUtils
 {
     internal static class Il2CppAssemblyGenerator
     {
 #if __ANDROID__
-        public static readonly MelonModule.Info moduleInfo = new MelonModule.Info(
-            Path.Combine(MelonUtils.GetApplicationPath(), $"melonloader/etc/assembly_generation/managed/Il2CppAssemblyGenerator.dll")
-            , () => !MelonUtils.IsGameIl2Cpp());
+        public static readonly MonkiiModule.Info moduleInfo = new MonkiiModule.Info(
+            Path.Combine(MonkiiUtils.GetApplicationPath(), $"Monkiiloader/etc/assembly_generation/managed/Il2CppAssemblyGenerator.dll")
+            , () => !MonkiiUtils.IsGameIl2Cpp());
 #else
-        public static readonly MelonModule.Info moduleInfo = new MelonModule.Info(
-            $"MelonLoader{Path.DirectorySeparatorChar}Dependencies{Path.DirectorySeparatorChar}Il2CppAssemblyGenerator{Path.DirectorySeparatorChar}Il2CppAssemblyGenerator.dll"
-            , () => !MelonUtils.IsGameIl2Cpp());
+        public static readonly MonkiiModule.Info moduleInfo = new MonkiiModule.Info(
+            $"MonkiiLoader{Path.DirectorySeparatorChar}Dependencies{Path.DirectorySeparatorChar}Il2CppAssemblyGenerator{Path.DirectorySeparatorChar}Il2CppAssemblyGenerator.dll"
+            , () => !MonkiiUtils.IsGameIl2Cpp());
 #endif
 
         internal static bool Run()
         {
-            var module = MelonModule.Load(moduleInfo);
+            var module = MonkiiModule.Load(moduleInfo);
             if (module == null)
                 return true;
 
-            MelonLogger.Msg("Loading Il2CppAssemblyGenerator...");
+            MonkiiLogger.Msg("Loading Il2CppAssemblyGenerator...");
 
             MonoInternals.MonoResolveManager.GetAssemblyResolveInfo("Il2CppAssemblyGenerator").Override = module.Assembly;
 
@@ -36,7 +36,7 @@ namespace MelonLoader.InternalUtils
 #else
             var ret = module.SendMessage("Run");
 #endif
-            MelonUtils.SetCurrentDomainBaseDirectory(MelonUtils.GameDirectory);
+            MonkiiUtils.SetCurrentDomainBaseDirectory(MonkiiUtils.GameDirectory);
             return ret is int retVal && retVal == 0;
         }
 

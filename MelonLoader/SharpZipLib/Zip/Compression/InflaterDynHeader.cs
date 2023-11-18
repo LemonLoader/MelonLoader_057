@@ -1,9 +1,9 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	internal class InflaterDynHeader
 	{

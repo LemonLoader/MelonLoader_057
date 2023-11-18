@@ -3,18 +3,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using MelonLoader.NativeUtils;
+using MonkiiLoader.NativeUtils;
 
-namespace MelonLoader.MelonStartScreen.NativeUtils
+namespace MonkiiLoader.MonkiiStartScreen.NativeUtils
 {
     internal static class NativeSignatureResolver
     {
         internal static bool Apply()
         {
             NativeSignatureFlags currentFlags = default;
-            currentFlags |= MelonUtils.IsGame32Bit() ? NativeSignatureFlags.X86 : NativeSignatureFlags.X64;
-            currentFlags |= MelonUtils.IsGameIl2Cpp() ? NativeSignatureFlags.Il2Cpp : NativeSignatureFlags.Mono;
-            MelonDebug.Msg("Current Unity flags: " + (uint)currentFlags);
+            currentFlags |= MonkiiUtils.IsGame32Bit() ? NativeSignatureFlags.X86 : NativeSignatureFlags.X64;
+            currentFlags |= MonkiiUtils.IsGameIl2Cpp() ? NativeSignatureFlags.Il2Cpp : NativeSignatureFlags.Mono;
+            MonkiiDebug.Msg("Current Unity flags: " + (uint)currentFlags);
 
             string currentUnityVersion = InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType();
             string moduleName = "UnityPlayer.dll";
@@ -93,7 +93,7 @@ namespace MelonLoader.MelonStartScreen.NativeUtils
                         else
                             Core.Logger.Error($"Invalid target type for field \"{fi.FieldType} {fi.Name}\"");
 
-                        MelonDebug.Msg("Signature for " + fi.Name + ": " + attribute.Signature);
+                        MonkiiDebug.Msg("Signature for " + fi.Name + ": " + attribute.Signature);
                         break;
                     }
 
@@ -122,7 +122,7 @@ namespace MelonLoader.MelonStartScreen.NativeUtils
 
                         fi.SetValue(null, attribute.Value);
 
-                        MelonDebug.Msg("Value for " + fi.Name + ": " + attribute.Value);
+                        MonkiiDebug.Msg("Value for " + fi.Name + ": " + attribute.Value);
                         break;
                     }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     /// <summary>
     /// Extentions for enums.

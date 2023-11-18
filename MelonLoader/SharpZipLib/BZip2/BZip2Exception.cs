@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.BZip2
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
 	/// BZip2Exception represents exceptions specific to BZip2 classes and code.

@@ -3,7 +3,7 @@ using Tomlet;
 using Tomlet.Exceptions;
 using Tomlet.Models;
 
-namespace MelonLoader.Preferences.IO
+namespace MonkiiLoader.Preferences.IO
 {
     internal class File
     {
@@ -16,7 +16,7 @@ namespace MelonLoader.Preferences.IO
             {
                 if (value == true)
                 {
-                    MelonLogger.Warning($"Defaulting {FilePath} to Fallback Functionality to further avoid File Corruption...");
+                    MonkiiLogger.Warning($"Defaulting {FilePath} to Fallback Functionality to further avoid File Corruption...");
                     IsSaving = false;
                     FileWatcher.Destroy();
                 }
@@ -205,7 +205,7 @@ namespace MelonLoader.Preferences.IO
             }
         }
 
-        internal void SetupEntryFromRawValue(MelonPreferences_Entry entry)
+        internal void SetupEntryFromRawValue(MonkiiPreferences_Entry entry)
         {
             lock (document)
             {

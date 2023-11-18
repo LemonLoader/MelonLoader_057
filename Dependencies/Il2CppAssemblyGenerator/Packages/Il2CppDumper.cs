@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using MelonLoader.TinyJSON;
+using MonkiiLoader.TinyJSON;
 
-namespace MelonLoader.Il2CppAssemblyGenerator.Packages
+namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages
 {
     internal class Il2CppDumper : Models.ExecutablePackage
     {
@@ -35,7 +35,7 @@ namespace MelonLoader.Il2CppAssemblyGenerator.Packages
             FixConfig();
             if (Execute(new string[] {
                 Core.GameAssemblyPath,
-                Path.Combine(MelonUtils.GetGameDataDirectory(), "il2cpp_data", "Metadata", "global-metadata.dat")
+                Path.Combine(MonkiiUtils.GetGameDataDirectory(), "il2cpp_data", "Metadata", "global-metadata.dat")
             }))
                 return true;
             return false;

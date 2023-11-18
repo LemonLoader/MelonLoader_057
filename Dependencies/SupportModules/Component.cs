@@ -6,7 +6,7 @@ using System.Reflection;
 #endif
 using UnityEngine;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal class SM_Component : MonoBehaviour
     {
@@ -32,7 +32,7 @@ namespace MelonLoader.Support
             }
             catch (Exception ex)
             {
-                MelonLogger.Warning($"Exception while Getting Transform.SetAsLastSibling: {ex}");
+                MonkiiLogger.Warning($"Exception while Getting Transform.SetAsLastSibling: {ex}");
             }
         }
 

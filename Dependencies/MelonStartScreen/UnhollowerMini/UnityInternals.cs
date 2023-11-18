@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+﻿using MonkiiLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace UnhollowerMini
 
         unsafe static UnityInternals()
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 domain = il2cpp_domain_get();
 
@@ -37,7 +37,7 @@ namespace UnhollowerMini
                 testclass->nested_in_0x08 = (IntPtr)0x5678;
                 testclass->nested_in_0x0C = (IntPtr)0x9012;
                 long returnedName = (long)mono_class_get_name((IntPtr)testclass);
-                MelonDebug.Msg($"returnedName {returnedName:X}");
+                MonkiiDebug.Msg($"returnedName {returnedName:X}");
                 Marshal.FreeHGlobal((IntPtr)testclass);
                 if (returnedName == 0x1234)
                     monoClassOffset = 0;
@@ -48,7 +48,7 @@ namespace UnhollowerMini
                 else
                     throw new Exception("Failed to find MonoClass name offset");
 
-                MelonDebug.Msg("monoClassOffset? "  + monoClassOffset);
+                MonkiiDebug.Msg("monoClassOffset? "  + monoClassOffset);
             }
         }
 
@@ -60,7 +60,7 @@ namespace UnhollowerMini
             public InternalAssembly(IntPtr ptr)
             {
                 this.ptr = ptr;
-                if (MelonUtils.IsGameIl2Cpp())
+                if (MonkiiUtils.IsGameIl2Cpp())
                 {
                     name = Marshal.PtrToStringAnsi(il2cpp_image_get_filename(this.ptr));
                 }
@@ -80,7 +80,7 @@ namespace UnhollowerMini
             public InternalClass(IntPtr ptr)
             {
                 this.ptr = ptr;
-                if (MelonUtils.IsGameIl2Cpp())
+                if (MonkiiUtils.IsGameIl2Cpp())
                 {
                     name = Marshal.PtrToStringAnsi(il2cpp_class_get_name(ptr));
                     name_space = Marshal.PtrToStringAnsi(il2cpp_class_get_namespace(ptr));
@@ -93,7 +93,7 @@ namespace UnhollowerMini
 
             public InternalClass(IntPtr ptr, string name, string name_space)
             {
-                if (MelonUtils.IsGameIl2Cpp())
+                if (MonkiiUtils.IsGameIl2Cpp())
                 {
                     throw new NotImplementedException();
                 }
@@ -109,8 +109,8 @@ namespace UnhollowerMini
 
         internal static IntPtr GetClass(string assemblyname, string name_space, string classname)
         {
-            MelonDebug.Msg($"GetClass {assemblyname} {name_space} {classname}");
-            if (MelonUtils.IsGameIl2Cpp())
+            MonkiiDebug.Msg($"GetClass {assemblyname} {name_space} {classname}");
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 InternalAssembly assembly = assemblies.FirstOrDefault(a => a.name == assemblyname);
                 if (assembly == null)
@@ -124,7 +124,7 @@ namespace UnhollowerMini
                     throw new Exception("Unable to find class " + name_space + "." + classname + " in assembly " + assemblyname);
                 }
 
-                MelonDebug.Msg($" > 0x{(long)clazz:X}");
+                MonkiiDebug.Msg($" > 0x{(long)clazz:X}");
                 return clazz;
             }
             else
@@ -142,7 +142,7 @@ namespace UnhollowerMini
                 {
                     throw new Exception("Unable to find class " + fullname + " in assembly " + assemblyname);
                 }
-                MelonDebug.Msg($" > 0x{(long)(*(IntPtr*)t.TypeHandle.Value):X}");
+                MonkiiDebug.Msg($" > 0x{(long)(*(IntPtr*)t.TypeHandle.Value):X}");
 
                 return *(IntPtr*)t.TypeHandle.Value;
             }
@@ -150,21 +150,21 @@ namespace UnhollowerMini
 
         public static IntPtr GetField(IntPtr clazz, string fieldName)
         {
-            MelonDebug.Msg($"GetField {fieldName}");
+            MonkiiDebug.Msg($"GetField {fieldName}");
             if (clazz == IntPtr.Zero)
                 return IntPtr.Zero;
 
-            var field = MelonUtils.IsGameIl2Cpp() ? il2cpp_class_get_field_from_name(clazz, fieldName) : mono_class_get_field_from_name(clazz, fieldName);
+            var field = MonkiiUtils.IsGameIl2Cpp() ? il2cpp_class_get_field_from_name(clazz, fieldName) : mono_class_get_field_from_name(clazz, fieldName);
             if (field == IntPtr.Zero)
-                throw new Exception($"Field {fieldName} was not found on class {Marshal.PtrToStringAnsi(MelonUtils.IsGameIl2Cpp() ? il2cpp_class_get_name(clazz) : mono_class_get_name(clazz))}");
-            MelonDebug.Msg($" > 0x{(long)field:X}");
+                throw new Exception($"Field {fieldName} was not found on class {Marshal.PtrToStringAnsi(MonkiiUtils.IsGameIl2Cpp() ? il2cpp_class_get_name(clazz) : mono_class_get_name(clazz))}");
+            MonkiiDebug.Msg($" > 0x{(long)field:X}");
             return field;
         }
 
         internal static IntPtr GetMethod(IntPtr clazz, string name, string returntype, params string[] parameters)
         {
-            MelonDebug.Msg($"GetMethod {returntype} {name}({string.Join(", ", parameters)})");
-            if (MelonUtils.IsGameIl2Cpp())
+            MonkiiDebug.Msg($"GetMethod {returntype} {name}({string.Join(", ", parameters)})");
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 IntPtr iter = IntPtr.Zero;
                 IntPtr element;
@@ -191,7 +191,7 @@ namespace UnhollowerMini
 
                     if (hasValidParameters)
                     {
-                        MelonDebug.Msg($" > 0x{(long)element:X}");
+                        MonkiiDebug.Msg($" > 0x{(long)element:X}");
                         return element;
                     }
                 }
@@ -228,12 +228,12 @@ namespace UnhollowerMini
 
                     if (hasValidParameters)
                     {
-                        MelonDebug.Msg($" > 0x{(long)element:X}");
+                        MonkiiDebug.Msg($" > 0x{(long)element:X}");
                         return element;
                     }
                 }
             }
-            //MelonLogger.Error($"Unable to find method {returntype} {name}({string.Join(", ", parameters)})");
+            //MonkiiLogger.Error($"Unable to find method {returntype} {name}({string.Join(", ", parameters)})");
             //return IntPtr.Zero;
             throw new Exception($"Unable to find method {returntype} {name}({string.Join(", ", parameters)})");
         }
@@ -253,14 +253,14 @@ namespace UnhollowerMini
             if (str == null) return IntPtr.Zero;
 
             fixed (char* chars = str)
-                return MelonUtils.IsGameIl2Cpp() ? il2cpp_string_new_utf16(chars, str.Length) : mono_string_new_utf16(domain, chars, str.Length);
+                return MonkiiUtils.IsGameIl2Cpp() ? il2cpp_string_new_utf16(chars, str.Length) : mono_string_new_utf16(domain, chars, str.Length);
         }
 
         public static IntPtr ResolveICall(string signature)
         {
-            MelonDebug.Msg("Resolving ICall " + signature);
+            MonkiiDebug.Msg("Resolving ICall " + signature);
             IntPtr icallPtr;
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
                 icallPtr = il2cpp_resolve_icall(signature);
             else
             {
@@ -273,11 +273,11 @@ namespace UnhollowerMini
 
             if (icallPtr == IntPtr.Zero)
             {
-                //MelonLogger.Error($"ICall {signature} not resolved");
+                //MonkiiLogger.Error($"ICall {signature} not resolved");
                 //return IntPtr.Zero;
                 throw new Exception($"ICall {signature} not resolved");
             }
-            MelonDebug.Msg($" > 0x{(long)icallPtr:X}");
+            MonkiiDebug.Msg($" > 0x{(long)icallPtr:X}");
 
             return icallPtr;
         }
@@ -462,7 +462,7 @@ namespace UnhollowerMini
 
         public static IntPtr class_get_type(IntPtr klass)
         {
-            return MelonUtils.IsGameIl2Cpp() ? il2cpp_class_get_type(klass) : mono_class_get_type(klass);
+            return MonkiiUtils.IsGameIl2Cpp() ? il2cpp_class_get_type(klass) : mono_class_get_type(klass);
         }
 
         public static void runtime_class_init(IntPtr klass)
@@ -470,50 +470,50 @@ namespace UnhollowerMini
             if (klass == IntPtr.Zero)
                 throw new ArgumentException("Class to init is null");
 
-            if (MelonUtils.IsGameIl2Cpp()) il2cpp_runtime_class_init(klass); else mono_runtime_class_init(klass);
+            if (MonkiiUtils.IsGameIl2Cpp()) il2cpp_runtime_class_init(klass); else mono_runtime_class_init(klass);
         }
 
         public static IntPtr runtime_invoke(IntPtr method, IntPtr obj, void** param, ref IntPtr exc) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_runtime_invoke(method, obj, param, ref exc) : mono_runtime_invoke(method, obj, param, ref exc);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_runtime_invoke(method, obj, param, ref exc) : mono_runtime_invoke(method, obj, param, ref exc);
 
         public static IntPtr array_new(IntPtr elementTypeInfo, ulong length) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_array_new(elementTypeInfo, length) : mono_array_new(domain, elementTypeInfo, length);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_array_new(elementTypeInfo, length) : mono_array_new(domain, elementTypeInfo, length);
 
         public static uint array_length(IntPtr array) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_array_length(array) : *(uint*)((long)array + IntPtr.Size * 3);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_array_length(array) : *(uint*)((long)array + IntPtr.Size * 3);
 
         public static uint field_get_offset(IntPtr field) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_field_get_offset(field) : mono_field_get_offset(field);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_field_get_offset(field) : mono_field_get_offset(field);
 
         public static IntPtr object_unbox(IntPtr obj) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_object_unbox(obj) : mono_object_unbox(obj);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_object_unbox(obj) : mono_object_unbox(obj);
 
         public static IntPtr object_new(IntPtr klass) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_object_new(klass) : mono_object_new(domain, klass);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_object_new(klass) : mono_object_new(domain, klass);
 
         public static int class_value_size(IntPtr klass, ref uint align) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_class_value_size(klass, ref align) : mono_class_value_size(klass, ref align);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_class_value_size(klass, ref align) : mono_class_value_size(klass, ref align);
 
         public static uint gchandle_new(IntPtr obj, bool pinned) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_gchandle_new(obj, pinned) : mono_gchandle_new(obj, pinned ? 1 : 0);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_gchandle_new(obj, pinned) : mono_gchandle_new(obj, pinned ? 1 : 0);
         public static void gchandle_free(uint gchandle)
-        { if (MelonUtils.IsGameIl2Cpp()) il2cpp_gchandle_free(gchandle); else mono_gchandle_free(gchandle); }
+        { if (MonkiiUtils.IsGameIl2Cpp()) il2cpp_gchandle_free(gchandle); else mono_gchandle_free(gchandle); }
         public static IntPtr gchandle_get_target(uint gchandle) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_gchandle_get_target(gchandle) : mono_gchandle_get_target(gchandle);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_gchandle_get_target(gchandle) : mono_gchandle_get_target(gchandle);
 
         public static IntPtr value_box(IntPtr klass, IntPtr val) =>
-            MelonUtils.IsGameIl2Cpp() ? il2cpp_value_box(klass, val) : mono_value_box(domain, klass, val);
+            MonkiiUtils.IsGameIl2Cpp() ? il2cpp_value_box(klass, val) : mono_value_box(domain, klass, val);
 
         public static void format_exception(IntPtr ex, void* message, int message_size)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
                 il2cpp_format_exception(ex, message, message_size);
             // TODO Mono mono_format_exception
         }
 
         public static void format_stack_trace(IntPtr ex, void* output, int output_size)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
                 il2cpp_format_stack_trace(ex, output, output_size);
             // TODO mono_format_stack_trace
         }

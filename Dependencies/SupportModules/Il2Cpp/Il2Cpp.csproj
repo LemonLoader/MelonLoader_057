@@ -18,13 +18,13 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup>
-		<RootNamespace>MelonLoader.Support</RootNamespace>
+		<RootNamespace>MonkiiLoader.Support</RootNamespace>
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MelonLoader\Dependencies\SupportModules\</OutputPath>
+		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MonkiiLoader\Dependencies\SupportModules\</OutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Platforms>Android;Windows</Platforms>
 		<DefineConstants>SM_Il2Cpp</DefineConstants>
@@ -34,7 +34,7 @@
   	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="0Harmony">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\0Harmony.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\0Harmony.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
 		<Reference Include="Il2Cppmscorlib">
@@ -46,22 +46,22 @@
 			<Private>false</Private>
 		</Reference>
 		<Reference Include="Mono.Cecil">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\Mono.Cecil.dll</HintPath>
 		</Reference>
 		<Reference Include="Mono.Cecil.Mdb">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Mdb.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\Mono.Cecil.Mdb.dll</HintPath>
 		</Reference>
 		<Reference Include="Mono.Cecil.Pdb">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Pdb.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\Mono.Cecil.Pdb.dll</HintPath>
 		</Reference>
 		<Reference Include="Mono.Cecil.Rocks">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Rocks.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\Mono.Cecil.Rocks.dll</HintPath>
 		</Reference>
 		<Reference Include="MonoMod.RuntimeDetour">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\MonoMod.RuntimeDetour.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\MonoMod.RuntimeDetour.dll</HintPath>
 		</Reference>
 		<Reference Include="MonoMod.Utils">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\MonoMod.Utils.dll</HintPath>
+		  <HintPath>..\..\..\Output\Release\Android\MonkiiLoader\MonoMod.Utils.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>Libs\UnityEngine.CoreModule.dll</HintPath>
@@ -79,7 +79,7 @@
 	  <PackageReference Include="Samboy063.Tomlet" Version="5.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\MelonLoader\MelonLoader.csproj">
+	  <ProjectReference Include="..\..\..\MonkiiLoader\MonkiiLoader.csproj">
 	    <Private>false</Private>
 	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
 	  </ProjectReference>

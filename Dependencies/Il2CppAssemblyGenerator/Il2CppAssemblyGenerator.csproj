@@ -23,13 +23,13 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup>
-		<RootNamespace>MelonLoader.Il2CppAssemblyGenerator</RootNamespace>
+		<RootNamespace>MonkiiLoader.Il2CppAssemblyGenerator</RootNamespace>
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MelonLoader\Dependencies\Il2CppAssemblyGenerator\</OutputPath>
+		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MonkiiLoader\Dependencies\Il2CppAssemblyGenerator\</OutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Platforms>Android;Windows</Platforms>
 	</PropertyGroup>
@@ -40,7 +40,7 @@
 	  <DefineConstants>$(DefineConstants)TRACE;__ANDROID__</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\MelonLoader\MelonLoader.csproj">
+	  <ProjectReference Include="..\..\MonkiiLoader\MonkiiLoader.csproj">
 	    <Private>false</Private>
 	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
 	  </ProjectReference>

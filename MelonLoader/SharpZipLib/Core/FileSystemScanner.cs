@@ -1,6 +1,6 @@
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	#region EventArgs
 

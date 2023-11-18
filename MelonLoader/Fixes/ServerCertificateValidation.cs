@@ -4,7 +4,7 @@ using System.Net.Security;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
-namespace MelonLoader.Fixes
+namespace MonkiiLoader.Fixes
 {
     internal static class ServerCertificateValidation
     {

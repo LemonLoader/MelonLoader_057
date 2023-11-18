@@ -1,4 +1,4 @@
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	/// <summary>
 	/// This class is general purpose class for writing data to a buffer.

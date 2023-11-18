@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	/// <summary>
 	/// Provides simple <see cref="Stream"/>" utilities.

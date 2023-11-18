@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Checksum
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Checksum
 {
 	/// <summary>
 	/// CRC-32 with unreversed data and reversed output

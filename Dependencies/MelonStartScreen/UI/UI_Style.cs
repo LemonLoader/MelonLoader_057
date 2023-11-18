@@ -1,7 +1,7 @@
-﻿using MelonUnityEngine;
+﻿using MonkiiUnityEngine;
 using System;
 
-namespace MelonLoader.MelonStartScreen.UI
+namespace MonkiiLoader.MonkiiStartScreen.UI
 {
     internal class UI_Style
     {
@@ -23,7 +23,7 @@ namespace MelonLoader.MelonStartScreen.UI
                 LogoImage = new Objects.UI_Image(UI_Theme.Instance.LogoImage,
                     UI_Theme.IsHalloween
                         ? Properties.Resources.Logo_Halloween 
-                        : (UI_Theme.IsLemon ? Properties.Resources.Logo_Lemon : Properties.Resources.Logo_Melon));
+                        : (UI_Theme.IsLemon ? Properties.Resources.Logo_Lemon : Properties.Resources.Logo_Monkii));
 
             if (UI_Theme.Instance.LoadingImage.ScanForCustomImage)
                 LoadingImage = UI_Utils.LoadImage(UI_Theme.Instance.LoadingImage, "Loading");
@@ -31,7 +31,7 @@ namespace MelonLoader.MelonStartScreen.UI
                 LoadingImage = new Objects.UI_AnimatedImage(UI_Theme.Instance.LoadingImage,
                     UI_Theme.IsHalloween
                         ? Properties.Resources.Loading_Halloween
-                        : (UI_Theme.IsLemon ? Properties.Resources.Loading_Lemon : Properties.Resources.Loading_Melon));
+                        : (UI_Theme.IsLemon ? Properties.Resources.Loading_Lemon : Properties.Resources.Loading_Monkii));
         }
 
 

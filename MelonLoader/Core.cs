@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using MelonLoader.InternalUtils;
-using MelonLoader.MonoInternals;
+using MonkiiLoader.InternalUtils;
+using MonkiiLoader.MonoInternals;
 using bHapticsLib;
 using System.IO;
 #pragma warning disable IDE0051 // Prevent the IDE from complaining about private unreferenced methods
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
 	internal static class Core
     {
@@ -18,7 +18,7 @@ namespace MelonLoader
             Fixes.UnhandledException.Install(curDomain);
             Fixes.ServerCertificateValidation.Install();
 
-            MelonUtils.Setup(curDomain);
+            MonkiiUtils.Setup(curDomain);
             Assertions.LemonAssertMapping.Setup();
 
             JNISharp.NativeInterface.JNI.Initialize(new JNISharp.NativeInterface.JavaVMInitArgs());
@@ -29,23 +29,23 @@ namespace MelonLoader
                 || !MonoResolveManager.Setup())
                 return 1;
 #else
-            foreach (var file in Directory.GetFiles(MelonUtils.UserLibsDirectory, "*.dll"))
+            foreach (var file in Directory.GetFiles(MonkiiUtils.UserLibsDirectory, "*.dll"))
             {
                 try
                 {
                     System.Reflection.Assembly.LoadFrom(file);
-                    MelonDebug.Msg("Loaded " + Path.GetFileName(file) + " from UserLibs!");
+                    MonkiiDebug.Msg("Loaded " + Path.GetFileName(file) + " from UserLibs!");
                 }
                 catch (Exception e)
                 {
-                    MelonLogger.Msg("Failed to load " + Path.GetFileName(file) + " from UserLibs!");
-                    MelonLogger.Error(e.ToString());
+                    MonkiiLogger.Msg("Failed to load " + Path.GetFileName(file) + " from UserLibs!");
+                    MonkiiLogger.Error(e.ToString());
                 }
             }
 #endif
 
             bool bypassHarmony = false;
-            if (File.Exists(Path.Combine(MelonUtils.BaseDirectory, "isEmulator.txt")))
+            if (File.Exists(Path.Combine(MonkiiUtils.BaseDirectory, "isEmulator.txt")))
             {
                 bypassHarmony = true;
                 // Tells Harmony that it already did some internal patching junk so that I don't have to modify the code myself
@@ -68,24 +68,24 @@ namespace MelonLoader
 #endif
             }
 
-            MelonPreferences.Load();
+            MonkiiPreferences.Load();
 
-            MelonCompatibilityLayer.LoadModules();
+            MonkiiCompatibilityLayer.LoadModules();
 
             bHapticsManager.Connect(BuildInfo.Name, UnityInformationHandler.GameName);
 
-            MelonHandler.LoadMelonsFromDirectory<MelonPlugin>(MelonHandler.PluginsDirectory);
-            MelonEvents.MelonHarmonyEarlyInit.Invoke();
-            MelonEvents.OnPreInitialization.Invoke();
+            MonkiiHandler.LoadMonkiisFromDirectory<MonkiiPlugin>(MonkiiHandler.PluginsDirectory);
+            MonkiiEvents.MonkiiHarmonyEarlyInit.Invoke();
+            MonkiiEvents.OnPreInitialization.Invoke();
 
             return 0;
         }
 
         private static int PreStart()
         {
-            MelonEvents.OnApplicationEarlyStart.Invoke();
+            MonkiiEvents.OnApplicationEarlyStart.Invoke();
 #if !__ANDROID__
-            return MelonStartScreen.LoadAndRun(Il2CppGameSetup);
+            return MonkiiStartScreen.LoadAndRun(Il2CppGameSetup);
 #else
             return Il2CppGameSetup();
 #endif
@@ -96,43 +96,43 @@ namespace MelonLoader
 
         private static int Start()
         {
-            MelonEvents.OnPreModsLoaded.Invoke();
-            MelonHandler.LoadMelonsFromDirectory<MelonMod>(MelonHandler.ModsDirectory);
+            MonkiiEvents.OnPreModsLoaded.Invoke();
+            MonkiiHandler.LoadMonkiisFromDirectory<MonkiiMod>(MonkiiHandler.ModsDirectory);
 
-            MelonEvents.OnPreSupportModule.Invoke();
+            MonkiiEvents.OnPreSupportModule.Invoke();
             if (!SupportModule.Setup())
                 return 1;
 
             AddUnityDebugLog();
             RegisterTypeInIl2Cpp.SetReady();
 
-            MelonEvents.MelonHarmonyInit.Invoke();
-            MelonEvents.OnApplicationStart.Invoke();
+            MonkiiEvents.MonkiiHarmonyInit.Invoke();
+            MonkiiEvents.OnApplicationStart.Invoke();
 
             return 0;
         }
 
         internal static void Quit()
         {
-            MelonPreferences.Save();
+            MonkiiPreferences.Save();
 
             HarmonyInstance.UnpatchSelf();
             bHapticsManager.Disconnect();
 
-            MelonLogger.Flush();
+            MonkiiLogger.Flush();
 
-            if (MelonLaunchOptions.Core.QuitFix)
+            if (MonkiiLaunchOptions.Core.QuitFix)
                 Process.GetCurrentProcess().Kill();
         }
 
         private static void Pause()
         {
-            MelonPreferences.Save();
+            MonkiiPreferences.Save();
         }
 
         private static void AddUnityDebugLog()
         {
-            var msg = "~   This Game has been MODIFIED using MelonLoader. DO NOT report any issues to the Game Developers!   ~";
+            var msg = "~   This Game has been MODIFIED using MonkiiLoader. DO NOT report any issues to the Game Developers!   ~";
             var line = new string('-', msg.Length);
             SupportModule.Interface.UnityDebugLog(line);
             SupportModule.Interface.UnityDebugLog(msg);

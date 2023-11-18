@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MelonLoader.MelonStartScreen.UI.Objects
+namespace MonkiiLoader.MonkiiStartScreen.UI.Objects
 {
     internal abstract class UI_Object : IDisposable
     {

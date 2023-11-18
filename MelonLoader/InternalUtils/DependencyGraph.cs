@@ -4,73 +4,73 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 
-namespace MelonLoader.InternalUtils
+namespace MonkiiLoader.InternalUtils
 {
-    internal class DependencyGraph<T> where T : MelonBase
+    internal class DependencyGraph<T> where T : MonkiiBase
     {
-        public static void TopologicalSort(IList<T> melons)
+        public static void TopologicalSort(IList<T> Monkiis)
         {
-            if (melons.Count <= 0)
+            if (Monkiis.Count <= 0)
                 return;
-            DependencyGraph<T> dependencyGraph = new DependencyGraph<T>(melons);
-            melons.Clear();
-            dependencyGraph.TopologicalSortInto(melons);
+            DependencyGraph<T> dependencyGraph = new DependencyGraph<T>(Monkiis);
+            Monkiis.Clear();
+            dependencyGraph.TopologicalSortInto(Monkiis);
         }
 
         private readonly Vertex[] vertices;
 
-        private DependencyGraph(IList<T> melons)
+        private DependencyGraph(IList<T> Monkiis)
         {
-            int size = melons.Count;
+            int size = Monkiis.Count;
             vertices = new Vertex[size];
             Dictionary<string, Vertex> nameLookup = new Dictionary<string, Vertex>(size);
 
-            // Create a vertex in the dependency graph for each Melon to load
+            // Create a vertex in the dependency graph for each Monkii to load
             for (int i = 0; i < size; ++i)
             {
-                Assembly melonAssembly = melons[i].MelonAssembly.Assembly;
-                string melonName = melons[i].Info.Name;
+                Assembly MonkiiAssembly = Monkiis[i].MonkiiAssembly.Assembly;
+                string MonkiiName = Monkiis[i].Info.Name;
 
-                Vertex melonVertex = new Vertex(i, melons[i], melonName);
-                vertices[i] = melonVertex;
-                nameLookup[melonAssembly.GetName().Name] = melonVertex;
+                Vertex MonkiiVertex = new Vertex(i, Monkiis[i], MonkiiName);
+                vertices[i] = MonkiiVertex;
+                nameLookup[MonkiiAssembly.GetName().Name] = MonkiiVertex;
             }
 
-            // Add an edge for each dependency between Melons
-            SortedDictionary<string, IList<AssemblyName>> melonsWithMissingDeps = new SortedDictionary<string, IList<AssemblyName>>();
-            SortedDictionary<string, IList<AssemblyName>> melonsWithIncompatibilities = new SortedDictionary<string, IList<AssemblyName>>();
+            // Add an edge for each dependency between Monkiis
+            SortedDictionary<string, IList<AssemblyName>> MonkiisWithMissingDeps = new SortedDictionary<string, IList<AssemblyName>>();
+            SortedDictionary<string, IList<AssemblyName>> MonkiisWithIncompatibilities = new SortedDictionary<string, IList<AssemblyName>>();
             List<AssemblyName> missingDependencies = new List<AssemblyName>();
             List<AssemblyName> incompatibilities = new List<AssemblyName>();
             HashSet<string> optionalDependencies = new HashSet<string>();
             HashSet<string> additionalDependencies = new HashSet<string>();
 
-            foreach (Vertex melonVertex in vertices)
+            foreach (Vertex MonkiiVertex in vertices)
             {
-                Assembly melonAssembly = melonVertex.melon.MelonAssembly.Assembly;
+                Assembly MonkiiAssembly = MonkiiVertex.Monkii.MonkiiAssembly.Assembly;
                 missingDependencies.Clear();
                 optionalDependencies.Clear();
                 incompatibilities.Clear();
                 additionalDependencies.Clear();
 
-                MelonOptionalDependenciesAttribute optionals = (MelonOptionalDependenciesAttribute)Attribute.GetCustomAttribute(melonAssembly, typeof(MelonOptionalDependenciesAttribute));
+                MonkiiOptionalDependenciesAttribute optionals = (MonkiiOptionalDependenciesAttribute)Attribute.GetCustomAttribute(MonkiiAssembly, typeof(MonkiiOptionalDependenciesAttribute));
                 if (optionals != null
                     && optionals.AssemblyNames != null)
                     optionalDependencies.UnionWith(optionals.AssemblyNames);
 
-                MelonAdditionalDependenciesAttribute additionals = (MelonAdditionalDependenciesAttribute)Attribute.GetCustomAttribute(melonAssembly, typeof(MelonAdditionalDependenciesAttribute));
+                MonkiiAdditionalDependenciesAttribute additionals = (MonkiiAdditionalDependenciesAttribute)Attribute.GetCustomAttribute(MonkiiAssembly, typeof(MonkiiAdditionalDependenciesAttribute));
                 if (additionals != null
                     && additionals.AssemblyNames != null)
                     additionalDependencies.UnionWith(additionals.AssemblyNames);
 
-                MelonIncompatibleAssembliesAttribute incompatibleAssemblies = (MelonIncompatibleAssembliesAttribute)Attribute.GetCustomAttribute(melonAssembly, typeof(MelonIncompatibleAssembliesAttribute));
+                MonkiiIncompatibleAssembliesAttribute incompatibleAssemblies = (MonkiiIncompatibleAssembliesAttribute)Attribute.GetCustomAttribute(MonkiiAssembly, typeof(MonkiiIncompatibleAssembliesAttribute));
                 if (incompatibleAssemblies != null
                     && incompatibleAssemblies.AssemblyNames != null)
                 {
                     foreach (string name in incompatibleAssemblies.AssemblyNames)
                         foreach (Vertex v in vertices)
                         {
-                            AssemblyName assemblyName = v.melon.MelonAssembly.Assembly.GetName();
-                            if (v != melonVertex
+                            AssemblyName assemblyName = v.Monkii.MonkiiAssembly.Assembly.GetName();
+                            if (v != MonkiiVertex
                                 && assemblyName.Name == name)
                             {
                                 incompatibilities.Add(assemblyName);
@@ -79,12 +79,12 @@ namespace MelonLoader.InternalUtils
                         }
                 }
 
-                foreach (AssemblyName dependency in melonAssembly.GetReferencedAssemblies())
+                foreach (AssemblyName dependency in MonkiiAssembly.GetReferencedAssemblies())
                 {
                     if (nameLookup.TryGetValue(dependency.Name, out Vertex dependencyVertex))
                     {
-                        melonVertex.dependencies.Add(dependencyVertex);
-                        dependencyVertex.dependents.Add(melonVertex);
+                        MonkiiVertex.dependencies.Add(dependencyVertex);
+                        dependencyVertex.dependents.Add(MonkiiVertex);
                     }
                     else if (!TryLoad(dependency) && !optionalDependencies.Contains(dependency.Name))
                         missingDependencies.Add(dependency);
@@ -95,27 +95,27 @@ namespace MelonLoader.InternalUtils
                     AssemblyName dependency = new AssemblyName(dependencyName);
                     if (nameLookup.TryGetValue(dependencyName, out Vertex dependencyVertex))
                     {
-                        melonVertex.dependencies.Add(dependencyVertex);
-                        dependencyVertex.dependents.Add(melonVertex);
+                        MonkiiVertex.dependencies.Add(dependencyVertex);
+                        dependencyVertex.dependents.Add(MonkiiVertex);
                     }
                     else if (!TryLoad(dependency))
                         missingDependencies.Add(dependency);
                 }
 
                 if (missingDependencies.Count > 0)
-                    // melonVertex.skipLoading = true;
-                    melonsWithMissingDeps.Add(melonVertex.melon.Info.Name, missingDependencies.ToArray());
+                    // MonkiiVertex.skipLoading = true;
+                    MonkiisWithMissingDeps.Add(MonkiiVertex.Monkii.Info.Name, missingDependencies.ToArray());
 
                 if (incompatibilities.Count > 0)
-                    melonsWithIncompatibilities.Add(melonVertex.melon.Info.Name, incompatibilities.ToArray());
+                    MonkiisWithIncompatibilities.Add(MonkiiVertex.Monkii.Info.Name, incompatibilities.ToArray());
             }
 
-            // Some Melons are missing dependencies. Don't load these Melons and show an error message
-            if (melonsWithMissingDeps.Count > 0)
-                MelonLogger.Warning(BuildMissingDependencyMessage(melonsWithMissingDeps));
+            // Some Monkiis are missing dependencies. Don't load these Monkiis and show an error message
+            if (MonkiisWithMissingDeps.Count > 0)
+                MonkiiLogger.Warning(BuildMissingDependencyMessage(MonkiisWithMissingDeps));
 
-            if (melonsWithIncompatibilities.Count > 0)
-                MelonLogger.Warning(BuildIncompatibleAssembliesMessage(melonsWithIncompatibilities));
+            if (MonkiisWithIncompatibilities.Count > 0)
+                MonkiiLogger.Warning(BuildIncompatibleAssembliesMessage(MonkiisWithIncompatibilities));
         }
 
         // Returns true if 'assembly' was already loaded or could be loaded, false if the required assembly was missing.
@@ -129,34 +129,34 @@ namespace MelonLoader.InternalUtils
             catch (FileNotFoundException) { return false; }
             catch (Exception ex)
             {
-                MelonLogger.Error("Loading Melon Dependency Failed: " + ex);
+                MonkiiLogger.Error("Loading Monkii Dependency Failed: " + ex);
                 return false;
             }
         }
 
-        private static string BuildMissingDependencyMessage(IDictionary<string, IList<AssemblyName>> melonsWithMissingDeps)
+        private static string BuildMissingDependencyMessage(IDictionary<string, IList<AssemblyName>> MonkiisWithMissingDeps)
         {
-            StringBuilder messageBuilder = new StringBuilder("Some Melons are missing dependencies, which you may have to install.\n" +
-                "If these are optional dependencies, mark them as optional using the MelonOptionalDependencies attribute.\n" +
-                "This warning will turn into an error and Melons with missing dependencies will not be loaded in the next version of MelonLoader.\n");
-            foreach (string melonName in melonsWithMissingDeps.Keys)
+            StringBuilder messageBuilder = new StringBuilder("Some Monkiis are missing dependencies, which you may have to install.\n" +
+                "If these are optional dependencies, mark them as optional using the MonkiiOptionalDependencies attribute.\n" +
+                "This warning will turn into an error and Monkiis with missing dependencies will not be loaded in the next version of MonkiiLoader.\n");
+            foreach (string MonkiiName in MonkiisWithMissingDeps.Keys)
             {
-                messageBuilder.Append($"- '{melonName}' is missing the following dependencies:\n");
-                foreach (AssemblyName dependency in melonsWithMissingDeps[melonName])
+                messageBuilder.Append($"- '{MonkiiName}' is missing the following dependencies:\n");
+                foreach (AssemblyName dependency in MonkiisWithMissingDeps[MonkiiName])
                     messageBuilder.Append($"    - '{dependency.Name}' v{dependency.Version}\n");
             }
             messageBuilder.Length -= 1; // Remove trailing newline
             return messageBuilder.ToString();
         }
 
-        private static string BuildIncompatibleAssembliesMessage(IDictionary<string, IList<AssemblyName>> melonsWithIncompatibilities)
+        private static string BuildIncompatibleAssembliesMessage(IDictionary<string, IList<AssemblyName>> MonkiisWithIncompatibilities)
         {
-            StringBuilder messageBuilder = new StringBuilder("Some Melons are marked as incompatible with each other.\n" +
-                "To avoid any errors, these Melons will not be loaded.\n");
-            foreach (string melonName in melonsWithIncompatibilities.Keys)
+            StringBuilder messageBuilder = new StringBuilder("Some Monkiis are marked as incompatible with each other.\n" +
+                "To avoid any errors, these Monkiis will not be loaded.\n");
+            foreach (string MonkiiName in MonkiisWithIncompatibilities.Keys)
             {
-                messageBuilder.Append($"- '{melonName}' is incompatible with the following Melons:\n");
-                foreach (AssemblyName dependency in melonsWithIncompatibilities[melonName])
+                messageBuilder.Append($"- '{MonkiiName}' is incompatible with the following Monkiis:\n");
+                foreach (AssemblyName dependency in MonkiisWithIncompatibilities[MonkiiName])
                 {
                     messageBuilder.Append($"    - '{dependency.Name}'\n");
                 }
@@ -165,13 +165,13 @@ namespace MelonLoader.InternalUtils
             return messageBuilder.ToString();
         }
 
-        private void TopologicalSortInto(IList<T> loadedMelons)
+        private void TopologicalSortInto(IList<T> loadedMonkiis)
         {
             int[] unloadedDependencies = new int[vertices.Length];
-            SortedList<string, Vertex> loadableMelons = new SortedList<string, Vertex>();
-            int skippedMelons = 0;
+            SortedList<string, Vertex> loadableMonkiis = new SortedList<string, Vertex>();
+            int skippedMonkiis = 0;
 
-            // Find all sinks in the dependency graph, i.e. Melons without any dependencies on other Melons
+            // Find all sinks in the dependency graph, i.e. Monkiis without any dependencies on other Monkiis
             for (int i = 0; i < vertices.Length; ++i)
             {
                 Vertex vertex = vertices[i];
@@ -179,56 +179,56 @@ namespace MelonLoader.InternalUtils
 
                 unloadedDependencies[i] = dependencyCount;
                 if (dependencyCount == 0)
-                    loadableMelons.Add(vertex.name, vertex);
+                    loadableMonkiis.Add(vertex.name, vertex);
             }
 
             // Perform the (reverse) topological sorting
-            while (loadableMelons.Count > 0)
+            while (loadableMonkiis.Count > 0)
             {
-                Vertex melon = loadableMelons.Values[0];
-                loadableMelons.RemoveAt(0);
+                Vertex Monkii = loadableMonkiis.Values[0];
+                loadableMonkiis.RemoveAt(0);
 
-                if (!melon.skipLoading)
-                    loadedMelons.Add(melon.melon);
+                if (!Monkii.skipLoading)
+                    loadedMonkiis.Add(Monkii.Monkii);
                 else
-                    ++skippedMelons;
+                    ++skippedMonkiis;
 
-                foreach (Vertex dependent in melon.dependents)
+                foreach (Vertex dependent in Monkii.dependents)
                 {
                     unloadedDependencies[dependent.index] -= 1;
-                    dependent.skipLoading |= melon.skipLoading;
+                    dependent.skipLoading |= Monkii.skipLoading;
 
                     if (unloadedDependencies[dependent.index] == 0)
-                        loadableMelons.Add(dependent.name, dependent);
+                        loadableMonkiis.Add(dependent.name, dependent);
                 }
             }
 
-            // Check if all Melons were either loaded or skipped. If this is not the case, there is a cycle in the dependency graph
-            if (loadedMelons.Count + skippedMelons < vertices.Length)
+            // Check if all Monkiis were either loaded or skipped. If this is not the case, there is a cycle in the dependency graph
+            if (loadedMonkiis.Count + skippedMonkiis < vertices.Length)
             {
-                StringBuilder errorMessage = new StringBuilder("Some Melons could not be loaded due to a cyclic dependency:\n");
+                StringBuilder errorMessage = new StringBuilder("Some Monkiis could not be loaded due to a cyclic dependency:\n");
                 for (int i = 0; i < vertices.Length; ++i)
                     if (unloadedDependencies[i] > 0)
                         errorMessage.Append($"- '{vertices[i].name}'\n");
                 errorMessage.Length -= 1; // Remove trailing newline
-                MelonLogger.Error(errorMessage.ToString());
+                MonkiiLogger.Error(errorMessage.ToString());
             }
         }
 
         private class Vertex
         {
             internal readonly int index;
-            internal readonly T melon;
+            internal readonly T Monkii;
             internal readonly string name;
 
             internal readonly List<Vertex> dependencies;
             internal readonly List<Vertex> dependents;
             internal bool skipLoading;
 
-            internal Vertex(int index, T melon, string name)
+            internal Vertex(int index, T Monkii, string name)
             {
                 this.index = index;
-                this.melon = melon;
+                this.Monkii = Monkii;
                 this.name = name;
 
                 dependencies = new List<Vertex>();

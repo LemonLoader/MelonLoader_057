@@ -2,7 +2,7 @@
 using System.Reflection;
 using HarmonyLib;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
     internal static class Extensions
     {
@@ -11,7 +11,7 @@ namespace MelonLoader.CompatibilityLayers
         private static MethodInfo name_set_method;
         internal static string GetName(this ModdingAPI.ModInformation info)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (name_get_method == null)
                     name_get_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "name").GetGetMethod();
@@ -29,7 +29,7 @@ namespace MelonLoader.CompatibilityLayers
         }
         internal static void SetName(this ModdingAPI.ModInformation info, string name)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (name_set_method == null)
                     name_set_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "name").GetSetMethod();
@@ -49,7 +49,7 @@ namespace MelonLoader.CompatibilityLayers
         private static MethodInfo version_method;
         internal static string GetVersion(this ModdingAPI.ModInformation info)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (version_method == null)
                     version_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "version").GetGetMethod();
@@ -67,7 +67,7 @@ namespace MelonLoader.CompatibilityLayers
         }
         internal static void SetVersion(this ModdingAPI.ModInformation info, string version)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (version_method == null)
                     version_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "version").GetSetMethod();
@@ -87,7 +87,7 @@ namespace MelonLoader.CompatibilityLayers
         private static MethodInfo author_method;
         internal static string GetAuthor(this ModdingAPI.ModInformation info)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (author_method == null)
                     author_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "author").GetGetMethod();
@@ -105,7 +105,7 @@ namespace MelonLoader.CompatibilityLayers
         }
         internal static void SetAuthor(this ModdingAPI.ModInformation info, string author)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (author_method == null)
                     author_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "author").GetSetMethod();
@@ -125,7 +125,7 @@ namespace MelonLoader.CompatibilityLayers
         private static MethodInfo description_method;
         internal static void SetDescription(this ModdingAPI.ModInformation info, string description)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (description_method == null)
                     description_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "description").GetSetMethod();
@@ -145,7 +145,7 @@ namespace MelonLoader.CompatibilityLayers
         private static MethodInfo isNetworkCompatible_method;
         internal static void SetIsNetworkCompatible(this ModdingAPI.ModInformation info, bool isNetworkCompatible)
         {
-            if (MelonUtils.IsGameIl2Cpp())
+            if (MonkiiUtils.IsGameIl2Cpp())
             {
                 if (isNetworkCompatible_method == null)
                     isNetworkCompatible_method = AccessTools.Property(typeof(ModdingAPI.ModInformation), "isNetworkCompatible").GetSetMethod();

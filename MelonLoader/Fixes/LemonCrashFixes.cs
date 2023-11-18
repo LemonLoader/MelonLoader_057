@@ -1,7 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Threading;
 
-namespace MelonLoader.Fixes
+namespace MonkiiLoader.Fixes
 {
     internal static class LemonCrashFixes
     {

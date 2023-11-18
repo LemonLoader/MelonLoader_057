@@ -4,14 +4,14 @@ using System.Reflection;
 using HarmonyLib;
 using MonoMod.RuntimeDetour;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
 	[AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Struct)]
 	public class PatchShield : Attribute //Naming violation?
 	{
 		private static AccessTools.FieldRef<object, MethodBase> PatchProcessor_OriginalRef;
 
-		private static void LogException(Exception ex) => MelonLogger.Warning($"Patch Shield Exception: {ex}");
+		private static void LogException(Exception ex) => MonkiiLogger.Warning($"Patch Shield Exception: {ex}");
 
 		private static bool MethodCheck(MethodBase method) =>
 			(method != null)

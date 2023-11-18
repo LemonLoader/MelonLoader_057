@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader.Assertions
+namespace MonkiiLoader.Assertions
 {
 	public class LemonAssertException : Exception
 	{

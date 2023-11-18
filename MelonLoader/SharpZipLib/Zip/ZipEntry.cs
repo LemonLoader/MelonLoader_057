@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// Defines known values for the <see cref="HostSystemID"/> property.

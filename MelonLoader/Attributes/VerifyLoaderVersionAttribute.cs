@@ -1,7 +1,7 @@
 ﻿using System;
 using Semver;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     [AttributeUsage(AttributeTargets.Assembly)]
     public class VerifyLoaderVersionAttribute : Attribute

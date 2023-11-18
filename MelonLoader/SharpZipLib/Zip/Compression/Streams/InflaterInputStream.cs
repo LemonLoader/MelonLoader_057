@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
 	/// <summary>
 	/// An input buffer customised for use by <see cref="InflaterInputStream"/>

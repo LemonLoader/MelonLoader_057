@@ -1,11 +1,11 @@
-﻿using MelonLoader.MelonStartScreen.NativeUtils;
-using MelonLoader.MelonStartScreen.UI;
+﻿using MonkiiLoader.MonkiiStartScreen.NativeUtils;
+using MonkiiLoader.MonkiiStartScreen.UI;
 using System;
 using System.Reflection;
-using MelonUnityEngine.CoreModule;
+using MonkiiUnityEngine.CoreModule;
 using UnityPlayer;
 
-namespace MelonLoader.MelonStartScreen
+namespace MonkiiLoader.MonkiiStartScreen
 {
     internal static class ScreenRenderer
     {
@@ -34,13 +34,13 @@ namespace MelonLoader.MelonStartScreen
 
             try
             {
-                MelonDebug.Msg("Initializing UIStyleValues");
+                MonkiiDebug.Msg("Initializing UIStyleValues");
                 UI_Style.Init();
-                MelonDebug.Msg("UIStyleValues Initialized");
+                MonkiiDebug.Msg("UIStyleValues Initialized");
 
                 uint graphicsDeviceType = SystemInfo.GetGraphicsDeviceType();
-                MelonDebug.Msg("Graphics Device Type: " + graphicsDeviceType);
-                shouldCallWFLPAGT = NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new[] { "2020.2.7", "2020.3.0", "2021.1.0" })
+                MonkiiDebug.Msg("Graphics Device Type: " + graphicsDeviceType);
+                shouldCallWFLPAGT = NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new[] { "2020.2.7", "2020.3.0", "2021.1.0" })
                     && (graphicsDeviceType == /*DX11*/2 || graphicsDeviceType == /*DX12*/18)
                     ? graphicsDeviceType : 0;
             }
@@ -92,12 +92,12 @@ namespace MelonLoader.MelonStartScreen
             UI_Style.ProgressBar.text.isDirty = true;
         }
 
-        internal static void UpdateProgressFromMod(MelonBase melon)
+        internal static void UpdateProgressFromMod(MonkiiBase Monkii)
         {
             if (UI_Style.ProgressBar == null)
                 return;
 
-            UI_Style.ProgressBar.progress = ProgressParser.GetProgressFromMod(melon, ref UI_Style.ProgressBar.text.text);
+            UI_Style.ProgressBar.progress = ProgressParser.GetProgressFromMod(Monkii, ref UI_Style.ProgressBar.text.text);
             UI_Style.ProgressBar.text.isDirty = true;
         }
 

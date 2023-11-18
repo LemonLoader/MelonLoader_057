@@ -1,6 +1,6 @@
-﻿using MelonUnityEngine;
+﻿using MonkiiUnityEngine;
 
-namespace MelonLoader.MelonStartScreen.UI.Objects
+namespace MonkiiLoader.MonkiiStartScreen.UI.Objects
 {
     internal class UI_Text : UI_Object
     {
@@ -70,11 +70,11 @@ namespace MelonLoader.MelonStartScreen.UI.Objects
             settings.lineSpacing = config.LineSpacing;
 
             string displayText = text;
-            displayText = displayText.Replace("<loaderName/>", (MelonLaunchOptions.Console.Mode == MelonLaunchOptions.Console.DisplayMode.LEMON) ? "LemonLoader" : "MelonLoader");
+            displayText = displayText.Replace("<loaderName/>", (MonkiiLaunchOptions.Console.Mode == MonkiiLaunchOptions.Console.DisplayMode.LEMON) ? "LemonLoader" : "MonkiiLoader");
             displayText = displayText.Replace("<loaderVersion/>", BuildInfo.Version);
             displayText = displayText.Replace("LemonLoader", "<color=#FFCC4D>LemonLoader</color>");
-            displayText = displayText.Replace("MelonLoader", "<color=#78f764>Melon</color><color=#ff3c6a>Loader</color>");
-            displayText = displayText.Replace("<loaderNameHalloween/>", "<color=#7C2CBF>Melon</color><color=#FF6F00>Loader</color>");
+            displayText = displayText.Replace("MonkiiLoader", "<color=#78f764>Monkii</color><color=#ff3c6a>Loader</color>");
+            displayText = displayText.Replace("<loaderNameHalloween/>", "<color=#7C2CBF>Monkii</color><color=#FF6F00>Loader</color>");
 
 
 

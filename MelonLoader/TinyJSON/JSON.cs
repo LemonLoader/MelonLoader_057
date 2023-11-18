@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 
-namespace MelonLoader.TinyJSON
+namespace MonkiiLoader.TinyJSON
 {
 	/// <summary>
 	/// Mark members that should be included.

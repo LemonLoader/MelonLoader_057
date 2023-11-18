@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>MelonLoader.Support</RootNamespace>
+		<RootNamespace>MonkiiLoader.Support</RootNamespace>
 		<TargetFramework>net20</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>$(SolutionDir)Output\$(Configuration)\MelonLoader\Dependencies\SupportModules\</OutputPath>
+		<OutputPath>$(SolutionDir)Output\$(Configuration)\MonkiiLoader\Dependencies\SupportModules\</OutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -17,7 +17,7 @@
 		<DefineConstants />
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="..\..\..\MelonLoader\Properties\BuildInfo.cs" Link="Properties\BuildInfo.cs" />
+		<Compile Include="..\..\..\MonkiiLoader\Properties\BuildInfo.cs" Link="Properties\BuildInfo.cs" />
 			<Compile Update="Properties\Resources.Designer.cs">
 			<AutoGen>True</AutoGen>
 			<DesignTime>True</DesignTime>

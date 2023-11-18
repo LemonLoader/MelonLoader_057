@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace MelonLoader.NativeUtils
+namespace MonkiiLoader.NativeUtils
 {
     public static class CppUtils
     {

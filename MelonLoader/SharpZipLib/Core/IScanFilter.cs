@@ -1,4 +1,4 @@
-﻿namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+﻿namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	/// <summary>
 	/// Scanning filters support filtering of names.

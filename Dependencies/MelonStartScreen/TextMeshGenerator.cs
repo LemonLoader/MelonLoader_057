@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using MelonUnityEngine;
+using MonkiiUnityEngine;
 
-namespace MelonLoader.MelonStartScreen
+namespace MonkiiLoader.MonkiiStartScreen
 {
     internal static class TextMeshGenerator
     {

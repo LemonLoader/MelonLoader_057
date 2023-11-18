@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using MelonLoader.Il2CppAssemblyGenerator.Packages;
-using MelonLoader.Modules;
+using MonkiiLoader.Il2CppAssemblyGenerator.Packages;
+using MonkiiLoader.Modules;
 
-namespace MelonLoader.Il2CppAssemblyGenerator
+namespace MonkiiLoader.Il2CppAssemblyGenerator
 {
-    internal class Core : MelonModule
+    internal class Core : MonkiiModule
     {
         internal static string BasePath = null;
         internal static string GameAssemblyPath = null;
@@ -22,27 +22,27 @@ namespace MelonLoader.Il2CppAssemblyGenerator
 
         internal static bool AssemblyGenerationNeeded = false;
 
-        internal static MelonLogger.Instance Logger;
+        internal static MonkiiLogger.Instance Logger;
 
         public override void OnInitialize()
         {
             Logger = LoggerInstance;
-            AssemblyGenerationNeeded = MelonLaunchOptions.Il2CppAssemblyGenerator.ForceRegeneration;
+            AssemblyGenerationNeeded = MonkiiLaunchOptions.Il2CppAssemblyGenerator.ForceRegeneration;
 
 #if !__ANDROID__
             webClient = new WebClient();
             webClient.Headers.Add("User-Agent", $"{BuildInfo.Name} v{BuildInfo.Version}");
 
-            GameAssemblyPath = Path.Combine(MelonUtils.GameDirectory, "GameAssembly.dll");
+            GameAssemblyPath = Path.Combine(MonkiiUtils.GameDirectory, "GameAssembly.dll");
 
             BasePath = Path.GetDirectoryName(Assembly.Location);
 #else
-            BasePath = Path.Combine(string.Copy(MelonUtils.GetApplicationPath()), "melonloader", "etc", "assembly_generation");
+            BasePath = Path.Combine(string.Copy(MonkiiUtils.GetApplicationPath()), "Monkiiloader", "etc", "assembly_generation");
             // TODO: Read APK file instead
-            GameAssemblyPath = Path.Combine(string.Copy(MelonUtils.GetMainAssemblyLoc()));
+            GameAssemblyPath = Path.Combine(string.Copy(MonkiiUtils.GetMainAssemblyLoc()));
 #endif
 
-            ManagedPath = string.Copy(MelonUtils.GetManagedDirectory());
+            ManagedPath = string.Copy(MonkiiUtils.GetManagedDirectory());
         }
 
         private static int Run()
@@ -50,11 +50,11 @@ namespace MelonLoader.Il2CppAssemblyGenerator
             Config.Initialize();
 
 #if !__ANDROID__
-            if (!MelonLaunchOptions.Il2CppAssemblyGenerator.OfflineMode)
+            if (!MonkiiLaunchOptions.Il2CppAssemblyGenerator.OfflineMode)
                 RemoteAPI.Contact();
 
                 // Temporary Workaround for Cpp2IL Failing on Unsupported OSes
-            if (!MelonUtils.IsUnderWineOrSteamProton() && ((Environment.OSVersion.Version.Major < 6) // Is Older than Vista
+            if (!MonkiiUtils.IsUnderWineOrSteamProton() && ((Environment.OSVersion.Version.Major < 6) // Is Older than Vista
                 || ((Environment.OSVersion.Version.Major == 6) && (Environment.OSVersion.Version.Minor < 1)))) // Is Older than Windows 7 or Server 2008 R2
                 dumper = new Il2CppDumper();
             else
@@ -84,8 +84,8 @@ namespace MelonLoader.Il2CppAssemblyGenerator
 
             string CurrentGameAssemblyHash;
             Logger.Msg("Checking GameAssembly...");
-            MelonDebug.Msg($"Last GameAssembly Hash: {Config.Values.GameAssemblyHash}");
-            MelonDebug.Msg($"Current GameAssembly Hash: {CurrentGameAssemblyHash = FileHandler.Hash(GameAssemblyPath)}");
+            MonkiiDebug.Msg($"Last GameAssembly Hash: {Config.Values.GameAssemblyHash}");
+            MonkiiDebug.Msg($"Current GameAssembly Hash: {CurrentGameAssemblyHash = FileHandler.Hash(GameAssemblyPath)}");
 
             if (string.IsNullOrEmpty(Config.Values.GameAssemblyHash)
                     || !Config.Values.GameAssemblyHash.Equals(CurrentGameAssemblyHash))

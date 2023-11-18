@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class RegisterTypeInIl2Cpp : Attribute //Naming violation?
@@ -17,7 +17,7 @@ namespace MelonLoader
 
         public static void RegisterAssembly(Assembly asm)
         {
-            if (!MelonUtils.IsGameIl2Cpp())
+            if (!MonkiiUtils.IsGameIl2Cpp())
                 return;
 
             if (!ready)

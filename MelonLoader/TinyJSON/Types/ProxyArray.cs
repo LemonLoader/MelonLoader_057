@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MelonLoader.TinyJSON
+namespace MonkiiLoader.TinyJSON
 {
 	public sealed class ProxyArray : Variant, IEnumerable<Variant>
 	{

@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Windows">
+			<Configuration>Debug</Configuration>
+			<Platform>Windows</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Windows">
+			<Configuration>Release</Configuration>
+			<Platform>Windows</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|Android">
+			<Configuration>Debug</Configuration>
+			<Platform>Android</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Android">
+			<Configuration>Release</Configuration>
+			<Platform>Android</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net35</TargetFramework>
+		<LangVersion>Latest</LangVersion>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MonkiiLoader\</OutputPath>
+		<DocumentationFile>..\Output\$(Configuration)\MonkiiLoader\MonkiiLoader.xml</DocumentationFile>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Platforms>Windows;Android</Platforms>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Platform)' == 'Desktop'">
+		<PlatformTarget>
+		</PlatformTarget>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Desktop' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<DefineConstants>TRACE;DEBUG;NET35;PORT_DISABLE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Desktop' ">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugSymbols>false</DebugSymbols>
+		<DebugType>None</DebugType>
+		<Optimize>true</Optimize>
+		<DefineConstants>NET35;PORT_DISABLE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Platform)' == 'Android'">
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Android' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>portable</DebugType>
+		<Optimize>false</Optimize>
+		<DefineConstants>$(DefineConstants)TRACE;__ANDROID__</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Android' ">
+		<DebugSymbols>false</DebugSymbols>
+		<DebugType>None</DebugType>
+		<Optimize>true</Optimize>
+		<DefineConstants>$(DefineConstants)TRACE;__ANDROID__</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows'">
+	  <DefineConstants>$(DefineConstants)TRACE;__ANDROID__</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Windows'">
+	  <DefineConstants>$(DefineConstants)TRACE;__ANDROID__</DefineConstants>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		  <PackageReference>
+				<PrivateAssets>all</PrivateAssets>
+		  </PackageReference>
+   </ItemDefinitionGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
+		<PackageReference Include="AssetsTools.NET" Version="3.0.0-preview1" />
+		<PackageReference Include="HarmonyX" Version="2.10.1" />
+		<PackageReference Include="Samboy063.Tomlet" Version="5.0.1" />
+		<PackageReference Include="bHapticsLib" Version="1.0.6" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\classdata.tpk" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\ExternalDeps\JNISharp\JNISharp\JNISharp.csproj">
+	    <Private>true</Private>
+	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+	  </ProjectReference>
+	</ItemGroup>
+</Project>

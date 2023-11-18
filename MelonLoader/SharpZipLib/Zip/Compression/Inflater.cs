@@ -1,8 +1,8 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression
 {
 	/// <summary>
 	/// Inflater is used to decompress data that has been compressed according

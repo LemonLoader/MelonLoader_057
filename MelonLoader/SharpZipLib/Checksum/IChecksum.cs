@@ -1,6 +1,6 @@
 using System;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Checksum
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Checksum
 {
 	/// <summary>
 	/// Interface to compute a data checksum used by checked input/output streams.

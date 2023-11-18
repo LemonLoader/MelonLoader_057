@@ -2,19 +2,19 @@
 using System.Reflection;
 using Boardgame.Modding;
 using Prototyping;
-using MelonLoader.Modules;
+using MonkiiLoader.Modules;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
-    internal class Demeo_Module : MelonModule
+    internal class Demeo_Module : MonkiiModule
     {
-        private static Dictionary<MelonBase, ModdingAPI.ModInformation> ModInformation = new Dictionary<MelonBase, ModdingAPI.ModInformation>();
+        private static Dictionary<MonkiiBase, ModdingAPI.ModInformation> ModInformation = new Dictionary<MonkiiBase, ModdingAPI.ModInformation>();
 
         public override void OnInitialize()
         {
-            MelonEvents.OnApplicationStart.Subscribe(OnPreAppStart, int.MaxValue);
-            MelonBase.OnMelonRegistered.Subscribe(ParseMelon, int.MaxValue);
-            MelonBase.OnMelonUnregistered.Subscribe(OnUnregister, int.MaxValue);
+            MonkiiEvents.OnApplicationStart.Subscribe(OnPreAppStart, int.MaxValue);
+            MonkiiBase.OnMonkiiRegistered.Subscribe(ParseMonkii, int.MaxValue);
+            MonkiiBase.OnMonkiiUnregistered.Subscribe(OnUnregister, int.MaxValue);
         }
 
         private static void OnPreAppStart()
@@ -24,49 +24,49 @@ namespace MelonLoader.CompatibilityLayers
             harmony.Patch(Assembly.Load("Assembly-CSharp").GetType("Prototyping.RG").GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static),
                 typeof(Demeo_Module).GetMethod("InitFix", BindingFlags.NonPublic | BindingFlags.Static).ToNewHarmonyMethod());
 
-            foreach (var m in MelonPlugin.RegisteredMelons)
+            foreach (var m in MonkiiPlugin.RegisteredMonkiis)
             {
-                ParseMelon(m);
+                ParseMonkii(m);
             }
-            foreach (var m in MelonMod.RegisteredMelons)
+            foreach (var m in MonkiiMod.RegisteredMonkiis)
             {
-                ParseMelon(m);
+                ParseMonkii(m);
             }
         }
 
-        private static void OnUnregister(MelonBase melon)
+        private static void OnUnregister(MonkiiBase Monkii)
         {
-            if (melon == null)
+            if (Monkii == null)
                 return;
 
-            if (!ModInformation.ContainsKey(melon))
+            if (!ModInformation.ContainsKey(Monkii))
                 return;
 
-            ModInformation.Remove(melon);
+            ModInformation.Remove(Monkii);
 
             if (ModdingAPI.ExternallyInstalledMods == null)
                 ModdingAPI.ExternallyInstalledMods = new List<ModdingAPI.ModInformation>();
             else
-                ModdingAPI.ExternallyInstalledMods.Remove(ModInformation[melon]);
+                ModdingAPI.ExternallyInstalledMods.Remove(ModInformation[Monkii]);
         }
 
-        private static void ParseMelon<T>(T melon) where T : MelonBase
+        private static void ParseMonkii<T>(T Monkii) where T : MonkiiBase
         {
 
-            if (melon == null)
+            if (Monkii == null)
                 return;
 
-            if (ModInformation.ContainsKey(melon))
+            if (ModInformation.ContainsKey(Monkii))
                 return;
 
             ModdingAPI.ModInformation info = new ModdingAPI.ModInformation();
-            info.SetName(melon.Info.Name);
-            info.SetVersion(melon.Info.Version);
-            info.SetAuthor(melon.Info.Author);
-            info.SetDescription(melon.Info.DownloadLink);
-            info.SetIsNetworkCompatible(MelonUtils.PullAttributeFromAssembly<Demeo_LobbyRequirement>(melon.MelonAssembly.Assembly) == null);
+            info.SetName(Monkii.Info.Name);
+            info.SetVersion(Monkii.Info.Version);
+            info.SetAuthor(Monkii.Info.Author);
+            info.SetDescription(Monkii.Info.DownloadLink);
+            info.SetIsNetworkCompatible(MonkiiUtils.PullAttributeFromAssembly<Demeo_LobbyRequirement>(Monkii.MonkiiAssembly.Assembly) == null);
 
-            ModInformation.Add(melon, info);
+            ModInformation.Add(Monkii, info);
 
             if (ModdingAPI.ExternallyInstalledMods == null)
                 ModdingAPI.ExternallyInstalledMods = new List<ModdingAPI.ModInformation>();

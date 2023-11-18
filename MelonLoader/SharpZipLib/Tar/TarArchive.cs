@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// Used to advise clients of 'events' while processing archives

@@ -1,4 +1,4 @@
-﻿namespace MelonLoader.Il2CppAssemblyGenerator.Packages
+﻿namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages
 {
     internal class DeobfuscationRegex
     {
@@ -6,7 +6,7 @@
 
         internal DeobfuscationRegex()
         {
-            Regex = MelonLaunchOptions.Il2CppAssemblyGenerator.ForceRegex;
+            Regex = MonkiiLaunchOptions.Il2CppAssemblyGenerator.ForceRegex;
             if (string.IsNullOrEmpty(Regex))
                 Regex = RemoteAPI.Info.ObfuscationRegex;
         }

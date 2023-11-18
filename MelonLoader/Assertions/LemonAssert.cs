@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader.Assertions
+namespace MonkiiLoader.Assertions
 {
     public static class LemonAssert
     {
@@ -12,7 +12,7 @@ namespace MelonLoader.Assertions
 			if (shouldThrowException)
 				throw exception;
 			else
-				MelonLogger.Error(exception);
+				MonkiiLogger.Error(exception);
 		}
 
 		public static void IsNull<T>(T obj)

@@ -1,8 +1,8 @@
-﻿using MelonLoader;
-using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader;
+using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 using UnhollowerMini;
 
-namespace MelonUnityEngine.CoreModule
+namespace MonkiiUnityEngine.CoreModule
 {
     internal sealed class SystemInfo
     {
@@ -11,7 +11,7 @@ namespace MelonUnityEngine.CoreModule
 
         unsafe static SystemInfo()
         {
-            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
+            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" }))
                 m_GetGraphicsDeviceType = UnityInternals.ResolveICall<d_GetGraphicsDeviceType>("UnityEngine.SystemInfo::GetGraphicsDeviceType");
             else
                 m_GetGraphicsDeviceType = UnityInternals.ResolveICall<d_GetGraphicsDeviceType>("UnityEngine.SystemInfo::get_graphicsDeviceType");

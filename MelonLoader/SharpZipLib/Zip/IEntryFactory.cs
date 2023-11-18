@@ -1,8 +1,8 @@
 using System;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
-using static MelonLoader.ICSharpCode.SharpZipLib.Zip.ZipEntryFactory;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+using static MonkiiLoader.ICSharpCode.SharpZipLib.Zip.ZipEntryFactory;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// Defines factory methods for creating new <see cref="ZipEntry"></see> values.

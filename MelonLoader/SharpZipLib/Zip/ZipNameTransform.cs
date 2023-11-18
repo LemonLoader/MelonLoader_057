@@ -1,9 +1,9 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 using System;
 using System.IO;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// ZipNameTransform transforms names as per the Zip file naming convention.

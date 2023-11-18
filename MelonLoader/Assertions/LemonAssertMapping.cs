@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MelonLoader.Assertions
+namespace MonkiiLoader.Assertions
 {
     public static class LemonAssertMapping
     {

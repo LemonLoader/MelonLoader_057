@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Text;
-using MelonLoader.Lemons.Cryptography;
+using MonkiiLoader.Lemons.Cryptography;
 
-namespace MelonLoader.Il2CppAssemblyGenerator.Packages
+namespace MonkiiLoader.Il2CppAssemblyGenerator.Packages
 {
     internal class DeobfuscationMap : Models.PackageBase
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using HarmonyLib;
 
-namespace MelonLoader.Preferences.IO
+namespace MonkiiLoader.Preferences.IO
 {
     internal class Watcher
     {
@@ -23,7 +23,7 @@ namespace MelonLoader.Preferences.IO
                     throw new NullReferenceException("No Path Property Get Method Found!");
                 if (method.IsNotImplemented())
                 {
-                    MelonLogger.Warning("FileSystemWatcher NotImplementedException Detected! Disabling MelonPreferences FileWatcher Functionality...");
+                    MonkiiLogger.Warning("FileSystemWatcher NotImplementedException Detected! Disabling MonkiiPreferences FileWatcher Functionality...");
                     ShouldDisableFileWatcherFunctionality = true;
                     return;
                 }
@@ -39,7 +39,7 @@ namespace MelonLoader.Preferences.IO
             }
             catch (Exception ex)
             {
-                MelonLogger.Warning("FileSystemWatcher Exception: " + ex.ToString());
+                MonkiiLogger.Warning("FileSystemWatcher Exception: " + ex.ToString());
                 ShouldDisableFileWatcherFunctionality = true;
                 FileWatcher = null;
             }
@@ -56,7 +56,7 @@ namespace MelonLoader.Preferences.IO
             }
             catch (Exception ex)
             {
-                MelonLogger.Warning("FileSystemWatcher Exception: " + ex.ToString());
+                MonkiiLogger.Warning("FileSystemWatcher Exception: " + ex.ToString());
                 ShouldDisableFileWatcherFunctionality = true;
             }
             FileWatcher = null;
@@ -69,7 +69,7 @@ namespace MelonLoader.Preferences.IO
                 PrefFile.IsSaving = false;
                 return;
             }
-            MelonPreferences.LoadFileAndRefreshCategories(PrefFile);
+            MonkiiPreferences.LoadFileAndRefreshCategories(PrefFile);
         }
     }
 }

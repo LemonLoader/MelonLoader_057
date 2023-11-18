@@ -1,9 +1,9 @@
-﻿using MelonLoader;
-using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader;
+using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 using System;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal class Texture2D : Texture
     {
@@ -27,11 +27,11 @@ namespace MelonUnityEngine
 
             m_get_whiteTexture = UnityInternals.GetMethod(InternalClassPointerStore<Texture2D>.NativeClassPtr, "get_whiteTexture", "UnityEngine.Texture2D");
 
-            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" })) {
+            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2018.1.0" })) {
                 type_SetPixelsImpl = 1;
                 m_SetPixelsImpl_2018 = UnityInternals.ResolveICall<SetPixelsImplDelegate_2018>("UnityEngine.Texture2D::SetPixelsImpl");
             }
-            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.1.0" }))
+            else if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new string[] { "2017.1.0" }))
             {
                 type_SetPixelsImpl = 0;
                 m_SetPixelsImpl_2017 = UnityInternals.ResolveICall<SetPixelsImplDelegate_2017>("UnityEngine.Texture2D::SetPixels");

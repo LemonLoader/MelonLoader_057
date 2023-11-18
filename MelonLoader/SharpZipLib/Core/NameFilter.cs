@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	/// <summary>
 	/// NameFilter is a string matching class which allows for both positive and negative

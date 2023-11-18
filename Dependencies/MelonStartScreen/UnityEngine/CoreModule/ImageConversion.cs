@@ -1,9 +1,9 @@
-﻿using MelonLoader;
+﻿using MonkiiLoader;
 using System;
 using System.Runtime.InteropServices;
 using UnhollowerMini;
 
-namespace MelonUnityEngine
+namespace MonkiiUnityEngine
 {
     internal static class ImageConversion
     {
@@ -16,14 +16,14 @@ namespace MelonUnityEngine
             if (ptr != IntPtr.Zero)
                 ImageConversion_LoadImage = (ImageConversion_LoadImage_Delegate)Marshal.GetDelegateForFunctionPointer(ptr, typeof(ImageConversion_LoadImage_Delegate));
             else
-                MelonLogger.Error("Failed to resolve icall UnityEngine.ImageConversion::LoadImage(UnityEngine.Texture2D,System.Byte[],System.Boolean)");
+                MonkiiLogger.Error("Failed to resolve icall UnityEngine.ImageConversion::LoadImage(UnityEngine.Texture2D,System.Byte[],System.Boolean)");
         }
 
         public unsafe static bool LoadImage(Texture2D tex, byte[] data, bool markNonReadable)
         {
             if (ImageConversion_LoadImage == null)
             {
-                MelonLogger.Error("Failed to run UnityEngine.ImageConversion::LoadImage(UnityEngine.Texture2D,System.Byte[],System.Boolean)");
+                MonkiiLogger.Error("Failed to run UnityEngine.ImageConversion::LoadImage(UnityEngine.Texture2D,System.Byte[],System.Boolean)");
                 return false;
             }
 

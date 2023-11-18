@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Core
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Core
 {
 	/// <summary>
 	/// InvalidNameException is thrown for invalid names such as directory traversal paths and names with invalid characters

@@ -3,11 +3,11 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace MelonLoader.MelonStartScreen
+namespace MonkiiLoader.MonkiiStartScreen
 {
     internal static class ProgressParser
     {
-        private static float generationPercent = MelonUtils.IsGameIl2Cpp() ? 80f : 10f;
+        private static float generationPercent = MonkiiUtils.IsGameIl2Cpp() ? 80f : 10f;
         private static ModLoadStep currentStep = ModLoadStep.Generation;
         private static string currentStepName = "___";
 
@@ -27,8 +27,8 @@ namespace MelonLoader.MelonStartScreen
 
         private static readonly Dictionary<ModLoadStep, string> stepsNames = new Dictionary<ModLoadStep, string>()
         {
-            { ModLoadStep.LoadMelons, "Loading Melons" },
-            { ModLoadStep.InitializeMelons, "Initializing" },
+            { ModLoadStep.LoadMonkiis, "Loading Monkiis" },
+            { ModLoadStep.InitializeMonkiis, "Initializing" },
             { ModLoadStep.OnApplicationStart, "Loading..." }
         };
 
@@ -59,9 +59,9 @@ namespace MelonLoader.MelonStartScreen
             return progressTime > 0 ? (progressTime / totalTime) * (generationPercent * 0.01f) : default_;
         }
 
-        public static float GetProgressFromMod(MelonBase melon, ref string progressText)
+        public static float GetProgressFromMod(MonkiiBase Monkii, ref string progressText)
         {
-            progressText = $"{currentStepName} {melon.MelonTypeName}: {melon.Info.Name} {melon.Info.Version}";
+            progressText = $"{currentStepName} {Monkii.MonkiiTypeName}: {Monkii.Info.Name} {Monkii.Info.Version}";
 
             float generationPart = generationPercent * 0.01f;
             return generationPart + (((int)currentStep - 1) * ((1 - generationPart) / 4));

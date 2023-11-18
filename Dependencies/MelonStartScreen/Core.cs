@@ -1,6 +1,6 @@
-﻿using MelonLoader.MelonStartScreen.NativeUtils;
-using MelonLoader.Modules;
-using MelonLoader.NativeUtils.PEParser;
+﻿using MonkiiLoader.MonkiiStartScreen.NativeUtils;
+using MonkiiLoader.Modules;
+using MonkiiLoader.NativeUtils.PEParser;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Windows;
 
-namespace MelonLoader.MelonStartScreen
+namespace MonkiiLoader.MonkiiStartScreen
 {
-    internal class Core : MelonModule
+    internal class Core : MonkiiModule
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate IntPtr User32SetTimerDelegate(IntPtr hWnd, IntPtr nIDEvent, uint uElapse, IntPtr lpTimerFunc);
@@ -28,7 +28,7 @@ namespace MelonLoader.MelonStartScreen
 
         public static Core instance;
 
-        public static MelonLogger.Instance Logger => instance.LoggerInstance;
+        public static MonkiiLogger.Instance Logger => instance.LoggerInstance;
 
         public override void OnInitialize() 
         {
@@ -38,12 +38,12 @@ namespace MelonLoader.MelonStartScreen
         private static int LoadAndRun(LemonFunc<int> functionToWaitForAsync)
         {
             // Start Screen has no signatures for Development Builds of UnityPlayer.dll
-            if (MelonUnityEngine.UnityDebug.isDebugBuild)
+            if (MonkiiUnityEngine.UnityDebug.isDebugBuild)
                 return functionToWaitForAsync();
 
             Logger.Msg("Initializing...");
 
-            FolderPath = Path.Combine(MelonUtils.UserDataDirectory, "MelonStartScreen");
+            FolderPath = Path.Combine(MonkiiUtils.UserDataDirectory, "MonkiiStartScreen");
             if (!Directory.Exists(FolderPath))
                 Directory.CreateDirectory(FolderPath);
 
@@ -65,9 +65,9 @@ namespace MelonLoader.MelonStartScreen
                 if (!ApplyUser32SetTimerPatch())
                     return functionToWaitForAsync();
 
-                MelonDebug.Msg("Initializing Screen Renderer");
+                MonkiiDebug.Msg("Initializing Screen Renderer");
                 ScreenRenderer.Init();
-                MelonDebug.Msg("Screen Renderer initialized");
+                MonkiiDebug.Msg("Screen Renderer initialized");
 
                 RegisterMessageCallbacks();
 
@@ -91,16 +91,16 @@ namespace MelonLoader.MelonStartScreen
 
         private static void SubscribeToCoreCallbacks()
         {
-            MelonEvents.OnApplicationLateStart.Subscribe(Finish, int.MinValue);
-            MelonEvents.OnApplicationStart.Subscribe(OnApplicationStart, int.MaxValue);
-            MelonBase.OnMelonInitializing.Subscribe(OnMelonInitializing, 100);
-            MelonAssembly.OnAssemblyResolving.Subscribe(OnMelonsResolving, 100);
+            MonkiiEvents.OnApplicationLateStart.Subscribe(Finish, int.MinValue);
+            MonkiiEvents.OnApplicationStart.Subscribe(OnApplicationStart, int.MaxValue);
+            MonkiiBase.OnMonkiiInitializing.Subscribe(OnMonkiiInitializing, 100);
+            MonkiiAssembly.OnAssemblyResolving.Subscribe(OnMonkiisResolving, 100);
         }
 
         private static void RegisterMessageCallbacks()
         {
-            MelonLogger.MsgCallbackHandler += (namesection_color, txt_color, namesection, txt) => ScreenRenderer.UpdateProgressFromLog(txt);
-            MelonDebug.MsgCallbackHandler += (txt_color, txt) => ScreenRenderer.UpdateProgressFromLog(txt);
+            MonkiiLogger.MsgCallbackHandler += (namesection_color, txt_color, namesection, txt) => ScreenRenderer.UpdateProgressFromLog(txt);
+            MonkiiDebug.MsgCallbackHandler += (txt_color, txt) => ScreenRenderer.UpdateProgressFromLog(txt);
         }
 
         #region User32::SetTime Path
@@ -108,11 +108,11 @@ namespace MelonLoader.MelonStartScreen
         private static unsafe bool ApplyUser32SetTimerPatch()
         {
             IntPtr original = PEUtils.GetExportedFunctionPointerForModule("USER32.dll", "SetTimer");
-            MelonDebug.Msg($"User32::SetTimer original: 0x{(long)original:X}");
+            MonkiiDebug.Msg($"User32::SetTimer original: 0x{(long)original:X}");
 
             if (original == IntPtr.Zero)
             {
-                MelonDebug.Error("Failed to find USER32.dll::SetTimer");
+                MonkiiDebug.Error("Failed to find USER32.dll::SetTimer");
                 return false;
             }
 
@@ -122,16 +122,16 @@ namespace MelonLoader.MelonStartScreen
 
             if (detourPtr == IntPtr.Zero)
             {
-                MelonDebug.Error("Failed to find User32SetTimerDetour");
+                MonkiiDebug.Error("Failed to find User32SetTimerDetour");
                 return false;
             }
 
             // And we patch SetTimer to replace it by our hook
-            MelonDebug.Msg($"Applying USER32.dll::SetTimer Hook at 0x{original.ToInt64():X}");
-            MelonUtils.NativeHookAttach((IntPtr)(&original), detourPtr);
-            MelonDebug.Msg($"Creating delegate for original USER32.dll::SetTimer (0x{original.ToInt64():X})");
+            MonkiiDebug.Msg($"Applying USER32.dll::SetTimer Hook at 0x{original.ToInt64():X}");
+            MonkiiUtils.NativeHookAttach((IntPtr)(&original), detourPtr);
+            MonkiiDebug.Msg($"Creating delegate for original USER32.dll::SetTimer (0x{original.ToInt64():X})");
             user32SetTimerOriginal = (User32SetTimerDelegate)Marshal.GetDelegateForFunctionPointer(original, typeof(User32SetTimerDelegate));
-            MelonDebug.Msg("Applied USER32.dll::SetTimer patch");
+            MonkiiDebug.Msg("Applied USER32.dll::SetTimer patch");
 
             return true;
         }
@@ -158,7 +158,7 @@ namespace MelonLoader.MelonStartScreen
             })
             {
                 IsBackground = true,
-                Name = "MelonStartScreen Function Thread"
+                Name = "MonkiiStartScreen Function Thread"
             }.Start();
         }
 
@@ -236,18 +236,18 @@ namespace MelonLoader.MelonStartScreen
 
         #endregion
 
-        #region Calls from MelonLoader
+        #region Calls from MonkiiLoader
 
-        internal static void OnMelonInitializing(MelonBase melon)
+        internal static void OnMonkiiInitializing(MonkiiBase Monkii)
         {
-            ScreenRenderer.UpdateProgressState(ModLoadStep.InitializeMelons);
-            ScreenRenderer.UpdateProgressFromMod(melon);
+            ScreenRenderer.UpdateProgressState(ModLoadStep.InitializeMonkiis);
+            ScreenRenderer.UpdateProgressFromMod(Monkii);
             ProcessEventsAndRender();
         }
 
-        internal static void OnMelonsResolving(Assembly asm)
+        internal static void OnMonkiisResolving(Assembly asm)
         {
-            ScreenRenderer.UpdateProgressState(ModLoadStep.LoadMelons);
+            ScreenRenderer.UpdateProgressState(ModLoadStep.LoadMonkiis);
             ScreenRenderer.UpdateProgressFromModAssembly(asm);
             ProcessEventsAndRender();
         }
@@ -268,10 +268,10 @@ namespace MelonLoader.MelonStartScreen
             ScreenRenderer.UpdateMainProgress("Starting game...", 1f);
             ScreenRenderer.Render(); // Final render, to set the progress bar to 100%
 
-            MelonEvents.OnApplicationLateStart.Unsubscribe(typeof(Core).GetMethod(nameof(Finish), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
-            MelonEvents.OnApplicationStart.Unsubscribe(typeof(Core).GetMethod(nameof(OnApplicationStart), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
-            MelonBase.OnMelonInitializing.Unsubscribe(typeof(Core).GetMethod(nameof(OnMelonInitializing), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
-            MelonAssembly.OnAssemblyResolving.Unsubscribe(typeof(Core).GetMethod(nameof(OnMelonsResolving), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
+            MonkiiEvents.OnApplicationLateStart.Unsubscribe(typeof(Core).GetMethod(nameof(Finish), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
+            MonkiiEvents.OnApplicationStart.Unsubscribe(typeof(Core).GetMethod(nameof(OnApplicationStart), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
+            MonkiiBase.OnMonkiiInitializing.Unsubscribe(typeof(Core).GetMethod(nameof(OnMonkiiInitializing), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
+            MonkiiAssembly.OnAssemblyResolving.Unsubscribe(typeof(Core).GetMethod(nameof(OnMonkiisResolving), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
         }
 
         #endregion

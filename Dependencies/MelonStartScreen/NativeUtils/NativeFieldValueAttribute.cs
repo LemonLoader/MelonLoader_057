@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MelonLoader.MelonStartScreen.NativeUtils
+namespace MonkiiLoader.MonkiiStartScreen.NativeUtils
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     class NativeFieldValueAttribute : Attribute

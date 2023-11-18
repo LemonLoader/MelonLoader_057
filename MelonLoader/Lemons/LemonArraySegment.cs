@@ -2,25 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
 	// Modified Version of System.ArraySegment from .NET Framework's mscorlib.dll
 	[Serializable]
     public class LemonArraySegment<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable
     {
         /// <summary>Gets the original array containing the range of elements that the array segment delimits.</summary>
-        /// <returns>The original array that was passed to the constructor, and that contains the range delimited by the <see cref="T:MelonLoader.LemonArraySegment`1" />.</returns>
+        /// <returns>The original array that was passed to the constructor, and that contains the range delimited by the <see cref="T:MonkiiLoader.LemonArraySegment`1" />.</returns>
         public T[] Array { get; private set; }
 
         /// <summary>Gets the position of the first element in the range delimited by the array segment, relative to the start of the original array.</summary>
-        /// <returns>The position of the first element in the range delimited by the <see cref="T:MelonLoader.LemonArraySegment`1" />, relative to the start of the original array.</returns>
+        /// <returns>The position of the first element in the range delimited by the <see cref="T:MonkiiLoader.LemonArraySegment`1" />, relative to the start of the original array.</returns>
         public int Offset { get; private set; }
 
         /// <summary>Gets the number of elements in the range delimited by the array segment.</summary>
-        /// <returns>The number of elements in the range delimited by the <see cref="T:MelonLoader.LemonArraySegment`1" />.</returns>
+        /// <returns>The number of elements in the range delimited by the <see cref="T:MonkiiLoader.LemonArraySegment`1" />.</returns>
         public int Count { get; private set; }
 
-        /// <summary>Initializes a new instance of the <see cref="T:MelonLoader.LemonArraySegment`1" /> structure that delimits all the elements in the specified array.</summary>
+        /// <summary>Initializes a new instance of the <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structure that delimits all the elements in the specified array.</summary>
 		/// <param name="array">The array to wrap.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		///   <paramref name="array" /> is <see langword="null" />.</exception>
@@ -33,7 +33,7 @@ namespace MelonLoader
             Count = array.Length;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="T:MelonLoader.LemonArraySegment`1" /> structure that delimits the specified range of the elements in the specified array.</summary>
+        /// <summary>Initializes a new instance of the <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structure that delimits the specified range of the elements in the specified array.</summary>
 		/// <param name="array">The array containing the range of elements to delimit.</param>
 		/// <param name="offset">The zero-based index of the first element in the range.</param>
 		/// <param name="count">The number of elements in the range.</param>
@@ -74,18 +74,18 @@ namespace MelonLoader
 		/// <summary>Determines whether the specified object is equal to the current instance.</summary>
 		/// <param name="obj">The object to be compared with the current instance.</param>
 		/// <returns>
-		///   <see langword="true" /> if the specified object is a <see cref="T:MelonLoader.LemonArraySegment`1" /> structure and is equal to the current instance; otherwise, <see langword="false" />.</returns>
+		///   <see langword="true" /> if the specified object is a <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structure and is equal to the current instance; otherwise, <see langword="false" />.</returns>
 		public override bool Equals(object obj)
             => obj is LemonArraySegment<T> && Equals((LemonArraySegment<T>)obj);
 
-        /// <summary>Determines whether the specified <see cref="T:MelonLoader.LemonArraySegment`1" /> structure is equal to the current instance.</summary>
+        /// <summary>Determines whether the specified <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structure is equal to the current instance.</summary>
         /// <param name="obj">The structure to compare with the current instance.</param>
         /// <returns>
-        ///   <see langword="true" /> if the specified <see cref="T:MelonLoader.LemonArraySegment`1" /> structure is equal to the current instance; otherwise, <see langword="false" />.</returns>
+        ///   <see langword="true" /> if the specified <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structure is equal to the current instance; otherwise, <see langword="false" />.</returns>
         public bool Equals(LemonArraySegment<T> obj)
             => obj.Array == Array && obj.Offset == Offset && obj.Count == Count;
 
-		/// <summary>Indicates whether two <see cref="T:MelonLoader.LemonArraySegment`1" /> structures are equal.</summary>
+		/// <summary>Indicates whether two <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structures are equal.</summary>
 		/// <param name="a">The  structure on the left side of the equality operator.</param>
 		/// <param name="b">The structure on the right side of the equality operator.</param>
 		/// <returns>
@@ -93,7 +93,7 @@ namespace MelonLoader
 		public static bool operator ==(LemonArraySegment<T> a, LemonArraySegment<T> b)
 			=> a.Equals(b);
 
-		/// <summary>Indicates whether two <see cref="T:MelonLoader.LemonArraySegment`1" /> structures are unequal.</summary>
+		/// <summary>Indicates whether two <see cref="T:MonkiiLoader.LemonArraySegment`1" /> structures are unequal.</summary>
 		/// <param name="a">The structure on the left side of the inequality operator.</param>
 		/// <param name="b">The structure on the right side of the inequality operator.</param>
 		/// <returns>

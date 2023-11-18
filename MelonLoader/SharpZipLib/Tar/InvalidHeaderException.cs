@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// This exception is used to indicate that there is a problem

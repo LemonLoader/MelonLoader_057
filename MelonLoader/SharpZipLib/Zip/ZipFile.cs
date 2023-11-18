@@ -1,8 +1,8 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
-using MelonLoader.ICSharpCode.SharpZipLib.Encryption;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Encryption;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	#region Keys Required Event Args
 
@@ -289,7 +289,7 @@ namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
 	/// using System.Collections;
 	/// using System.IO;
 	///
-	/// using MelonLoader.ICSharpCode.SharpZipLib.Zip;
+	/// using MonkiiLoader.ICSharpCode.SharpZipLib.Zip;
 	///
 	/// class MainClass
 	/// {

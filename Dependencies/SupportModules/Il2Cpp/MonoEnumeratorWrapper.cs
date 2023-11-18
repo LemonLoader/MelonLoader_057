@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnhollowerRuntimeLib;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal class MonoEnumeratorWrapper : Il2CppSystem.Object /*, IEnumerator */
     {

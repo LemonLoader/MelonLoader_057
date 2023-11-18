@@ -1,8 +1,8 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// Basic implementation of <see cref="IEntryFactory"></see>

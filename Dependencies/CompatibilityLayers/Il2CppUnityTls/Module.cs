@@ -4,17 +4,17 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using HarmonyLib;
-using MelonLoader.Modules;
-using MelonLoader.MonoInternals;
-using MelonLoader.NativeUtils;
+using MonkiiLoader.Modules;
+using MonkiiLoader.MonoInternals;
+using MonkiiLoader.NativeUtils;
 using UnityVersion = AssetRipper.VersionUtilities.UnityVersion;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
-    internal class Il2CppUnityTls_Module : MelonModule
+    internal class Il2CppUnityTls_Module : MonkiiModule
     {
         private static Il2CppUnityTls_Module Instance;
-        internal static MelonLogger.Instance Logger = new MelonLogger.Instance("Il2CppUnityTls");
+        internal static MonkiiLogger.Instance Logger = new MonkiiLogger.Instance("Il2CppUnityTls");
         private static IntPtr UnityTlsInterface = IntPtr.Zero;
 
         private static string[] Signatures_x86 =
@@ -58,7 +58,7 @@ namespace MelonLoader.CompatibilityLayers
                 return false;
             }
 
-            NativeLibrary il2cppLibrary = NativeLibrary.Load(Path.Combine(MelonUtils.GameDirectory, "GameAssembly.dll"));
+            NativeLibrary il2cppLibrary = NativeLibrary.Load(Path.Combine(MonkiiUtils.GameDirectory, "GameAssembly.dll"));
             IntPtr il2cpp_export = il2cppLibrary.GetExport("il2cpp_unity_install_unitytls_interface");
             if (il2cpp_export == IntPtr.Zero)
             {
@@ -67,10 +67,10 @@ namespace MelonLoader.CompatibilityLayers
             }
 
             Logger.Msg("Patching mono_unity_get_unitytls_interface...");
-            MelonUtils.NativeHookAttach((IntPtr)(&mono_export), typeof(Il2CppUnityTls_Module).GetMethod("GetUnityTlsInterface", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer());
+            MonkiiUtils.NativeHookAttach((IntPtr)(&mono_export), typeof(Il2CppUnityTls_Module).GetMethod("GetUnityTlsInterface", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer());
 
             Logger.Msg("Patching il2cpp_unity_install_unitytls_interface...");
-            MelonUtils.NativeHookAttach((IntPtr)(&il2cpp_export), typeof(Il2CppUnityTls_Module).GetMethod("SetUnityTlsInterface", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer());
+            MonkiiUtils.NativeHookAttach((IntPtr)(&il2cpp_export), typeof(Il2CppUnityTls_Module).GetMethod("SetUnityTlsInterface", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer());
             OriginalSetUnityTlsInterface = (dSetUnityTlsInterface)Marshal.GetDelegateForFunctionPointer(il2cpp_export, typeof(dSetUnityTlsInterface));
 
             return true;
@@ -83,7 +83,7 @@ namespace MelonLoader.CompatibilityLayers
                 return;
 
             IntPtr[] ptrs = null;
-            if (MelonUtils.IsGame32Bit())
+            if (MonkiiUtils.IsGame32Bit())
                 ptrs = GetPointers(unityplayer, unityplayer_size, Signatures_x86);
             else
                 ptrs = GetPointers(unityplayer, unityplayer_size, Signatures_x64);

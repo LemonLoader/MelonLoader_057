@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>MelonLoader.Support</RootNamespace>
+		<RootNamespace>MonkiiLoader.Support</RootNamespace>
 		<TargetFramework>net35</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>$(SolutionDir)\Output\$(Configuration)\MelonLoader\Dependencies\SupportModules\</OutputPath>
+		<OutputPath>$(SolutionDir)\Output\$(Configuration)\MonkiiLoader\Dependencies\SupportModules\</OutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,7 +22,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Tomlet">
-			<HintPath>$(SolutionDir)Output\$(Configuration)\MelonLoader\Tomlet.dll</HintPath>
+			<HintPath>$(SolutionDir)Output\$(Configuration)\MonkiiLoader\Tomlet.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
@@ -36,7 +36,7 @@
 	  <PackageReference Include="Samboy063.Tomlet" Version="5.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\MelonLoader\MelonLoader.csproj">
+	  <ProjectReference Include="..\..\..\MonkiiLoader\MonkiiLoader.csproj">
 	    <Private>false</Private>
 	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
 	  </ProjectReference>

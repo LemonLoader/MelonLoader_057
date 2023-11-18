@@ -2,7 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MelonLoader.Lemons.Cryptography
+namespace MonkiiLoader.Lemons.Cryptography
 {
 	public class LemonSHA256
 	{

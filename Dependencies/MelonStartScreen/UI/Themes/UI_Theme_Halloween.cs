@@ -1,6 +1,6 @@
-﻿using MelonUnityEngine;
+﻿using MonkiiUnityEngine;
 
-namespace MelonLoader.MelonStartScreen.UI.Themes
+namespace MonkiiLoader.MonkiiStartScreen.UI.Themes
 {
     internal class UI_Theme_Halloween : UI_Theme
     {

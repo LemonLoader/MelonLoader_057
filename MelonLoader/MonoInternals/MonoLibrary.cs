@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace MelonLoader.MonoInternals
+namespace MonkiiLoader.MonoInternals
 {
     public class MonoLibrary
     {
@@ -12,7 +12,7 @@ namespace MelonLoader.MonoInternals
             IntPtr NativeMonoPtr = GetLibPtr();
             if (NativeMonoPtr == IntPtr.Zero)
             {
-                MelonLogger.ThrowInternalFailure("[MonoLibrary] Failed to get Mono Library Pointer from Internal Call!");
+                MonkiiLogger.ThrowInternalFailure("[MonoLibrary] Failed to get Mono Library Pointer from Internal Call!");
                 return false;
             }
 
@@ -22,11 +22,11 @@ namespace MelonLoader.MonoInternals
             }
             catch (Exception ex)
             {
-                MelonLogger.ThrowInternalFailure($"[MonoLibrary] Failed to load Mono NativeLibrary!\n{ex}");
+                MonkiiLogger.ThrowInternalFailure($"[MonoLibrary] Failed to load Mono NativeLibrary!\n{ex}");
                 return false;
             }
 
-            MelonDebug.Msg("[MonoLibrary] Setup Successful!");
+            MonkiiDebug.Msg("[MonoLibrary] Setup Successful!");
             return true;
         }
 

@@ -1,9 +1,9 @@
-﻿using MelonLoader.Modules;
+﻿using MonkiiLoader.Modules;
 using System.Collections.Generic;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
-    internal class SLZ_Module : MelonModule
+    internal class SLZ_Module : MonkiiModule
     {
         private static bool HasGotLoadingSceneIndex = false;
         private static int LoadingSceneIndex = -9;
@@ -19,8 +19,8 @@ namespace MelonLoader.CompatibilityLayers
             if (!CompatibleGames.ContainsKey(InternalUtils.UnityInformationHandler.GameName))
                 return;
 
-            MelonEvents.OnSceneWasLoaded.Subscribe(OnSceneLoad, int.MinValue);
-            MelonEvents.OnSceneWasInitialized.Subscribe(OnSceneInit, int.MinValue);
+            MonkiiEvents.OnSceneWasLoaded.Subscribe(OnSceneLoad, int.MinValue);
+            MonkiiEvents.OnSceneWasInitialized.Subscribe(OnSceneInit, int.MinValue);
         }
 
         private static void OnSceneLoad(int buildIndex, string name)
@@ -47,22 +47,22 @@ namespace MelonLoader.CompatibilityLayers
                 return;
 
             PostSceneEvent();
-            MelonBase.SendMessageAll("OnLoadingScreen");
-            MelonBase.SendMessageAll($"{InternalUtils.UnityInformationHandler.GameName}_OnLoadingScreen");
+            MonkiiBase.SendMessageAll("OnLoadingScreen");
+            MonkiiBase.SendMessageAll($"{InternalUtils.UnityInformationHandler.GameName}_OnLoadingScreen");
         }
 
-        private static MelonEvent<int, string>.MelonEventSubscriber[] SceneInitBackup;
+        private static MonkiiEvent<int, string>.MonkiiEventSubscriber[] SceneInitBackup;
         private static void PreSceneEvent()
         {
-            SceneInitBackup = MelonEvents.OnSceneWasInitialized.GetSubscribers();
-            MelonEvents.OnSceneWasInitialized.UnsubscribeAll();
-            MelonEvents.OnSceneWasInitialized.Subscribe(OnSceneInit, int.MinValue);
+            SceneInitBackup = MonkiiEvents.OnSceneWasInitialized.GetSubscribers();
+            MonkiiEvents.OnSceneWasInitialized.UnsubscribeAll();
+            MonkiiEvents.OnSceneWasInitialized.Subscribe(OnSceneInit, int.MinValue);
         }
         private static void PostSceneEvent()
         {
-            MelonEvents.OnSceneWasInitialized.UnsubscribeAll();
+            MonkiiEvents.OnSceneWasInitialized.UnsubscribeAll();
             foreach (var sub in SceneInitBackup)
-                MelonEvents.OnSceneWasInitialized.Subscribe(sub.del, sub.priority, sub.unsubscribeOnFirstInvocation);
+                MonkiiEvents.OnSceneWasInitialized.Subscribe(sub.del, sub.priority, sub.unsubscribeOnFirstInvocation);
             SceneInitBackup = null;
         }
     }

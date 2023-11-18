@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace MelonLoader.Utils
+namespace MonkiiLoader.Utils
 {
     public static class SteamManifestReader
     {

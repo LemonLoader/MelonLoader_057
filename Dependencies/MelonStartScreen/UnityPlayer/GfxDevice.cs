@@ -1,6 +1,6 @@
-﻿using MelonLoader;
-using MelonLoader.NativeUtils;
-using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader;
+using MonkiiLoader.NativeUtils;
+using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 using System;
 using System.Runtime.InteropServices;
 using UnhollowerMini;
@@ -57,12 +57,12 @@ namespace UnityPlayer
 
         static GfxDevice()
         {
-            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MelonLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new[] { "2020.2.7", "2020.3.0", "2021.1.0" }))
+            if (NativeSignatureResolver.IsUnityVersionOverOrEqual(MonkiiLoader.InternalUtils.UnityInformationHandler.EngineVersion.ToStringWithoutType(), new[] { "2020.2.7", "2020.3.0", "2021.1.0" }))
             {
                 // `FrameTimingManager_CUSTOM_CaptureFrameTimings()` calls `GetRealGfxDevice()` after 4 bytes.
                 m_GetRealGfxDevice = (GetRealGfxDeviceDelegate)Marshal.GetDelegateForFunctionPointer(
                     CppUtils.ResolveRelativeInstruction(
-                        (IntPtr)((long)UnityInternals.ResolveICall("UnityEngine.FrameTimingManager::CaptureFrameTimings") + (MelonUtils.IsGame32Bit() ? 0 : 4))),
+                        (IntPtr)((long)UnityInternals.ResolveICall("UnityEngine.FrameTimingManager::CaptureFrameTimings") + (MonkiiUtils.IsGame32Bit() ? 0 : 4))),
                     typeof(GetRealGfxDeviceDelegate));
             }
         }

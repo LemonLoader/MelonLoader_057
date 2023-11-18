@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace MelonLoader.NativeUtils.PEParser
+namespace MonkiiLoader.NativeUtils.PEParser
 {
     [StructLayout(LayoutKind.Explicit)]
     public struct ImageExportDirectory

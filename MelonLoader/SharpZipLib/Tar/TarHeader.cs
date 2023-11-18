@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// This class encapsulates the Tar Entry Header used in Tar Archives.

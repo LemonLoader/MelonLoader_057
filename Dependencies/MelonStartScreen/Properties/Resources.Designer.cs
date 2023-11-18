@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MelonLoader.MelonStartScreen.Properties {
+namespace MonkiiLoader.MonkiiStartScreen.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MelonLoader.MelonStartScreen.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MelonLoader.MelonStartScreen.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MonkiiLoader.MonkiiStartScreen.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -73,9 +73,9 @@ namespace MelonLoader.MelonStartScreen.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Loading_Melon {
+        internal static byte[] Loading_Monkii {
             get {
-                object obj = ResourceManager.GetObject("Loading_Melon", resourceCulture);
+                object obj = ResourceManager.GetObject("Loading_Monkii", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -105,9 +105,9 @@ namespace MelonLoader.MelonStartScreen.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Logo_Melon {
+        internal static byte[] Logo_Monkii {
             get {
-                object obj = ResourceManager.GetObject("Logo_Melon", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_Monkii", resourceCulture);
                 return ((byte[])(obj));
             }
         }

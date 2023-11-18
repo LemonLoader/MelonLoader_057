@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MelonLoader.Fixes
+namespace MonkiiLoader.Fixes
 {
 	internal static class DateTimeOverride
 	{
@@ -10,7 +10,7 @@ namespace MelonLoader.Fixes
 		internal static void Install()
 		{
 			string ltzId = GetLocalTimeZone();
-			MelonDebug.Msg("Local Time Zone ID = " + ltzId);
+			MonkiiDebug.Msg("Local Time Zone ID = " + ltzId);
 			localTimeZone = TimeZoneInfo.FindSystemTimeZoneById(ltzId);
 			Core.HarmonyInstance.Patch(typeof(TimeZoneInfo).GetProperty("Local").GetGetMethod(), typeof(DateTimeOverride).GetMethod(nameof(TimeZoneInfoLocal)).ToNewHarmonyMethod());
 

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Tar
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Tar
 {
 	/// <summary>
 	/// The TarInputStream reads a UNIX tar archive as an InputStream.

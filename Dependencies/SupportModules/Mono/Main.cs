@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using MelonLoader.Support.Preferences;
+using MonkiiLoader.Support.Preferences;
 using UnityEngine;
 
-namespace MelonLoader.Support
+namespace MonkiiLoader.Support
 {
     internal static class Main
     {

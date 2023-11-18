@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MelonLoader.TinyJSON
+namespace MonkiiLoader.TinyJSON
 {
 	public static class Extensions
 	{

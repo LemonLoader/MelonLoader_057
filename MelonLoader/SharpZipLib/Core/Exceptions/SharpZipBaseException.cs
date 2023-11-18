@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib
+namespace MonkiiLoader.ICSharpCode.SharpZipLib
 {
 	/// <summary>
 	/// SharpZipBaseException is the base exception class for SharpZipLib.

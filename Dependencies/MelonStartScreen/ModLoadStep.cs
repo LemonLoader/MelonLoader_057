@@ -1,10 +1,10 @@
-﻿namespace MelonLoader.MelonStartScreen
+﻿namespace MonkiiLoader.MonkiiStartScreen
 {
     internal enum ModLoadStep
     {
         Generation,
-        LoadMelons,
-        InitializeMelons,
+        LoadMonkiis,
+        InitializeMonkiis,
         OnApplicationStart
     }
 }

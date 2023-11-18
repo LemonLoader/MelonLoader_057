@@ -1,8 +1,8 @@
 using System;
 using System.Security.Cryptography;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Encryption
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Encryption
 {
 	/// <summary>
 	/// Transforms stream using AES in CTR mode

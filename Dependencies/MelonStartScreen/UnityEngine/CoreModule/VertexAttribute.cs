@@ -1,6 +1,6 @@
-﻿using MelonLoader.MelonStartScreen.NativeUtils;
+﻿using MonkiiLoader.MonkiiStartScreen.NativeUtils;
 
-namespace MelonUnityEngine.Rendering
+namespace MonkiiUnityEngine.Rendering
 {
     static class VertexAttribute
     {

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MelonLoader.MonoInternals;
+using MonkiiLoader.MonoInternals;
 using IllusionPlugin;
 using System.IO;
 using IllusionInjector;
-using MelonLoader.Modules;
+using MonkiiLoader.Modules;
 
-namespace MelonLoader.CompatibilityLayers
+namespace MonkiiLoader.CompatibilityLayers
 {
-    internal class IPA_Module : MelonModule
+    internal class IPA_Module : MonkiiModule
     {
         public override void OnInitialize()
         {
 			// To-Do:
 			// Detect if IPA is already Installed
 			// Point AssemblyResolveInfo to already installed IPA Assembly
-			// Point GetResolverFromAssembly to Dummy MelonCompatibilityLayer.Resolver
+			// Point GetResolverFromAssembly to Dummy MonkiiCompatibilityLayer.Resolver
 
 			string[] assembly_list =
 			{
@@ -28,10 +28,10 @@ namespace MelonLoader.CompatibilityLayers
 			foreach (string assemblyName in assembly_list)
 				MonoResolveManager.GetAssemblyResolveInfo(assemblyName).Override = base_assembly;
 
-			MelonAssembly.CustomMelonResolvers += Resolve;
+			MonkiiAssembly.CustomMonkiiResolvers += Resolve;
 		}
 
-        private ResolvedMelons Resolve(Assembly asm)
+        private ResolvedMonkiis Resolve(Assembly asm)
 		{
 			IEnumerable<Type> pluginTypes = asm.GetValidTypes(x =>
 			{
@@ -39,36 +39,36 @@ namespace MelonLoader.CompatibilityLayers
 				return (interfaces != null) && interfaces.Any() && interfaces.Contains(typeof(IPlugin)); // To-Do: Change to Type Reflection based on Setup
 			});
 			if ((pluginTypes == null) || !pluginTypes.Any())
-				return new ResolvedMelons(null, null);
+				return new ResolvedMonkiis(null, null);
 
-			var melons = new List<MelonBase>();
-			var rotten = new List<RottenMelon>();
+			var Monkiis = new List<MonkiiBase>();
+			var rotten = new List<RottenMonkii>();
 			foreach (var t in pluginTypes)
             {
-				var mel = LoadPlugin(asm, t, out RottenMelon rm);
+				var mel = LoadPlugin(asm, t, out RottenMonkii rm);
 				if (mel != null)
-					melons.Add(mel);
+					Monkiis.Add(mel);
 				else
 					rotten.Add(rm);
             }
-			return new ResolvedMelons(melons.ToArray(), rotten.ToArray());
+			return new ResolvedMonkiis(Monkiis.ToArray(), rotten.ToArray());
 		}
 
-		private MelonBase LoadPlugin(Assembly asm, Type pluginType, out RottenMelon rottenMelon)
+		private MonkiiBase LoadPlugin(Assembly asm, Type pluginType, out RottenMonkii rottenMonkii)
 		{
-			rottenMelon = null;
+			rottenMonkii = null;
 			IPlugin pluginInstance;
 			try
 			{ pluginInstance = Activator.CreateInstance(pluginType) as IPlugin; }
             catch (Exception ex)
             {
-				rottenMelon = new RottenMelon(pluginType, "Failed to create a new instance of the IPA Plugin.", ex);
+				rottenMonkii = new RottenMonkii(pluginType, "Failed to create a new instance of the IPA Plugin.", ex);
 				return null;
             }
 
-			MelonProcessAttribute[] processAttrs = null;
+			MonkiiProcessAttribute[] processAttrs = null;
 			if (pluginInstance is IEnhancedPlugin enPl)
-				processAttrs = enPl.Filter?.Select(x => new MelonProcessAttribute(x)).ToArray();
+				processAttrs = enPl.Filter?.Select(x => new MonkiiProcessAttribute(x)).ToArray();
 
 			string pluginName = pluginInstance.Name;
 			if (string.IsNullOrEmpty(pluginName))
@@ -80,11 +80,11 @@ namespace MelonLoader.CompatibilityLayers
 			if (string.IsNullOrEmpty(plugin_version) || plugin_version.Equals("0.0.0.0"))
 				plugin_version = "1.0.0.0";
 
-			var melon = MelonBase.CreateWrapper<IPAPluginWrapper>(pluginName, null, plugin_version, processes: processAttrs);
+			var Monkii = MonkiiBase.CreateWrapper<IPAPluginWrapper>(pluginName, null, plugin_version, processes: processAttrs);
 
-			melon.pluginInstance = pluginInstance;
+			Monkii.pluginInstance = pluginInstance;
 			PluginManager._Plugins.Add(pluginInstance);
-			return melon;
+			return Monkii;
 		}
 	}
 }

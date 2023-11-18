@@ -2,11 +2,11 @@
 	#define VECTORIZE_MEMORY_MOVE
 #endif
 
-using MelonLoader.ICSharpCode.SharpZipLib.Checksum;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Checksum;
 using System;
 using System.IO;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.BZip2
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
 	/// An input stream that decompresses files in the BZip2 format

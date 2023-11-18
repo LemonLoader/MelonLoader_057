@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	// TODO: Sort out whether tagged data is useful and what a good implementation might look like.
 	// Its just a sketch of an idea at the moment.

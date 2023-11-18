@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace MelonLoader.TinyJSON
+namespace MonkiiLoader.TinyJSON
 {
 	public abstract class Variant : IConvertible
 	{

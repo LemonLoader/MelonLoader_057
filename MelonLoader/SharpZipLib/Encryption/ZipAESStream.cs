@@ -3,10 +3,10 @@ using System.IO;
 using System.Security.Cryptography;
 //using System.Threading;
 //using System.Threading.Tasks;
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
-using MelonLoader.ICSharpCode.SharpZipLib.Zip;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Zip;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Encryption
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Encryption
 {
 	/// <summary>
 	/// Encrypts and decrypts AES ZIP

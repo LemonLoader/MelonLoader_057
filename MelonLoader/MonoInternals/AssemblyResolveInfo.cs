@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace MelonLoader.MonoInternals
+namespace MonkiiLoader.MonoInternals
 {
     public class AssemblyResolveInfo
     {

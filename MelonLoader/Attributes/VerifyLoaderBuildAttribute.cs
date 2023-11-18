@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
     [AttributeUsage(AttributeTargets.Assembly)]
     public class VerifyLoaderBuildAttribute : Attribute
     {
         /// <summary>
-        /// Build HashCode of MelonLoader.
+        /// Build HashCode of MonkiiLoader.
         /// </summary>
         public string HashCode { get; internal set; }
 

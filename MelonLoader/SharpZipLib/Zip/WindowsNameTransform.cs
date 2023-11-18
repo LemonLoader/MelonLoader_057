@@ -1,10 +1,10 @@
-using MelonLoader.ICSharpCode.SharpZipLib.Core;
+using MonkiiLoader.ICSharpCode.SharpZipLib.Core;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MelonLoader.ICSharpCode.SharpZipLib.Zip
+namespace MonkiiLoader.ICSharpCode.SharpZipLib.Zip
 {
 	/// <summary>
 	/// WindowsNameTransform transforms <see cref="ZipFile"/> names to windows compatible ones.

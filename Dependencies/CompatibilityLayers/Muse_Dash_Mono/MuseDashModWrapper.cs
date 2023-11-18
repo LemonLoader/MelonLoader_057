@@ -1,10 +1,10 @@
 using ModHelper;
 
-namespace MelonLoader
+namespace MonkiiLoader
 {
-    internal class MuseDashModWrapper : MelonMod
+    internal class MuseDashModWrapper : MonkiiMod
     {
         internal IMod modInstance;
-        public override void OnInitializeMelon() => modInstance.DoPatching();
+        public override void OnInitializeMonkii() => modInstance.DoPatching();
     }
 }
