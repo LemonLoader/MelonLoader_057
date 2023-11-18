@@ -20,10 +20,10 @@ namespace MonkiiLoader
 
         internal static void Setup()
         {
-            PluginsDirectory = Path.Combine(MonkiiUtils.BaseDirectory, "Plugins");
+            PluginsDirectory = Path.Combine(MonkiiUtils.BaseDirectory, "PLGNS");
             if (!Directory.Exists(PluginsDirectory))
                 Directory.CreateDirectory(PluginsDirectory);
-            ModsDirectory = Path.Combine(MonkiiUtils.BaseDirectory, "Mods");
+            ModsDirectory = Path.Combine(MonkiiUtils.BaseDirectory, "MDS");
             if (!Directory.Exists(ModsDirectory))
                 Directory.CreateDirectory(ModsDirectory);
         }
