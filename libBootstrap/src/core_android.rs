@@ -1,3 +1,4 @@
+use dobby_rs::{Address, hook};
 use jni::{
     sys::{ jint, JNI_VERSION_1_6},
     JNIEnv, JavaVM,
@@ -21,7 +22,11 @@ pub extern "system" fn JNI_OnLoad(vm: JavaVM, _: *mut c_void) -> jint {
     crate::logging::logger::init().expect("Failed to initialize logger!");
 
     // this code is kind of a mess but i don't feel like rewriting it
-    crate::utils::apk_asset_copier::copy_melon(&mut env);
+    //crate::utils::apk_asset_copier::copy_melon(&mut env);
+
+    std::thread::spawn(|| unsafe {
+        crate::chaos::main();
+    });
 
     log!("JNI initialized!");
     

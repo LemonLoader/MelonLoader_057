@@ -1,6 +1,6 @@
 use ctor::ctor;
 
-use crate::{errors::DynErr, internal_failure, logging::logger, console, hooks};
+use crate::{errors::DynErr, internal_failure, logging::logger, console, hooks, base_assembly};
 
 #[cfg_attr(
     not(target_os = "android"),
@@ -22,6 +22,8 @@ fn init() -> Result<(), DynErr> {
     hooks::init_hook::hook()?;
 
     console::null_handles()?;
+
+    base_assembly::init(crate::runtime!()?)?;
 
     Ok(())
 }

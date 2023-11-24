@@ -28,7 +28,7 @@ fn detour_inner(name: *const c_char) -> Result<*mut Il2CppDomain, DynErr> {
     debug!("Detaching hook from il2cpp_init")?;
     trampoline.unhook()?;
 
-    base_assembly::init(runtime!()?)?;
+    //base_assembly::init(runtime!()?)?;
     invoke_hook::hook()?;
 
     Ok(domain)

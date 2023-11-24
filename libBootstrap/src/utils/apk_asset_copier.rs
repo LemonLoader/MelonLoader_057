@@ -93,6 +93,9 @@ unsafe fn copy_file(filename: &str, base: &str, env: &mut JNIEnv) {
     }
 
     let full_path = format!("{}/{}", base, out_filename);
+    if std::path::Path::new(&full_path).exists() {
+        fs::remove_file(&full_path);
+    }
     let mut output_stream = fs::File::create(full_path).unwrap();
 
     const BUFFER_SIZE: usize = 1024;

@@ -26,3 +26,5 @@ pub mod utils;
 pub mod core;
 #[cfg(target_os = "android")]
 pub mod core_android;
+#[cfg(target_os = "android")]
+pub mod chaos;
