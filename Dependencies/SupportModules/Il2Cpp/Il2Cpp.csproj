@@ -1,42 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Windows">
-			<Configuration>Debug</Configuration>
-			<Platform>Windows</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Windows">
-			<Configuration>Release</Configuration>
-			<Platform>Windows</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|Android">
-			<Configuration>Debug</Configuration>
-			<Platform>Android</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Android">
-			<Configuration>Release</Configuration>
-			<Platform>Android</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
 	<PropertyGroup>
 		<RootNamespace>MelonLoader.Support</RootNamespace>
-		<TargetFramework>net472</TargetFramework>
+		<TargetFramework>net6</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>$(SolutionDir)Output\$(Configuration)\$(Platform)\MelonLoader\Dependencies\SupportModules\</OutputPath>
+		<OutputPath>$(SolutionDir)Output\$(Configuration)\MelonLoader\Dependencies\SupportModules\</OutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Platforms>Android;Windows</Platforms>
+		<DebugType>embedded</DebugType>
 		<DefineConstants>SM_Il2Cpp</DefineConstants>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+		<RestoreAdditionalProjectSources>
+			https://nuget.bepinex.dev/v3/index.json
+		</RestoreAdditionalProjectSources>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Platform)' == 'Android' ">
-    	<DefineConstants>__ANDROID__;SM_Il2Cpp</DefineConstants>
-  	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="0Harmony">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\0Harmony.dll</HintPath>
-		  <Private>False</Private>
-		</Reference>
 		<Reference Include="Il2Cppmscorlib">
 			<HintPath>Libs\Il2Cppmscorlib.dll</HintPath>
 			<Private>false</Private>
@@ -44,24 +24,6 @@
 		<Reference Include="Il2CppSystem">
 			<HintPath>Libs\Il2CppSystem.dll</HintPath>
 			<Private>false</Private>
-		</Reference>
-		<Reference Include="Mono.Cecil">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.dll</HintPath>
-		</Reference>
-		<Reference Include="Mono.Cecil.Mdb">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Mdb.dll</HintPath>
-		</Reference>
-		<Reference Include="Mono.Cecil.Pdb">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Pdb.dll</HintPath>
-		</Reference>
-		<Reference Include="Mono.Cecil.Rocks">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\Mono.Cecil.Rocks.dll</HintPath>
-		</Reference>
-		<Reference Include="MonoMod.RuntimeDetour">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\MonoMod.RuntimeDetour.dll</HintPath>
-		</Reference>
-		<Reference Include="MonoMod.Utils">
-		  <HintPath>..\..\..\Output\Release\Android\MelonLoader\MonoMod.Utils.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>Libs\UnityEngine.CoreModule.dll</HintPath>
@@ -75,21 +37,16 @@
 		<Compile Include="..\UnityMappers.cs" Link="UnityMappers.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
-	  <PackageReference Include="Samboy063.Tomlet" Version="5.0.1" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\MelonLoader\MelonLoader.csproj">
-	    <Private>false</Private>
-	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
-	  </ProjectReference>
-	  <ProjectReference Include="..\..\..\ExternalDeps\Il2CppAssemblyUnhollower\UnhollowerBaseLib\UnhollowerBaseLib.csproj">
-	    <Private>false</Private>
-	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
-	  </ProjectReference>
-	  <ProjectReference Include="..\..\..\ExternalDeps\Il2CppAssemblyUnhollower\UnhollowerRuntimeLib\UnhollowerRuntimeLib.csproj">
-	    <Private>false</Private>
-	    <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
-	  </ProjectReference>
+		<ProjectReference Include="..\..\..\MelonLoader\MelonLoader.csproj" Private="false" />
+		<PackageReference Include="HarmonyX" Version="2.10.1" ExcludeAssets="Runtime" />
+		<PackageReference Include="AssetRipper.VersionUtilities" Version="1.4.0" ExcludeAssets="Runtime" />
+		<PackageReference Include="Iced" Version="1.18.0" />
+		<PackageReference Include="Il2CppInterop.Common" Version="1.4.5-ci.313" />
+		<PackageReference Include="Il2CppInterop.HarmonySupport" Version="1.4.5-ci.313" />
+		<PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5-ci.313" />
+		<PackageReference Include="Mono.Cecil" Version="0.11.4" ExcludeAssets="Runtime" />
+		<PackageReference Include="MonoMod.RuntimeDetour" Version="22.7.31.1" ExcludeAssets="Runtime" />
+		<PackageReference Include="MonoMod.Utils" Version="22.7.31.1" ExcludeAssets="Runtime" />
+		<PackageReference Include="Samboy063.Tomlet" Version="5.1.2" ExcludeAssets="Runtime" />
 	</ItemGroup>
 </Project>

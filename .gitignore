@@ -48,6 +48,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+[Tt]arget/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -70,6 +71,9 @@ nunit-*.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
+
+#vscode files
+.vscode/
 
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
@@ -377,8 +381,3 @@ x64
 
 # JetBrains Rider
 .idea/
-
-# Extra Stuff
-tools/installer_deps
-tools/installer_deps.zip
-Bootstrap/build

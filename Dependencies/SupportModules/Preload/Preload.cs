@@ -17,6 +17,10 @@ namespace MelonLoader.Support
             string SystemCorePath = Path.Combine(ManagedFolder, "System.Core.dll");
             if (!File.Exists(SystemCorePath))
                 File.WriteAllBytes(SystemCorePath, Properties.Resources.System_Core);
+
+            string SystemDrawingPath = Path.Combine(ManagedFolder, "System.Drawing.dll");
+            if (!File.Exists(SystemDrawingPath))
+                File.WriteAllBytes(SystemDrawingPath, Properties.Resources.System_Drawing);
         }
 
         [MethodImpl(MethodImplOptions.InternalCall)]

@@ -39,7 +39,6 @@ namespace MelonLoader
         {
             OnEntryValueChangedUntyped.Invoke(old, neew);
             OnValueChangedUntyped?.Invoke();
-            MelonPreferences.Save();
         }
 
         [Obsolete("Please use the OnEntryValueChangedUntyped MelonEvent instead.")]

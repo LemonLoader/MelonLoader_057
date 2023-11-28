@@ -13,8 +13,7 @@ namespace MelonLoader
         {
             UNIVERSAL,
             WINDOWS_X86,
-            WINDOWS_X64,
-            ANDROID
+            WINDOWS_X64
         };
 
         // <summary>Platforms Compatible with the Melon.</summary>

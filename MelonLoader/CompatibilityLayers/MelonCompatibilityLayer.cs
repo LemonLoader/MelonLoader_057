@@ -7,16 +7,12 @@ namespace MelonLoader
 {
     public static class MelonCompatibilityLayer
     {
-#if __ANDROID__
-        public static string baseDirectory = $"melonloader/etc/compatibilitylayers";
-#else
         public static string baseDirectory = $"MelonLoader{Path.DirectorySeparatorChar}Dependencies{Path.DirectorySeparatorChar}CompatibilityLayers";
-#endif
 
         private static List<MelonModule.Info> layers = new List<MelonModule.Info>()
         {
-            // Il2Cpp Unity Tls
-            new MelonModule.Info(Path.Combine(baseDirectory, "Il2CppUnityTls.dll"), () => !MelonUtils.IsGameIl2Cpp()),
+            // Il2Cpp Unity Tls - No longer needed in CoreCLR
+            // new MelonModule.Info(Path.Combine(baseDirectory, "Il2CppUnityTls.dll"), () => !MelonUtils.IsGameIl2Cpp()),
 
             // Illusion Plugin Architecture
             new MelonModule.Info(Path.Combine(baseDirectory, "IPA.dll"), MelonUtils.IsGameIl2Cpp),
@@ -56,9 +52,7 @@ namespace MelonLoader
             {
                 string fileName = Path.GetFileName(file);
                 if (layers.Find(x => Path.GetFileName(x.fullPath).Equals(fileName)) == null)
-                {
                     File.Delete(file);
-                }
             }
         }
     }
