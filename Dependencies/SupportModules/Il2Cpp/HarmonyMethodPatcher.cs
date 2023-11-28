@@ -13,7 +13,7 @@ using MelonLoader.InternalUtils;
 using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.InteropTypes;
 
-#if NET6_0
+#if NET8_0
 using MelonLoader.CoreClrUtils;
 #endif
 
@@ -73,7 +73,7 @@ namespace MelonLoader.Support
             
             MelonUtils.NativeHookAttachDirect(copiedMethodInfoPointer, il2CppShimDelegatePtr);
 
-#if NET6_0
+#if NET8_0
             NativeStackWalk.RegisterHookAddr((ulong)il2CppShimDelegatePtr, $"Harmony Hook for {Original.FullDescription()}");
 #endif
             

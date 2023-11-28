@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-#if NET6_0
+#if NET8_0
 using MelonLoader.CoreClrUtils;
 #endif
 
@@ -9,7 +9,7 @@ namespace MelonLoader
 {
     internal static unsafe class BootstrapInterop
     {
-#if NET6_0
+#if NET8_0
         internal static delegate* unmanaged<void**, void*, void> HookAttach;
         internal static delegate* unmanaged<void**, void*, void> HookDetach;
 #endif
@@ -25,7 +25,7 @@ namespace MelonLoader
             Console.Title = versionStr;
         }
 
-#if !NET6_0
+#if !NET8_0
         [MethodImpl(MethodImplOptions.InternalCall)]
         internal static extern void EnableCloseButton(IntPtr mainWindow);
         [MethodImpl(MethodImplOptions.InternalCall)]

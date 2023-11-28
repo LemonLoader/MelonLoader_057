@@ -383,7 +383,7 @@ namespace MelonLoader
         public static string GameVersion { get => UnityInformationHandler.GameVersion; }
 
 
-        #if !NET6_0
+        #if !NET8_0
         [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static bool IsGame32Bit();
 #else
@@ -426,7 +426,7 @@ namespace MelonLoader
         [Obsolete("Use NativeUtils.NativeHook instead")]
         public static void NativeHookAttach(IntPtr target, IntPtr detour) => BootstrapInterop.NativeHookAttach(target, detour);
 
-#if NET6_0
+#if NET8_0
         internal static void NativeHookAttachDirect(IntPtr target, IntPtr detour) => BootstrapInterop.NativeHookAttachDirect(target, detour);
 #else
         //On mono, NativeHookAttach *is* direct.

@@ -20,7 +20,7 @@ namespace MelonLoader.MelonStartScreen.UI
             using var s = Assembly.GetExecutingAssembly().GetManifestResourceStream($"MelonLoader.MelonStartScreen.Resources.{name}");
             if (s == null)
                 return null;
-#if NET6_0
+#if NET8_0
             using var ms = new MemoryStream();
             s.CopyTo(ms);
             return ms.ToArray();

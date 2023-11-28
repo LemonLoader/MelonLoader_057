@@ -1,4 +1,4 @@
-﻿#if NET6_0
+﻿#if NET8_0
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Strings;
 using AsmResolver.PE.DotNet.Metadata.Tables;

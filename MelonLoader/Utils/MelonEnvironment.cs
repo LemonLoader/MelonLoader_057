@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-#if !NET6_0
+#if !NET8_0
 using System.Diagnostics;
 using MelonLoader;
 #endif
@@ -10,7 +10,7 @@ namespace MelonLoader.Utils
     public static class MelonEnvironment
     {
         private const string OurRuntimeName =
-#if !NET6_0
+#if !NET8_0
             "net35";
 #else
             "net6";
@@ -22,7 +22,7 @@ namespace MelonLoader.Utils
         public static string MelonLoaderDirectory { get; internal set; }
         public static string GameRootDirectory { get; internal set; }
 
-#if NET6_0
+#if NET8_0
         public static string GameExecutablePath => System.Environment.ProcessPath;
 #else
         public static string GameExecutablePath => Process.GetCurrentProcess().MainModule!.FileName;

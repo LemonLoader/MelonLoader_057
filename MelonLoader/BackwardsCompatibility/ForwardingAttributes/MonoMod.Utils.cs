@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 [assembly: TypeForwardedTo(typeof(MonoMod.Utils.DMDGenerator<>))]
 [assembly: TypeForwardedTo(typeof(MonoMod.Utils.DMDCecilGenerator))]
 [assembly: TypeForwardedTo(typeof(MonoMod.Utils.DMDEmitDynamicMethodGenerator))]
-#if !NET6_0
+#if !NET8_0
 [assembly: TypeForwardedTo(typeof(MonoMod.Utils.DMDEmitMethodBuilderGenerator))]
 #endif
 [assembly: TypeForwardedTo(typeof(MonoMod.Utils.DynamicMethodDefinition))]

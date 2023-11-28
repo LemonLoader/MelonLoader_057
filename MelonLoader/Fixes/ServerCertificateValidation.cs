@@ -1,4 +1,4 @@
-﻿#if !NET6_0
+﻿#if !NET8_0
 using System;
 using System.Net;
 using System.Net.Security;
@@ -10,7 +10,7 @@ namespace MelonLoader.Fixes
 {
     internal static class ServerCertificateValidation
     {
-#if !NET6_0
+#if !NET8_0
         internal static void Install()
         {
             Type SPMType = typeof(ServicePointManager);

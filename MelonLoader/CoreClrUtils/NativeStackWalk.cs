@@ -1,4 +1,4 @@
-#if NET6_0
+#if NET8_0
 
 #nullable enable
 #pragma warning disable CS0169

@@ -13,7 +13,7 @@ namespace MelonLoader
         public static readonly Color DefaultMelonColor = Color.Cyan;
         public static readonly Color DefaultTextColor = Color.LightGray;
 
-#if !NET6_0
+#if !NET8_0
         private static FileStream LogStream = File.Open(Path.Combine(MelonEnvironment.MelonLoaderDirectory, "Latest.log"), FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
 #else
         internal static FileStream LogStream = File.Open(Path.Combine(MelonEnvironment.MelonLoaderDirectory, "Latest.log"), new FileStreamOptions() { Access = FileAccess.ReadWrite, BufferSize = 0, Mode = FileMode.Create, Share = FileShare.Read});

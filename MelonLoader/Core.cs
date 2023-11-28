@@ -9,7 +9,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using bHapticsLib;
 
-#if NET6_0
+#if NET8_0
 using System.Threading;
 using MelonLoader.CoreClrUtils;
 #endif
@@ -29,7 +29,7 @@ namespace MelonLoader
         {
             MelonLaunchOptions.Load();
 
-#if NET6_0
+#if NET8_0
             if (MelonLaunchOptions.Core.UserWantsDebugger && MelonEnvironment.IsDotnetRuntime)
             {
                 Console.WriteLine("[Init] User requested debugger, attempting to launch now...");
@@ -71,7 +71,7 @@ namespace MelonLoader
 
             HarmonyInstance = new HarmonyLib.Harmony(BuildInfo.Name);
             
-#if NET6_0
+#if NET8_0
             // if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 // NativeStackWalk.LogNativeStackTrace();
 

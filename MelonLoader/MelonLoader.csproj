@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net35;net6</TargetFrameworks>
+		<TargetFrameworks>net35;net8</TargetFrameworks>
 		<LangVersion>Latest</LangVersion>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -39,7 +39,7 @@
 		<PackageReference Include="Samboy063.Tomlet" Version="5.1.2" />
 		<PackageReference Include="bHapticsLib" Version="1.0.6" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8'">
 		<PackageReference Include="AsmResolver.DotNet" Version="5.2.0" />
 		<PackageReference Include="Microsoft.Diagnostics.Runtime" Version="2.4.416101" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
