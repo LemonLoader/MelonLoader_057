@@ -386,7 +386,7 @@ public static unsafe class NativeStackWalk
 
         if (status != 0)
         {
-            Console.WriteLine($"[Error] NtQueryInformationThread failed: 0x{status:X2}");
+            MelonLoader.Core.WriteLine($"[Error] NtQueryInformationThread failed: 0x{status:X2}");
             return (IntPtr.Zero, IntPtr.Zero);
         }
 

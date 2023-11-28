@@ -81,7 +81,7 @@ namespace MelonLoader.NativeHost
             var type = asm.GetType(name);
             if (type == null)
             {
-                Console.WriteLine($"[Stereo] Couldn't find type with name '{name}'");
+                NativeEntryPoint.WriteLine($"[Stereo] Couldn't find type with name '{name}'");
                 return TYPE_NAME_NOT_FOUND;
             }
 
@@ -160,7 +160,7 @@ namespace MelonLoader.NativeHost
 
             if (method == null)
             {
-                Console.WriteLine($"[Stereo] Couldn't find method with name '{methodName}', param types {string.Join<Type?>(", ", paramTypes)}");
+                NativeEntryPoint.WriteLine($"[Stereo] Couldn't find method with name '{methodName}', param types {string.Join<Type?>(", ", paramTypes)}");
                 return METHOD_NAME_NOT_FOUND;
             }
 
@@ -196,13 +196,13 @@ namespace MelonLoader.NativeHost
 
             if(method == null)
             {
-                Console.WriteLine($"[Stereo] Couldn't find method with name '{methodName}', param types {string.Join<Type?>(", ", paramTypes)}");
+                NativeEntryPoint.WriteLine($"[Stereo] Couldn't find method with name '{methodName}', param types {string.Join<Type?>(", ", paramTypes)}");
                 return 0;
             }
 
             if(method.GetCustomAttribute<UnmanagedCallersOnlyAttribute>() == null)
             {
-                Console.WriteLine($"[Stereo] {method} is not annotated as UnmanagedCallersOnly, so cannot have a pointer returned from GetPointerToUcoMethod");
+                NativeEntryPoint.WriteLine($"[Stereo] {method} is not annotated as UnmanagedCallersOnly, so cannot have a pointer returned from GetPointerToUcoMethod");
                 return 0;
             }
 

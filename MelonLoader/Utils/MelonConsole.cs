@@ -29,7 +29,7 @@ internal static class MelonConsole
     {
         if (MelonUtils.IsUnderWineOrSteamProton() || !MelonUtils.IsWindows || MelonLaunchOptions.Console.ShouldHide)
         {
-            Console.WriteLine(txt);
+            MelonLoader.Core.WriteLine(txt);
             return;
         }
         ConsoleOutWriter.WriteLine(txt);
@@ -39,7 +39,7 @@ internal static class MelonConsole
     {
         if (MelonUtils.IsUnderWineOrSteamProton() || !MelonUtils.IsWindows || MelonLaunchOptions.Console.ShouldHide)
         {
-            Console.WriteLine(txt.ToString());
+            MelonLoader.Core.WriteLine(txt.ToString());
             return;
         }
         ConsoleOutWriter.WriteLine(txt.ToString());
@@ -49,7 +49,7 @@ internal static class MelonConsole
     {
         if (MelonUtils.IsUnderWineOrSteamProton() || !MelonUtils.IsWindows || MelonLaunchOptions.Console.ShouldHide)
         {
-            Console.WriteLine();
+            MelonLoader.Core.WriteLine("\n");
             return;
         }
         ConsoleOutWriter.WriteLine("");

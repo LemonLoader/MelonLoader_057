@@ -19,6 +19,9 @@ namespace MelonLoader
 {
 	internal static class Core
     {
+        [DllImport("libBootstrap.so", EntryPoint = "print_string")]
+        public static extern void WriteLine(string msg);
+
         internal static HarmonyLib.Harmony HarmonyInstance;
         
         internal static bool Is_ALPHA_PreRelease = false;
@@ -32,7 +35,7 @@ namespace MelonLoader
 #if NET8_0
             if (MelonLaunchOptions.Core.UserWantsDebugger && MelonEnvironment.IsDotnetRuntime)
             {
-                Console.WriteLine("[Init] User requested debugger, attempting to launch now...");
+                WriteLine("[Init] User requested debugger, attempting to launch now...");
                 Debugger.Launch();
             }
 #endif
@@ -54,6 +57,7 @@ namespace MelonLoader
             Fixes.UnhandledException.Install(AppDomain.CurrentDomain);
             Fixes.ServerCertificateValidation.Install();
             
+
             MelonUtils.Setup(AppDomain.CurrentDomain);
 
             Assertions.LemonAssertMapping.Setup();
@@ -68,6 +72,8 @@ namespace MelonLoader
             {
                 MelonDebug.Msg("[MonoLibrary] Caught SecurityException, assuming not running under mono and continuing with init");
             }
+
+            return 0;
 
             HarmonyInstance = new HarmonyLib.Harmony(BuildInfo.Name);
             

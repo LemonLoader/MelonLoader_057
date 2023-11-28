@@ -601,7 +601,7 @@ dependencies = [
 [[package]]
 name = "dobby-sys"
 version = "0.1.0"
-source = "git+https://github.com/TrevTV/dobby-sys.git#e429725c6c34ad4a8d9d79aebe3ff26d4d09a35f"
+source = "git+https://github.com/RinLovesYou/dobby-sys.git#3001d5debc9a8b53fdbd7bf7224b16c584c26fbf"
 
 [[package]]
 name = "encoding_rs"
@@ -1080,7 +1080,9 @@ dependencies = [
 
 [[package]]
 name = "hostfxr-sys"
-version = "0.10.0"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "99ee6bbb19e9e466a49bc72baa370eac6959375ed1824e2574f30df6a3f10f98"
 dependencies = [
  "coreclr-hosting-shared",
  "dlopen2",
@@ -1428,7 +1430,9 @@ dependencies = [
 
 [[package]]
 name = "netcorehost"
-version = "0.16.0"
+version = "0.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8016e6dd942c7495f6c2bc58dbef5da4a3096c0c424efbb210e8fec151afb5b3"
 dependencies = [
  "coreclr-hosting-shared",
  "cstr",
@@ -1438,7 +1442,7 @@ dependencies = [
  "ffi-opaque",
  "hostfxr-sys",
  "nethost-sys",
- "num_enum 0.7.0",
+ "num_enum 0.6.1",
  "once_cell",
  "thiserror",
  "widestring",
@@ -1447,6 +1451,7 @@ dependencies = [
 [[package]]
 name = "nethost-sys"
 version = "0.6.3"
+source = "git+https://github.com/TrevTV/nethost-sys#625902e00ef2b5cd083e6bb8695c541c3557f202"
 dependencies = [
  "build-target",
  "cargo-emit",
@@ -1488,11 +1493,11 @@ dependencies = [
 
 [[package]]
 name = "num_enum"
-version = "0.7.0"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70bf6736f74634d299d00086f02986875b3c2d924781a6a2cb6c201e73da0ceb"
+checksum = "7a015b430d3c108a207fd776d2e2196aaf8b1cf8cf93253e3a097ff3085076a1"
 dependencies = [
- "num_enum_derive 0.7.0",
+ "num_enum_derive 0.6.1",
 ]
 
 [[package]]
@@ -1509,9 +1514,9 @@ dependencies = [
 
 [[package]]
 name = "num_enum_derive"
-version = "0.7.0"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "56ea360eafe1022f7cc56cd7b869ed57330fb2453d0c7831d99b74c65d2f5597"
+checksum = "96667db765a921f7b295ffee8b60472b686a51d4f21c2ee4ffdb94c7013b65a6"
 dependencies = [
  "proc-macro2",
  "quote",
