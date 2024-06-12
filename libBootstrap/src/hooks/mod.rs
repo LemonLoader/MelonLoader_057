@@ -7,6 +7,8 @@ use std::ptr::null_mut;
 pub mod functions;
 pub mod init_hook;
 pub mod invoke_hook;
+#[cfg(target_os = "android")]
+pub mod dlopen_hook;
 
 #[derive(Debug)]
 pub struct NativeHook<T> {

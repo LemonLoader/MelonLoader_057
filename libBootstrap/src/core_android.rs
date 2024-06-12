@@ -4,7 +4,7 @@ use jni::{
     JNIEnv, JavaVM,
 };
 use std::{ os::raw::c_void, panic::catch_unwind };
-use crate::{log, melonenv::paths};
+use crate::{log, melonenv::paths, hooks::dlopen_hook};
 
 use std::ffi::CString;
 use std::os::raw::c_char;
@@ -27,6 +27,10 @@ pub extern "system" fn JNI_OnLoad(vm: JavaVM, _: *mut c_void) -> jint {
     std::thread::spawn(|| unsafe {
         crate::chaos::main();
     });
+
+    unsafe {
+        crate::hooks::dlopen_hook::hook().expect("Failed to hook dlopen!");
+    }
 
     log!("JNI initialized!");
     
