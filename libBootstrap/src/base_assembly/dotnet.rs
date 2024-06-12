@@ -58,10 +58,7 @@ pub fn init() -> Result<(), DynErr> {
         return Err(DotnetErr::RuntimeConfig.into());
     }
 
-    // TODO: don't hardcode this
-    //let mut dotnet_path = melonenv::paths::MELONLOADER_FOLDER.clone();
-    //dotnet_path.push("dotnet");
-    let mut dotnet_path = PathBuf::from("/data/data/com.SirCoolness.UnityTestModdingTarget/dotnet/");
+    let dotnet_path = melonenv::paths::DEPENDENCIES_FOLDER.clone().0.join("dotnet");
 
     let context = hostfxr.initialize_for_runtime_config_with_dotnet_root(
         utils::strings::pdcstr(config_path)?,
