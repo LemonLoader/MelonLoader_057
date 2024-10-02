@@ -15,7 +15,7 @@
 
 ---
 
-[Lemon Trello Board](https://trello.com/b/tzQ4yjU1/lemonloader)
+***DEPRECATED***: Superseded by [LemonLoader 0.6+](https://github.com/LemonLoader/MelonLoader)
 
 ## Lemon Credits
 - [SirCoolness](https://github.com/SirCoolness)
